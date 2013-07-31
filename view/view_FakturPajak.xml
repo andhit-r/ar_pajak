@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="tree_pajak_fakturPajak" model="ir.ui.view">
+			<field name="name">Faktur Pajak</field>
+			<field name="model">pajak.faktur_pajak</field>
+			<field name="arch" type="xml">
+				<tree string="Faktur Pajak">
+					<field name="name"/>
+					<field name="faktur_pajak_date"/>
+					<field name="company_id"/>
+					<field name="partner_id"/>
+					<field name="discount"/>
+					<field name="advance_payment"/>
+					<field name="untaxed"/>
+					<field name="base"/>
+					<field name="amount_tax"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="form_pajak_fakturPajak" model="ir.ui.view">
+			<field name="name">Faktur Pajak</field>
+			<field name="model">pajak.faktur_pajak</field>
+			<field name="arch" type="xml">
+				<form string="Faktur Pajak" version="7.0">
+					<header>
+						<button name="button_approve" type="workflow" string="Approve" colspan="2" states="confirm"/>
+						<button name="button_process" type="workflow" string="Process" colspan="2" states="ready"/>
+						<button name="button_action_set_to_draft" type="object" string="Set To Draft" colspan="2" states="cancel"/>
+						<field name="state" widget="statusbar" statusbar_visible="draft,confirm,approve,done"/>
+					</header>
+					<sheet string="Faktur Pajak">
+							<label for="name"/>						
+						<h1>
+							<field name="name"/>
+						</h1>
+						<label for="faktur_pajak_date"/>
+							<field name="faktur_pajak_date"/>
+						<group name="group_1" colspan="4" col="2">
+							<group name="group_1_2" colspan="1" col="2">
+								<field name="company_id" widget="selection" on_change="onchange_company_id(company_id)"/>
+								<field name="company_npwp"/>
+								<field name="signature_id"/>
+							</group>						
+							<group name="group_1_3" colspan="1" col="2">
+								<field name="partner_id" on_change="onchange_partner_id(partner_id)"/>
+								<field name="partner_npwp"/>
+							</group>						
+						</group>
+						<notebook colspan="4">
+							<page string="Faktur Pajak Line">
+								<field name="faktur_pajak_line_ids" colspan="4" nolabel="1" mode="tree">
+									<tree string="Faktur Pajak Line" editable="bottom">
+										<field name="name"/>
+										<field name="product_id"/>
+										<field name="subtotal"/>
+									</tree>							
+								</field>
+								<group name="group_4" colspan="4" col="2">
+									<group name="group_4_1" colspan="1" col="2">
+										<separator string="PPN Bm" colspan="2"/>
+										<field name="faktur_pajak_line_ppnbm_ids" colspan="2" nolabel="1" mode="tree">
+											<tree string="PPN Bm" editable="bottom">
+												<field name="ppnbm_rate"/>
+												<field name="base"/>
+												<field name="ppnbm_amount"/>
+											</tree>
+										</field>
+									</group>
+									<group name="group_4_2" colspan="1" col="2">
+										<field name="discount"/>
+										<field name="advance_payment"/>
+										<field name="untaxed"/>
+										<field name="base"/>
+										<field name="amount_tax"/>
+									</group>
+								</group>
+							</page>
+							<page string="Note">
+								<group>
+									<field name="note" placeholder="Additional notes..." nolabel="1" height="100"/>
+								</group>
+							</page>
+							<page string="Audit Trail">
+								<group name="group_3" colspan="4" col="3">
+									<field name="created_time" string="Created"/>
+									<field name="created_user_id" nolabel="1"/>
+									<field name="confirmed_time" string="Confirmed"/>
+									<field name="confirmed_user_id" nolabel="1"/>								
+									<field name="approved_time" string="Approved"/>
+									<field name="approved_user_id" nolabel="1"/>																
+									<field name="processed_time" string="Processed"/>
+									<field name="processed_user_id" nolabel="1"/>																
+									<field name="cancelled_time" string="Cancelled"/>
+									<field name="cancelled_user_id" nolabel="1"/>			
+									<field name="cancelled_reason" nolabel="1" colspan="4"/>																					
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+		            <div class="oe_chatter">
+		                <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+		                <field name="message_ids" widget="mail_thread" placeholder="Share a note..."/>
+		            </div>
+				</form>
+			</field>
+		</record>
+
+
+		<record id="search_pajak_fakturPajak" model="ir.ui.view">
+			<field name="name">Faktur Pajak</field>
+			<field name="model">pajak.faktur_pajak</field>
+			<field name="arch" type="xml">
+				<search string="Faktur Pajak">
+                    <group name="group_1">
+                     	<filter icon="terp-document-new" name="draft" string="Draft" domain="[('state','=','draft')]"/>
+                     	<filter icon="gtk-go-forward" name="approve" string="Waiting For Approval" domain="[('state','=','approve')]"/>
+                        <filter icon="terp-check" name="ready" string="Ready" domain="[('state','=','ready')]"/>
+                        <filter icon="terp-dialog-close" name="done" string="Done" domain="[('state','=','done')]"/>
+                        <separator orientation="vertical" />
+                        <filter icon="gtk-cancel" name="cancel" string="Cancel" domain="[('state','=','cancel')]"/>
+                        <separator orientation="vertical" />					
+						<field name="name"/>
+						<field name="faktur_pajak_date"/>
+						<field name="company_id"/>
+						<field name="partner_id"/>
+					</group>
+					<newline/>
+					<group name="group_2" expand="0">
+                    	<filter string="Partner" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}"/>
+                    	<filter string="Company" icon="terp-partner" domain="[]" context="{'group_by':'company_id'}"/>			
+                	</group>
+					
+				</search>
+			</field>
+		</record>
+	</data>
+</openerp>

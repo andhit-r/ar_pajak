@@ -6,6 +6,22 @@
 					name="Tax"
 					sequence="13"
 		/>
+
+		<menuitem 	
+					id="menu_pajak_fakturPajakHeader"
+					name="Faktur Pajak"
+					sequence="1"
+					parent="menu_pajak_taxHeader"
+		/>	
+
+		<menuitem 	
+					id="menu_pajak_fakturPajak"
+					name="Faktur Pajak"
+					sequence="1"
+					parent="menu_pajak_fakturPajakHeader"
+					action="waction_pajak_fakturPajak"
+		/>	
+		
 		
 
 		

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="waction_pajak_fakturPajak" model="ir.actions.act_window">
+			<field name="name">Faktur Pajak</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">pajak.faktur_pajak</field>
+			<field name="search_view_id" ref="search_pajak_fakturPajak"/>
+			<field name="view_type">form</field>
+			<field name="context">{'search_default_approve' : 1,'search_default_ready' : 1}</field>
+			<field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a faktur pajak
+              </p>
+            </field>
+		</record>
+		
+		<record id="wactionView_pajak_treefakturPajak" model="ir.actions.act_window.view">
+			<field eval="10" name="sequence"/>
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="tree_pajak_fakturPajak"/>
+			<field name="act_window_id" ref="waction_pajak_fakturPajak"/>
+		</record>
+
+		<record id="wactionView_pajak_formfakturPajak" model="ir.actions.act_window.view">
+			<field eval="20" name="sequence"/>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="form_pajak_fakturPajak"/>
+			<field name="act_window_id" ref="waction_pajak_fakturPajak"/>
+		</record>
+	</data>
+</openerp>
