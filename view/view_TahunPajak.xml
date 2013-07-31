@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="tree_pajak_tahunPajak" model="ir.ui.view">
+            <field name="name">Tree Tahun Pajak</field>
+            <field name="model">pajak.tahun_pajak</field>
+            <field name="arch" type="xml">
+                <tree string="Tahun Pajak">
+                    <field name="name"/>
+                    <field name="kode"/>
+                    <field name="tanggal_mulai"/>
+                    <field name="tanggal_akhir"/>
+                </tree>
+            </field>
+        </record>
+            
+        <record id="form_pajak_tahunPajak" model="ir.ui.view">
+            <field name="name">Form Tahun Pajak</field>
+            <field name="model">pajak.tahun_pajak</field>
+            <field name="arch" type="xml">
+                <form string="Tahun Pajak" version="7.0">
+					<header>
+						<button name="buat_masa_pajak" type="object" string="Buat Masa Pajak" icon="gtk-execute"/>
+					</header>
+					<sheet>
+		            	<group name="group_1" col="2" colspan="4">
+		            		<group name="group_1_1" string="Tahun Pajak" col="2" colspan="1">
+		            	 		<field name="name"/>
+		            	 		<field name="kode"/>             	 		
+		                	</group>
+		            		<group name="group_1_2" string="Mulai &amp; Akhir" col="2" colspan="1">
+						        <field name="tanggal_mulai"/>
+						        <field name="tanggal_akhir"/>
+		                	</group>                    	
+		            	</group>
+		            	<notebook colspan="4">
+		            		<page string="Masa Pajak">
+						    	<field name="masa_pajak_ids" nolabel="1" colspan="4">
+						    		<tree string="Masa Pajak" editable="bottom" mode="tree">
+						    			<field name="name"/>
+						    			<field name="kode"/>
+						    			<field name="tanggal_mulai"/>
+						    			<field name="tanggal_akhir"/>
+						    			<field name="sequence"/>
+						    			<field name="state"/>
+						    			<button name="workflow_action_aktif" type="object" string="Aktif" colspan="2" states="draft"/>
+						    			<button name="workflow_action_selesai" type="object" string="Selesai" colspan="2" states="aktif"/>
+						    		</tree>
+				        		</field>
+			        		</page>
+		        		</notebook>
+					</sheet>			
+                </form>
+            </field>
+        </record>
+
+
+
+
+        <record id="search_pajak_tahunPajak" model="ir.ui.view">
+            <field name="name">Search Tahun Pajak</field>
+            <field name="model">pajak.tahun_pajak</field>
+            <field name="arch" type="xml">
+                <search string="Tahun Pajak">
+                    <field name="name"/>
+                    <field name="kode"/>
+               </search>
+            </field>
+        </record>
+    </data>
+</openerp>
+

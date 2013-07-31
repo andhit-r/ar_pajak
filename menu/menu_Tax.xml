@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<menuitem 	
+					id="menu_pajak_taxHeader"
+					name="Tax"
+					sequence="13"
+		/>
+		
+
+		
+		<menuitem 	
+					id="menu_pajak_configurationHeader"
+					name="Configuration"
+					sequence="99"
+					parent="menu_pajak_taxHeader"
+		/>			
+		
+		<menuitem 	
+					id="menu_pajak_tahunPajak"
+					name="Tahun Pajak"
+					sequence="1"
+					parent="menu_pajak_configurationHeader"
+					action="waction_pajak_tahunPajak"
+		/>			
+
+		
+    </data>
+</openerp>
+
