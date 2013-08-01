@@ -33,6 +33,7 @@
                     'security/ir.model.access.csv',
                     'security/data_Application.xml',
                     'security/data_GroupsFakturPajak.xml',
+                    'workflow/workflow_FakturPajak.xml',
                     'view/view_TahunPajak.xml',
                     'view/view_FakturPajak.xml',
                     'view/view_ResCurrency.xml',
