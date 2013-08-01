@@ -39,20 +39,31 @@ class faktur_pajak(osv.osv):
 		return '/'
 		
 	def default_company_id(self, cr, uid, context={}):
-		#TODO : Ticket #88
+		#TODO : Ticket #3
 		return False
 		
 	def default_faktur_pajak_date(self, cr, uid, context={}):
-		#TODO: Ticket #88
+		#TODO: Ticket #4
 		return False
 		
 	def default_created_time(self, cr, uid, context={}):
-		#TODO: Ticket #88
+		#TODO: Ticket #5
 		return False
 		
 	def default_created_user_id(self, cr, uid, context={}):
-		#TODO: Ticket #88
+		#TODO: Ticket #6
 		return False
+
+	def function_amount_all(self, cr, uid, ids, name, args, context=None):
+		#TODO: Tiket 11
+		res = {}
+		for faktur in self.browse(cr, uid, ids):
+			res[faktur.id] = {
+										'untaxed' : 0.0,
+										'base' : 0.0,
+										'amount_tax' : 0.0,
+										}
+		return res
 	
 			
 	
@@ -65,9 +76,9 @@ class faktur_pajak(osv.osv):
 								'signature_id' : fields.many2one(obj='res.users', string='Signature', readonly=True),
 								'discount' : fields.float(string='Discount', digits_compute=dp.get_precision('Account'), required=True),
 								'advance_payment' : fields.float(string='Amount Advance Payment', digits_compute=dp.get_precision('Account'), required=True),
-								'untaxed' : fields.float(string='Untaxed', digits_compute=dp.get_precision('Account'), required=True),
-								'base' : fields.float(string='Base', digits_compute=dp.get_precision('Account'), required=True),
-								'amount_tax' : fields.float(string='Amount Tax', digits_compute=dp.get_precision('Account'), required=True),
+								'untaxed' : fields.function(fnct=function_amount_all, type='float', string='Untaxed', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
+								'base' : fields.function(fnct=function_amont_all, type='float', string='Base', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
+								'amount_tax' : fields.function(fnct=function_amount_all, string='Amount Tax', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
 								'faktur_pajak_line_ids' : fields.one2many(obj='pajak.faktur_pajak_line', fields_id='faktur_pajak_id', string='Faktur Pajak Line'),
 								'faktur_pajak_line_ppnbm_ids' : fields.one2many(obj='pajak.faktur_pajak_ppnbm_line', fields_id='faktur_pajak_id', string='Faktur Pajak PPN Bm Line'),
 								'faktur_pajak_date' : fields.date(string='Date', required=True),
@@ -116,7 +127,15 @@ class faktur_pajak(osv.osv):
 		return True		
 		
 	def onchange_company_id(self, cr, uid, ids, company_id):
-		#TODO: Ticket #88
+		#TODO: Ticket #7
+		value = {}
+		domain = {}
+		warning = {}
+		
+		return {'value' : value, 'domain' : domain, 'warning' : warning}
+
+	def onchange_partner_id(self, cr, uid, ids, partner_id):
+		#TODO: Ticket #8
 		value = {}
 		domain = {}
 		warning = {}
@@ -124,7 +143,7 @@ class faktur_pajak(osv.osv):
 		return {'value' : value, 'domain' : domain, 'warning' : warning}
 		
 	def create_sequence(self, cr, uid, id):
-		#TODO: Ticket #88
+		#TODO: Ticket #9
 		return True
 		
 	def select_sequence(self, cr, uid, id, faktur_pajak_sequence):
@@ -132,27 +151,46 @@ class faktur_pajak(osv.osv):
 		Parameter :
 		faktur_pajak_sequence : char
 		"""
-		#TODO: Ticket #88
+		#TODO: Ticket #10
 		return True
-		
-	def onchange_partner_id(self, cr, uid, ids, partner_id):
-		#TODO: Ticket #88
-		value = {}
-		domain = {}
-		warning = {}
-		
-		return {'value' : value, 'domain' : domain, 'warning' : warning}		
+
 		
 	def button_action_set_to_draft(self, cr, uid, ids, context={}):
 		for id in ids:
-			if not self.set_to_draft(self, cr, uid, id):
+			if not self.delete_workflow_instance(self, cr, uid, id):
+				return False
+
+			if not self.create_workflow_instance(self, cr, uid, id):
 				return False
 				
 		return True
 		
-	def set_to_draft(self, cr, uid, id):
-		#TODO: Ticket #88
-		return True
+
+    def button_action_cancel(self, cr, uid, ids, context={}):
+        wkf_service = netsvc.LocalService('workflow')
+        for id in ids:
+			if not self.delete_workflow_instance(self, cr, uid, id):
+				return False
+
+			if not self.create_workflow_instance(self, cr, uid, id):
+				return False
+
+            wkf_service.trg_validate(uid, 'pajak.faktur_pajak', id, 'button_cancel', cr)
+
+        return True
+
+    def log_audit_trail(self, cr, uid, id, event):
+        #TODO: Ticket #12
+        return True
+
+    def delete_workflow_instance(self, cr, uid, id):
+        #TODO: Ticket #13
+        return True
+
+    def create_workflow_instance(self, cr, uid, id):
+        #TODO: Ticket #14
+        return True
+
 		
 		
 
@@ -195,3 +233,5 @@ class account_faktur_pajak_sequence(osv.osv):
 			
 
 account_faktur_pajak_sequence()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
