@@ -29,7 +29,9 @@
     'website': 'http://andhitiarama.wordpress.com',
     'images' : [],
     'depends' : ['product', 'ar_base_amount_to_text'],
-    'data' : [  'view/view_TahunPajak.xml',
+    'data' : [  
+                    'security/ir.model.access.csv',
+                    'view/view_TahunPajak.xml',
                     'view/view_FakturPajak.xml',
                     'view/view_ResCurrency.xml',
                     'window_action/waction_TahunPajak.xml',
