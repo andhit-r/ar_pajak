@@ -19,9 +19,6 @@
 #
 ##############################################################################
 
-import tahun_pajak
-import masa_pajak
-import faktur_pajak
-import tax_rate
+import res_currency
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

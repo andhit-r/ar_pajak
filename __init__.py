@@ -20,5 +20,6 @@
 ##############################################################################
 
 import object_module
+import object_other
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

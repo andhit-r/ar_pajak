@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+        <record id="form_pajak_resCurrency" model="ir.ui.view">
+            <field name="name">Form Res Company - AR Pajak</field>
+            <field name="model">res.currency</field>
+            <field name="inherit_id" ref="ar_base_amount_to_text.form_base_currencyAmntToText"/>
+            <field name="arch" type="xml">
+            	<data>
+            		 <field name="rate" position="after">
+            		 	<field name="tax_rate"/>
+            		 </field>
+            		 
+		        	<notebook colspan="4" position="inside">
+				        <page string="Tax Rates">
+						    <field colspan="4" mode="tree" name="tax_rate_ids" nolabel="1">
+						        <tree string="Rates" editable="bottom">
+						            <field name="name"/>
+						            <field name="rate"/>
+						        </tree>
+						    </field>
+		                </page>
+					</notebook>
+				</data>
+            </field>
+        </record>
+	</data>
+</openerp>

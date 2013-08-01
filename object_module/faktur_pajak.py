@@ -77,7 +77,7 @@ class faktur_pajak(osv.osv):
 								'discount' : fields.float(string='Discount', digits_compute=dp.get_precision('Account'), required=True),
 								'advance_payment' : fields.float(string='Amount Advance Payment', digits_compute=dp.get_precision('Account'), required=True),
 								'untaxed' : fields.function(fnct=function_amount_all, type='float', string='Untaxed', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
-								'base' : fields.function(fnct=function_amont_all, type='float', string='Base', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
+								'base' : fields.function(fnct=function_amount_all, type='float', string='Base', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
 								'amount_tax' : fields.function(fnct=function_amount_all, string='Amount Tax', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
 								'faktur_pajak_line_ids' : fields.one2many(obj='pajak.faktur_pajak_line', fields_id='faktur_pajak_id', string='Faktur Pajak Line'),
 								'faktur_pajak_line_ppnbm_ids' : fields.one2many(obj='pajak.faktur_pajak_ppnbm_line', fields_id='faktur_pajak_id', string='Faktur Pajak PPN Bm Line'),
@@ -164,32 +164,32 @@ class faktur_pajak(osv.osv):
 				return False
 				
 		return True
+
 		
+        def button_action_cancel(self, cr, uid, ids, context={}):
+                wkf_service = netsvc.LocalService('workflow')
+                for id in ids:
+                                if not self.delete_workflow_instance(self, cr, uid, id):
+                                        return False
 
-    def button_action_cancel(self, cr, uid, ids, context={}):
-        wkf_service = netsvc.LocalService('workflow')
-        for id in ids:
-			if not self.delete_workflow_instance(self, cr, uid, id):
-				return False
+                                if not self.create_workflow_instance(self, cr, uid, id):
+                                        return False
 
-			if not self.create_workflow_instance(self, cr, uid, id):
-				return False
+                                wkf_service.trg_validate(uid, 'pajak.faktur_pajak', id, 'button_cancel', cr)
 
-            wkf_service.trg_validate(uid, 'pajak.faktur_pajak', id, 'button_cancel', cr)
+                return True
 
-        return True
+        def log_audit_trail(self, cr, uid, id, event):
+                #TODO: Ticket #12
+                return True
 
-    def log_audit_trail(self, cr, uid, id, event):
-        #TODO: Ticket #12
-        return True
+        def delete_workflow_instance(self, cr, uid, id):
+                #TODO: Ticket #13
+                return True
 
-    def delete_workflow_instance(self, cr, uid, id):
-        #TODO: Ticket #13
-        return True
-
-    def create_workflow_instance(self, cr, uid, id):
-        #TODO: Ticket #14
-        return True
+        def create_workflow_instance(self, cr, uid, id):
+                #TODO: Ticket #14
+                return True
 
 		
 		
