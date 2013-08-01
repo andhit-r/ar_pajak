@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="group_pajak_createFakturPajak" model="res.groups">
+			<field name="name">Create Faktur Pajak</field>
+			<field name="category_id" ref="application_pajak_fakturPajak"/>
+		</record>
+
+		<record id="group_pajak_confirmFakturPajak" model="res.groups">
+			<field name="name">Confirm Faktur Pajak</field>
+			<field name="category_id" ref="application_pajak_fakturPajak"/>
+		</record>
+
+		<record id="group_pajak_approveFakturPajak" model="res.groups">
+			<field name="name">Approve Faktur Pajak</field>
+			<field name="category_id" ref="application_pajak_fakturPajak"/>
+		</record>
+
+		<record id="group_pajak_processFakturPajak" model="res.groups">
+			<field name="name">Process Faktur Pajak</field>
+			<field name="category_id" ref="application_pajak_fakturPajak"/>
+		</record>
+
+		<record id="group_pajak_cancelFakturPajak" model="res.groups">
+			<field name="name">Cancel Faktur Pajak</field>
+			<field name="category_id" ref="application_pajak_fakturPajak"/>
+		</record>
+
+		<record id="group_pajak_restartFakturPajak" model="res.groups">
+			<field name="name">Restart Faktur Pajak</field>
+			<field name="category_id" ref="application_pajak_fakturPajak"/>
+		</record>
+
+	</data>
+</openerp>
