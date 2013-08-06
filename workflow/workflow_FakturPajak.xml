@@ -3,7 +3,7 @@ H<?xml version="1.0" encoding="utf-8"?>
     <data>
         <record id="wkf_pajak_fakturPajak" model="workflow">
             <field name="name">Faktur Pajak</field>
-            <field name="osv">account.faktur_pajak</field>
+            <field name="osv">pajak.faktur_pajak</field>
             <field name="on_create">True</field>
         </record>
 

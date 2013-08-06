@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="tree_pajak_suratSetorPajak" model="ir.ui.view">
+            <field name="name">Tree Surat Setor Pajak</field>
+            <field name="model">pajak.surat_setor_pajak</field>
+            <field name="arch" type="xml">
+                <tree string="Surat Setor Pajak">
+                    <field name="name"/>
+					<field name="company_id"/>
+					<field name="npwp"/>
+					<field name="partner_id"/>
+					<field name="akun_pajak_id"/>
+					<field name="jenis_setor_pajak_id"/>
+					<field name="description"/>
+					<field name="masa_pajak_id"/>
+					<field name="tahun_pajak_id"/>
+					<field name="amount_ssp"/>
+					<field name="state"/>
+                </tree>
+            </field>
+        </record>
+            
+        <record id="form_pajak_suratSetorPajak" model="ir.ui.view">
+            <field name="name">Form Surat Setor Pajak</field>
+            <field name="model">pajak.surat_setor_pajak</field>
+            <field name="arch" type="xml">
+                <form string="Surat Setor Pajak" version="7.0">
+					<header>
+            			<button name="button_confirm" type="workflow" colspan="2" string="Confirm" icon="gtk-go-forward" states="draft" groups="ar_pajak.group_pajak_confirmSSP"/>
+            			<button name="button_approve" type="workflow" colspan="2" string="Approve" icon="gtk-apply" states="confirm" groups="ar_pajak.group_pajak_approveSSP"/>
+            			<button name="button_done" type="workflow" colspan="2" string="Done" icon="gtk-yes" states="approve" groups="ar_pajak.group_pajak_processSSP"/>
+            			<button name="button_cancel" type="workflow" colspan="2" string="Cancel" icon="gtk-cancel" states="draft,confirm,approve" groups="ar_pajak.group_pajak_cancelSSP"/>
+            			<button name="button_action_cancel" type="object" colspan="2" string="Cancel" icon="gtk-cancel" states="done" groups="ar_pajak.group_pajak_cancelSSP"/>
+            			<button name="button_action_set_to_draft" type="object" colspan="2" string="Set To Draft" icon="gtk-convert" states="cancel" groups="ar_pajak.group_pajak_restartSSP"/>
+						<field name="state" widget="statusbar" statusbar_visible="draft,confirm,approve"/>
+					</header>
+					<sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <label string="Surat Setor Pajak"/>
+                        </h1>
+                    </div>
+		            	<group name="group_1" col="2" colspan="4">
+		            		<group name="group_1_1" col="2" colspan="1">
+		            			<field name="name"/>
+		            			<field name="company_id"/>
+		            			<field name="npwp"/>
+		            			<field name="partner_id"/>
+		            		</group>
+		            		<group name="group_1_2" col="2" colspan="1">
+		            			<field name="nop"/>
+		            			<field name="nop_address"/>
+		            		</group>
+		            		<group name="group_1_3" col="2" colspan="1">
+		            			<field name="akun_pajak_id"/>
+		            			<field name="jenis_setor_pajak_id"/>
+		            		</group>
+		            		<group name="group_1_8" col="2" colspan="1">
+		            			<field name="masa_pajak_id"/>
+		            			<field name="tahun_pajak_id"/>
+		            		</group>                		
+		            		<group name="group_1_4" col="2" colspan="1">
+								<label for="description"/>
+		            			<field name="description" colspan="2" nolabel="1"/>
+		            		</group>
+		            		<group name="group_1_5" col="2" colspan="1">
+		            			<field name="nomor_ketetapan"/>
+		            		</group>
+		            		<group name="group_1_6" col="2" colspan="1">
+		            			<field name="amount_ssp"/>
+		            			<field name="amount_to_text"/>
+		            		</group>
+		            		<group name="group_1_7" col="2" colspan="1">
+		            			<field name="city_ssp"/>
+		            			<field name="date_ssp"/>
+		            			<field name="signature_ssp_id"/>
+		            		</group>
+		            	</group>
+					</sheet>
+		            <div class="oe_chatter">
+		                <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+		                <field name="message_ids" widget="mail_thread" placeholder="Share a note..."/>
+		            </div>
+                </form>
+            </field>
+        </record>
+
+
+
+
+        <record id="search_pajak_suratSetorPajak" model="ir.ui.view">
+            <field name="name">Search Surat Setor Pajak</field>
+            <field name="model">pajak.surat_setor_pajak</field>
+            <field name="arch" type="xml">
+                <search string="Surat Setor Pajak">
+                    <field name="name"/>
+					<field name="company_id"/>
+					<field name="npwp"/>
+					<field name="partner_id"/>
+					<field name="akun_pajak_id"/>
+					<field name="jenis_setor_pajak_id"/>
+					<field name="description"/>
+					<field name="masa_pajak_id"/>
+					<field name="tahun_pajak_id"/>
+					<field name="amount_ssp"/>
+					<field name="state"/>
+               </search>
+            </field>
+        </record>
+    </data>
+</openerp>
+

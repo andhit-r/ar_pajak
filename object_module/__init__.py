@@ -21,7 +21,12 @@
 
 import tahun_pajak
 import masa_pajak
-import faktur_pajak
+import akun_pajak
+import jenis_setor_pajak
 import tax_rate
+import faktur_pajak
+import surat_setor_pajak
+
+import formulir_1111
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

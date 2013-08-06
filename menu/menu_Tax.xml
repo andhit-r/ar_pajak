@@ -21,8 +21,122 @@
 					parent="menu_pajak_fakturPajakHeader"
 					action="waction_pajak_fakturPajak"
 		/>	
-		
-		
+		<menuitem 	
+					id="menu_pajak_sspHeader"
+					name="SSP"
+					sequence="2"
+					parent="menu_pajak_taxHeader"
+		/>	
+
+		<menuitem 	
+					id="menu_pajak_ssp"
+					name="Surat Setor Pajak"
+					sequence="1"
+					parent="menu_pajak_sspHeader"
+					action="waction_pajak_suratSetorPajak"
+		/>	
+
+		<menuitem 	
+					id="menu_pajak_sptMasaPPNHeader"
+					name="SPT Masa PPN"
+					sequence="3"
+					parent="menu_pajak_taxHeader"
+		/>	
+
+		<menuitem 	
+					id="menu_pajak_formulir1111"
+					name="Formulir 1111"
+					sequence="1"
+					parent="menu_pajak_sptMasaPPNHeader"
+					action="waction_pajak_formulir1111"
+		/>	
+
+		<menuitem 	
+					id="menu_pajak_formulir1111AB"
+					name="Formulir 1111 AB"
+					sequence="2"
+					parent="menu_pajak_sptMasaPPNHeader"
+					action="waction_pajak_formulir1111"
+		/>	
+
+		<menuitem 	
+					id="menu_pajak_formulir1111A1"
+					name="Formulir 1111 A1"
+					sequence="3"
+					parent="menu_pajak_sptMasaPPNHeader"
+					action="waction_pajak_formulir1111"
+		/>	
+
+		<menuitem 	
+					id="menu_pajak_formulir1111A2"
+					name="Formulir 1111 A2"
+					sequence="4"
+					parent="menu_pajak_sptMasaPPNHeader"
+					action="waction_pajak_formulir1111"
+		/>	
+
+		<menuitem 	
+					id="menu_pajak_formulir1111B1"
+					name="Formulir 1111 B1"
+					sequence="5"
+					parent="menu_pajak_sptMasaPPNHeader"
+					action="waction_pajak_formulir1111"
+		/>	
+
+		<menuitem 	
+					id="menu_pajak_formulir1111B2"
+					name="Formulir 1111 B2"
+					sequence="6"
+					parent="menu_pajak_sptMasaPPNHeader"
+					action="waction_pajak_formulir1111"
+		/>	
+
+		<menuitem 	
+					id="menu_pajak_formulir1111B3"
+					name="Formulir 1111 B3"
+					sequence="7"
+					parent="menu_pajak_sptMasaPPNHeader"
+					action="waction_pajak_formulir1111"
+		/>			
+
+		<menuitem 	
+					id="menu_pajak_sptMasaPPH2126Header"
+					name="SPT Masa PPH 21 &amp; 26"
+					sequence="4"
+					parent="menu_pajak_taxHeader"
+		/>	
+
+		<menuitem 	
+					id="menu_pajak_formulir1721"
+					name="Formulir 1721"
+					sequence="1"
+					parent="menu_pajak_sptMasaPPH2126Header"
+					action="waction_pajak_formulir1111"
+		/>		
+
+		<menuitem 	
+					id="menu_pajak_formulir1721I"
+					name="Formulir 1721-I"
+					sequence="2"
+					parent="menu_pajak_sptMasaPPH2126Header"
+					action="waction_pajak_formulir1111"
+		/>		
+
+		<menuitem 	
+					id="menu_pajak_formulir1721II"
+					name="Formulir 1721-II"
+					sequence="3"
+					parent="menu_pajak_sptMasaPPH2126Header"
+					action="waction_pajak_formulir1111"
+		/>		
+
+		<menuitem 	
+					id="menu_pajak_formulir1721T"
+					name="Formulir 1721-T"
+					sequence="4"
+					parent="menu_pajak_sptMasaPPH2126Header"
+					action="waction_pajak_formulir1111"
+		/>		
 
 		
 		<menuitem 	
@@ -38,7 +152,23 @@
 					sequence="1"
 					parent="menu_pajak_configurationHeader"
 					action="waction_pajak_tahunPajak"
-		/>			
+		/>		
+
+		<menuitem 	
+					id="menu_pajak_akunPajak"
+					name="Akun Pajak"
+					sequence="2"
+					parent="menu_pajak_configurationHeader"
+					action="waction_pajak_akunPajak"
+		/>		
+
+		<menuitem 	
+					id="menu_pajak_jenisSetorPajak"
+					name="Jenis Setor Pajak"
+					sequence="3"
+					parent="menu_pajak_configurationHeader"
+					action="waction_pajak_jenisSetorPajak"
+		/>	
 
 		
     </data>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="tree_pajak_formulir1111" model="ir.ui.view">
+			<field name="name">SPT Masa PPN</field>
+			<field name="model">pajak.formulir_1111</field>
+			<field name="arch" type="xml">
+				<tree string="SPT Masa PPN">
+					<field name="name"/>
+					<field name="company_id"/>
+					<field name="masa_pajak_id"/>
+					<field name="tahun_pajak_id"/>
+					<field name="pembetulan_ke"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="form_pajak_formulir1111" model="ir.ui.view">
+			<field name="name">SPT Masa PPN</field>
+			<field name="model">pajak.formulir_1111</field>
+			<field name="arch" type="xml">
+				<form string="SPT Masa PPN" version="7.0">
+					<header>
+						<button name="button_approve" type="workflow" string="Approve" colspan="2" states="confirm"/>
+						<button name="button_process" type="workflow" string="Process" colspan="2" states="ready"/>
+						<button name="button_action_set_to_draft" type="object" string="Set To Draft" colspan="2" states="cancel"/>
+						<field name="state" widget="statusbar" statusbar_visible="draft,confirm,approve,done"/>
+					</header>
+					<sheet string="SPT Masa PPN">
+						<group name="group_1" colspan="4" col="2">
+							<group name="group_1_1" colspan="1" col="2">
+								<field name="company_id" widget="selection"/>
+								<field name="company_npwp"/>
+								<field name="company_address"/>
+								<field name="telepon"/>
+								<field name="hp"/>
+								<field name="klu"/>
+							</group>						
+							<group name="group_1_3" colspan="1" col="2">
+								<field name="masa_pajak_id"/>
+								<field name="tahun_pajak_id"/>
+								<field name="pembetulan_ke"/>
+								<field name="wajib_ppnbm"/>
+							</group>						
+						</group>
+						<notebook colspan="4">
+							<page string="I. PENYERAHAN BARANG &amp; JASA">
+								<group name="group_2" colspan="4" col="3">
+									<label string="I. PENYERAHAN BARANG DAN JASA"/>
+									<label string="DPP"/>
+									<label string="PPN"/>
+									<label string="A. Terutang PPN"/>
+									<newline/>
+									<field name="item1A1"/>
+									<newline/>
+									<field name="item1A2_dpp"/>
+									<field name="item1A2_ppn" nolabel="1"/>
+									<field name="item1A3_dpp"/>
+									<field name="item1A3_ppn" nolabel="1"/>
+									<field name="item1A4_dpp"/>
+									<field name="item1A4_ppn" nolabel="1"/>
+									<field name="item1A5_dpp"/>
+									<field name="item1A5_ppn" nolabel="1"/>
+									<field name="item_jumlah_1A"/>
+									<newline/>
+									<field name="item1B"/>
+									<newline/>
+									<field name="item1C"/>
+								</group>
+							</page>
+							<page string="Note">
+								<group>
+									<field name="note" placeholder="Additional notes..." nolabel="1" height="100"/>
+								</group>
+							</page>
+							<page string="Audit Trail">
+								<group name="group_3" colspan="4" col="3">
+									<field name="created_time" string="Created"/>
+									<field name="created_user_id" nolabel="1"/>
+									<field name="confirmed_time" string="Confirmed"/>
+									<field name="confirmed_user_id" nolabel="1"/>								
+									<field name="approved_time" string="Approved"/>
+									<field name="approved_user_id" nolabel="1"/>																
+									<field name="processed_time" string="Processed"/>
+									<field name="processed_user_id" nolabel="1"/>																
+									<field name="cancelled_time" string="Cancelled"/>
+									<field name="cancelled_user_id" nolabel="1"/>			
+									<field name="cancelled_reason" nolabel="1" colspan="4"/>																					
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+		            <div class="oe_chatter">
+		                <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+		                <field name="message_ids" widget="mail_thread" placeholder="Share a note..."/>
+		            </div>
+				</form>
+			</field>
+		</record>
+
+
+		<record id="search_pajak_formulir1111" model="ir.ui.view">
+			<field name="name">SPT Masa PPN</field>
+			<field name="model">pajak.formulir_1111</field>
+			<field name="arch" type="xml">
+				<search string="SPT Masa PPN">
+					<field name="name"/>
+					<field name="company_id"/>
+					<field name="masa_pajak_id"/>
+					<field name="tahun_pajak_id"/>
+					<field name="pembetulan_ke"/>
+					<field name="state"/>					
+				</search>
+			</field>
+		</record>
+	</data>
+</openerp>
