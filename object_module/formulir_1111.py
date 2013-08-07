@@ -39,16 +39,15 @@ class formulir_1111(osv.osv):
 		return '/'
 		
 	def default_company_id(self, cr, uid, context={}):
-		#TODO : Ticket #3
+		#TODO : Ticket #29
 		return False
 		
 	def default_created_time(self, cr, uid, context={}):
-		#TODO: Ticket #5
+		#TODO: Ticket #30
 		return False
 		
 	def default_created_user_id(self, cr, uid, context={}):
-		#TODO: Ticket #6
-		return False
+		return uid
 
 	
 			
@@ -86,6 +85,36 @@ class formulir_1111(osv.osv):
                                 'item2D' : fields.float(string='PPN kurang atau (lebih) bayar (II.A - II.B - II.C)', digits_compute=dp.get_precision('Account')),
                                 'item2E' : fields.float(string='PPN kurang atau (lebih) bayar pada SPT yang dibetulkan', digits_compute=dp.get_precision('Account')),
                                 'item2F' : fields.float(string='PPN kurang atau (lebih) bayar karena pembetulan (II.D - II.E)', digits_compute=dp.get_precision('Account')),
+                                
+                                # BAGIAN 3
+                                'item3A' : fields.float(string='A. Jumlah Dasar Pengenaan Pajak', digits_compute=dp.get_precision('Account')),
+                                'item3B' : fields.float(string='B. PPN Terutang', digits_compute=dp.get_precision('Account')),
+                                'item3C_tanggal' : fields.date(string='C. Dilunasi Tanggal'),
+                                'item3C_ntpn' : fields.char(string='NTPN', size=100),
+                                
+                                # BAGIAN 4
+                                'item4A' : fields.float(string='A. PPN yang wajib dibayar kembali', digits_compute=dp.get_precision('Account')),
+                                'item4B_tanggal' : fields.date(string='B. Dilunasi Tanggal'),
+                                'item4B_ntpn' : fields.char(string='NTPN', size=100),                                
+                                
+                                # BAGIAN 5
+                                'item5A' : fields.float(string='A. PPnBM yang harus dipungut kembali', digits_compute=dp.get_precision('Account')),
+                                'item5B' : fields.float(string='B. PPnBM disetor dimuka dalam Masa Pajak yang sama', digits_compute=dp.get_precision('Account')),
+                                'item5C' : fields.float(string='C. PPnBM kurang atau (lebih) bayar (V.A - V.B)', digits_compute=dp.get_precision('Account')),
+                                'item5D' : fields.float(string='D. PPnBM kurang atau (lebih) bayar pada SPT yang dibetulkan', digits_compute=dp.get_precision('Account')),
+                                'item5E' : fields.float(string='E. PPnBM kurang atau (lebih) bayar karena pembetulan (V.C - V.D)', digits_compute=dp.get_precision('Account')),
+                                'item5F_tanggal' : fields.date(string='F. Dilunasi Tanggal'),
+                                'item5F_ntpn' : fields.char(string='NTPN', size=100),                                       
+                                
+                                # BAGIAN 6
+                                
+                                
+                                # PERNYATAAN
+                                'kota_pernyataan' : fields.char(string='Kota', size=100, required=True),
+                                'tanggal_pernyataan' : fields.date(string='Tanggal', required=True),
+                                'pernyataan_user_id' : fields.many2one(string='Pengurus/Kuasa', obj='res.users', required=True),
+                                'jenis_pengurus' : fields.selection(string='PKP/Kuasa', selection=[('pkp','PKP'),('kuasa','Kuasa')], required=True),
+                                
 
 								'state' : fields.selection([('draft','Draft'),('confirm','Waiting For Approval'),('approve','Ready To Process'),('done','Done'),('cancel','Cancel')], 'Status', readonly=True),
 								'created_time' : fields.datetime(string='Created Time', readonly=True),
@@ -157,15 +186,15 @@ class formulir_1111(osv.osv):
                 return True
 
         def log_audit_trail(self, cr, uid, id, event):
-                #TODO: Ticket #12
+                #TODO: Ticket #31
                 return True
 
         def delete_workflow_instance(self, cr, uid, id):
-                #TODO: Ticket #13
+                #TODO: Ticket #32
                 return True
 
         def create_workflow_instance(self, cr, uid, id):
-                #TODO: Ticket #14
+                #TODO: Ticket #33
                 return True
 
 		

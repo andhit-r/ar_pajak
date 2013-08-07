@@ -28,5 +28,11 @@ import faktur_pajak
 import surat_setor_pajak
 
 import formulir_1111
+import formulir_1111_ab
+import formulir_1111_a1
+import formulir_1111_a2
+import formulir_1111_b1
+import formulir_1111_b2
+import formulir_1111_b3
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

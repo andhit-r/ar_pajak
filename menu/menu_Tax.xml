@@ -64,7 +64,7 @@
 					name="Formulir 1111 A1"
 					sequence="3"
 					parent="menu_pajak_sptMasaPPNHeader"
-					action="waction_pajak_formulir1111"
+					action="waction_pajak_formulir1111A1"
 		/>	
 
 		<menuitem 	

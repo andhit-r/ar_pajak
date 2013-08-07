@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="waction_pajak_formulir1111A1" model="ir.actions.act_window">
+			<field name="name">Formulir 1111 A1</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">pajak.formulir_1111_a1</field>
+			<field name="search_view_id" ref="search_pajak_formulir1111A1"/>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a Formulir 1111 A1
+              </p>
+            </field>
+		</record>
+		
+		<record id="wactionView_pajak_treeFormulir1111A1" model="ir.actions.act_window.view">
+			<field eval="10" name="sequence"/>
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="tree_pajak_formulir1111A1"/>
+			<field name="act_window_id" ref="waction_pajak_formulir1111A1"/>
+		</record>
+
+		<record id="wactionView_pajak_formFormulir1111A1" model="ir.actions.act_window.view">
+			<field eval="20" name="sequence"/>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="form_pajak_formulir1111A1"/>
+			<field name="act_window_id" ref="waction_pajak_formulir1111A1"/>
+		</record>
+	</data>
+</openerp>

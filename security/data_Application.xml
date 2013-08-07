@@ -5,6 +5,10 @@
 		<record id="application_pajak_fakturPajak" model="ir.module.category">
 			<field name="name">Faktur Pajak</field>
 		</record>
+		
+		<record id="application_pajak_formulir1111A1" model="ir.module.category">
+			<field name="name">Formulir 1111 A1</field>
+		</record>		
 
 	</data>
 </openerp>

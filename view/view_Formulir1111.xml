@@ -45,7 +45,7 @@
 							</group>						
 						</group>
 						<notebook colspan="4">
-							<page string="I. PENYERAHAN BARANG &amp; JASA">
+							<page string="Detail">
 								<group name="group_2" colspan="4" col="3">
 									<label string="I. PENYERAHAN BARANG DAN JASA"/>
 									<label string="DPP"/>
@@ -68,14 +68,66 @@
 									<newline/>
 									<field name="item1C"/>
 								</group>
+								<group name="group_3" colspan="4" col="2">
+									<label string="II. PERHITUNGAN PPN KURANG/LEBIH BAYAR" colspan="2"/>
+									<field name="item2A"/>
+									<field name="item2B"/>
+									<field name="item2C"/>
+									<field name="item2D"/>
+									<field name="item2E"/>
+									<field name="item2F"/>
+								</group>
+								<group name="group_4" colspan="4" col="4">
+									<label string="III. PPN TERHUTANG ATAS KEGIATAN MEMBANGUN SENDIRI" colspan="4"/>
+									<newline/>
+									<field name="item3A"/>
+									<newline/>
+									<field name="item3B"/>
+									<newline/>						
+									<field name="item3C_tanggal"/>
+									<field name="item3C_ntpn"/>
+								</group>
+								<group name="group_5" colspan="4" col="4">
+									<label string="IV. PEMBAYARAN KEMBALI PAJAK MASUKAN BAGI PKP GAGAL BERPRODUKSI" colspan="4"/>
+									<newline/>
+									<field name="item4A"/>
+									<newline/>						
+									<field name="item4B_tanggal"/>
+									<field name="item4B_ntpn"/>									
+								</group>
+								<group name="group_6" colspan="4" col="4">
+									<label string="V. PAJAK PENJUALAN ATAS BARANG MEWAH" colspan="4"/>
+									<field name="item5A"/>
+									<newline/>
+									<field name="item5B"/>
+									<newline/>
+									<field name="item5C"/>
+									<newline/>
+									<field name="item5D"/>
+									<newline/>				
+									<field name="item5E"/>
+									<newline/>												
+									<field name="item5F_tanggal"/>
+									<field name="item5F_ntpn"/>															
+								</group>
+							</page>
+							<page string="Pernyataan">
+								<group name="group_7" colspan="4" col="4">
+									<field name="kota_pernyataan" string="Kota/Tanggal Pernyataan"/>
+									<label string="/"/>
+									<field name="tanggal_pernyataan" nolabel="1"/>
+									<field name="pernyataan_user_id"/>
+									<field name="jenis_pengurus" nolabel="1"/>
+									<newline/>
+								</group>
 							</page>
 							<page string="Note">
-								<group>
+								<group name="group_8">
 									<field name="note" placeholder="Additional notes..." nolabel="1" height="100"/>
 								</group>
 							</page>
 							<page string="Audit Trail">
-								<group name="group_3" colspan="4" col="3">
+								<group name="group_9" colspan="4" col="3">
 									<field name="created_time" string="Created"/>
 									<field name="created_user_id" nolabel="1"/>
 									<field name="confirmed_time" string="Confirmed"/>
