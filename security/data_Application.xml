@@ -12,7 +12,15 @@
 		
 		<record id="application_pajak_formulir1111A2" model="ir.module.category">
 			<field name="name">Formulir 1111 A2</field>
-		</record>				
+		</record>		
+		
+		<record id="application_pajak_formulir1111B1" model="ir.module.category">
+			<field name="name">Formulir 1111 B1</field>
+		</record>		
+		
+		<record id="application_pajak_formulir1111B2" model="ir.module.category">
+			<field name="name">Formulir 1111 B2</field>
+		</record>						
 
 	</data>
 </openerp>

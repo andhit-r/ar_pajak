@@ -80,7 +80,7 @@
 					name="Formulir 1111 B1"
 					sequence="5"
 					parent="menu_pajak_sptMasaPPNHeader"
-					action="waction_pajak_formulir1111"
+					action="waction_pajak_formulir1111B1"
 		/>	
 
 		<menuitem 	
@@ -88,7 +88,7 @@
 					name="Formulir 1111 B2"
 					sequence="6"
 					parent="menu_pajak_sptMasaPPNHeader"
-					action="waction_pajak_formulir1111"
+					action="waction_pajak_formulir1111B2"
 		/>	
 
 		<menuitem 	

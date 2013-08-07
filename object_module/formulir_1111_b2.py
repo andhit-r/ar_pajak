@@ -51,9 +51,13 @@ class formulir_1111_b2(osv.osv):
 	
 	_columns = 	{
 								'name' : fields.char(string='# SPT', size=30, required=True, readonly=True),
-
-                                
-
+								'company_id' : fields.many2one(string='Perusahaan', obj='res.company', required=True),
+								'nama_pkp' : fields.char(string='Nama PKP', size=255, required=True),
+								'npwp' : fields.char(string='NPWP', size=50, required=True),
+								'masa_pajak_id' : fields.many2one(string='Masa Pajak', obj='pajak.masa_pajak', required=True),
+								'pembetulan_ke' : fields.integer(string='Pembetulan Ke-', required=True),
+								'detail_ids' : fields.one2many(string='Detail', obj='pajak.detail_formulir_1111_b2', fields_id='formulir_id'),
+								'note' : fields.text(string='Note'),        
 								'state' : fields.selection([('draft','Draft'),('confirm','Waiting For Approval'),('approve','Ready To Process'),('done','Done'),('cancel','Cancel')], 'Status', readonly=True),
 								'created_time' : fields.datetime(string='Created Time', readonly=True),
 								'created_user_id' : fields.many2one(string='Created By', obj='res.users', readonly=True),
@@ -133,10 +137,33 @@ class formulir_1111_b2(osv.osv):
         def create_workflow_instance(self, cr, uid, id):
                 #TODO: Ticket #14
                 return True
+                
+        def onchange_company_id(self, cr, uid, ids, comapny_id):
+            value = {}
+            domain = {}
+            warning = {}
+            
+            return {'value' : value, 'domain' : domain, 'warning' : warning}                   
 
 		
 		
 
 formulir_1111_b2()
+
+class detail_formulir_1111_b2(osv.osv):
+    _name = 'pajak.detail_formulir_1111_b2'
+    _description = 'Formulir 1111 B2'
+    _columns =  {
+                                'partner_id' : fields.many2one(string='Pembeli', obj='res.partner', required=True),
+                                'npwp' : fields.char(string='NPWP/Nomor Paspor', size=50, required=True),
+                                'dokumen_id' : fields.char(string='Kode dan Nomor Seri', size=255, required=True), #TODO:
+                                'tanggal_dokumen' : fields.date(string='Tanggal Dokumen', required=True),
+                                'dpp' : fields.float(string='DPP', digits_compute=dp.get_precision('Account')),
+                                'ppn' : fields.float(string='PPN', digits_compute=dp.get_precision('Account')),
+                                'ppnbm' : fields.float(string='PPnBM', digits_compute=dp.get_precision('Account')),
+                                'dokumen_pengganti_id' : fields.char(string='Kode dan Nomor Seri Pengganti', size=255, required=True), #TODO:
+                                'formulir_id' : fields.many2one(string='Formulir 1111 B2', obj='pajak.formulir_1111_b2'),
+                                }
+detail_formulir_1111_b2()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
