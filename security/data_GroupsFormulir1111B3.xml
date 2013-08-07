@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="group_pajak_createFormulir1111B3" model="res.groups">
+			<field name="name">Create Formulir 1111 B3</field>
+			<field name="category_id" ref="application_pajak_formulir1111B3"/>
+		</record>
+
+		<record id="group_pajak_confirmFormulir1111B3" model="res.groups">
+			<field name="name">Confirm Formulir 1111 B3</field>
+			<field name="category_id" ref="application_pajak_formulir1111B3"/>
+		</record>
+
+		<record id="group_pajak_approveFormulir1111B3" model="res.groups">
+			<field name="name">Approve Formulir 1111 B3</field>
+			<field name="category_id" ref="application_pajak_formulir1111B3"/>
+		</record>
+
+		<record id="group_pajak_processFormulir1111B3" model="res.groups">
+			<field name="name">Process Formulir 1111 B3</field>
+			<field name="category_id" ref="application_pajak_formulir1111B3"/>
+		</record>
+
+		<record id="group_pajak_cancelFormulir1111B3" model="res.groups">
+			<field name="name">Cancel Formulir 1111 B3</field>
+			<field name="category_id" ref="application_pajak_formulir1111B3"/>
+		</record>
+
+		<record id="group_pajak_restartFormulir1111B3" model="res.groups">
+			<field name="name">Restart Formulir 1111 B3</field>
+			<field name="category_id" ref="application_pajak_formulir1111B3"/>
+		</record>
+
+	</data>
+</openerp>

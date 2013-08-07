@@ -96,7 +96,7 @@
 					name="Formulir 1111 B3"
 					sequence="7"
 					parent="menu_pajak_sptMasaPPNHeader"
-					action="waction_pajak_formulir1111"
+					action="waction_pajak_formulir1111B3"
 		/>			
 
 		<menuitem 	
