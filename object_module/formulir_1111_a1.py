@@ -43,8 +43,7 @@ class formulir_1111_a1(osv.osv):
 		return False
 		
 	def default_created_user_id(self, cr, uid, context={}):
-		#TODO: Ticket #6
-		return False
+		return uid
 
 	
 			

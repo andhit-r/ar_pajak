@@ -9,6 +9,10 @@
 		<record id="application_pajak_formulir1111A1" model="ir.module.category">
 			<field name="name">Formulir 1111 A1</field>
 		</record>		
+		
+		<record id="application_pajak_formulir1111A2" model="ir.module.category">
+			<field name="name">Formulir 1111 A2</field>
+		</record>				
 
 	</data>
 </openerp>
