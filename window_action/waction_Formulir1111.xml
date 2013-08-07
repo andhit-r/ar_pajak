@@ -3,7 +3,7 @@
 	<data>
 
 		<record id="waction_pajak_formulir1111" model="ir.actions.act_window">
-			<field name="name">SPT Masa PPN</field>
+			<field name="name">Formulir 1111</field>
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">pajak.formulir_1111</field>
 			<field name="search_view_id" ref="search_pajak_formulir1111"/>
@@ -12,7 +12,7 @@
 			<field name="view_mode">tree,form</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
-                Click to create a SPT Masa PPN
+                Click to create a Formulir 1111
               </p>
             </field>
 		</record>

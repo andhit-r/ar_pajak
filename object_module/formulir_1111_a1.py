@@ -39,14 +39,19 @@ class formulir_1111_a1(osv.osv):
 		return '/'
 		
 	def default_created_time(self, cr, uid, context={}):
-		#TODO: Ticket #5
-		return False
+		return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 		
 	def default_created_user_id(self, cr, uid, context={}):
 		return uid
 
-	
-			
+	def function_amount_all(self, cr, uid, ids, name, args, context=None):
+		#TODO: Tiket 34
+		res = {}
+		for formulir in self.browse(cr, uid, ids):
+			res[formulir.id] = {
+										'total_dpp' : 0.0,
+										}
+		return res		
 	
 	_columns = 	{
 								'name' : fields.char(string='# Dokumen', size=30, required=True, readonly=True),
@@ -55,7 +60,8 @@ class formulir_1111_a1(osv.osv):
 								'npwp' : fields.char(string='NPWP', size=50, required=True),
 								'masa_pajak_id' : fields.many2one(string='Masa Pajak', obj='pajak.masa_pajak', required=True),
 								'pembetulan_ke' : fields.integer(string='Pembetulan Ke-', required=True),             
-								'detail_ids' : fields.one2many(string='Detail', obj='pajak.detail_formulir_1111_a1', fields_id='formulir_id'),      
+								'detail_ids' : fields.one2many(string='Detail', obj='pajak.detail_formulir_1111_a1', fields_id='formulir_id'),     
+								'total_dpp' : fields.function(fnct=function_amount_all, type='float', string='Jumlah DPP', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'), 
 								'note' : fields.text(string='Note'),
 								'state' : fields.selection([('draft','Draft'),('confirm','Waiting For Approval'),('approve','Ready To Process'),('done','Done'),('cancel','Cancel')], 'Status', readonly=True),
 								'created_time' : fields.datetime(string='Created Time', readonly=True),
@@ -80,30 +86,34 @@ class formulir_1111_a1(osv.osv):
 
 	def workflow_action_confirm(self, cr, uid, ids, context={}):
 		for id in ids:
-			self.write(cr, uid, [id], {'state' : 'confirm'})
+                        if not self.create_sequence(cr, uid, id):
+                                return False
+                        
+			if not self.log_audit_trail(cr, uid, id, 'confirmed'):
+                                return False
 		return True
 
 	def workflow_action_approve(self, cr, uid, ids, context={}):
 		for id in ids:
-			self.write(cr, uid, [id], {'state' : 'approve'})
+			if not self.log_audit_trail(cr, uid, id, 'approved'):
+                                return False
 		return True			
 		
 	def workflow_action_done(self, cr, uid, ids, context={}):
 		for id in ids:
-			self.write(cr, uid, [id], {'state' : 'done'})
+			if not self.log_audit_trail(cr, uid, id, 'processed'):
+                                return False
 		return True		
 		
 	def workflow_action_cancel(self, cr, uid, ids, context={}):
 		for id in ids:
-			self.write(cr, uid, [id], {'state' : 'cancel'})
+			if not self.log_audit_trail(cr, uid, id, 'cancelled'):
+                                return False
 		return True		
-		
-
-
-		
+				
 	def button_action_set_to_draft(self, cr, uid, ids, context={}):
 		for id in ids:
-			if not self.delete_workflow_instance(self, cr, uid, id):
+                        if not self.delete_workflow_instance(self, cr, uid, id):
 				return False
 
 			if not self.create_workflow_instance(self, cr, uid, id):
@@ -111,38 +121,46 @@ class formulir_1111_a1(osv.osv):
 				
 		return True
 
-		
         def button_action_cancel(self, cr, uid, ids, context={}):
                 wkf_service = netsvc.LocalService('workflow')
                 for id in ids:
-                                if not self.delete_workflow_instance(self, cr, uid, id):
-                                        return False
+                    if not self.delete_workflow_instance(self, cr, uid, id):
+                        return False
 
-                                if not self.create_workflow_instance(self, cr, uid, id):
-                                        return False
+                    if not self.create_workflow_instance(self, cr, uid, id):
+                        return False
 
-                                wkf_service.trg_validate(uid, 'pajak.formulir_1111_a1', id, 'button_cancel', cr)
+                    wkf_service.trg_validate(uid, 'pajak.formulir_1111_a1', id, 'button_cancel', cr)
 
                 return True
 
         def log_audit_trail(self, cr, uid, id, event):
-                #TODO: Ticket #12
+                #TODO: Ticket #35
                 return True
+                
+        def clear_log(self, cr, uid, id):
+                #TODO: Tiket #39
+                return True                
 
         def delete_workflow_instance(self, cr, uid, id):
-                #TODO: Ticket #13
+                #TODO: Ticket #36
                 return True
 
         def create_workflow_instance(self, cr, uid, id):
-                #TODO: Ticket #14
+                #TODO: Ticket #37
+                return True
+
+        def create_sequence(self, cr, uid, id):
+                #TODO: Ticket #40
                 return True
                 
         def onchange_company_id(self, cr, uid, ids, comapny_id):
-            value = {}
-            domain = {}
-            warning = {}
-            
-            return {'value' : value, 'domain' : domain, 'warning' : warning}
+                #TODO: Ticket #38
+                value = {}
+                domain = {}
+                warning = {}
+
+                return {'value' : value, 'domain' : domain, 'warning' : warning}
 
 		
 		
