@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution	
+#    OpenERP, Open Source Management Solution
 #    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>). All Rights Reserved
 #    $Id$
 #
@@ -31,16 +31,16 @@ class formulir_1111_a1(osv.osv):
 	_name = 'pajak.formulir_1111_a1'
 	_description = 'Formulir 1111 A1'
 	_inherit = ['mail.thread']
-	
+
 	def default_state(self, cr, uid, context={}):
 		return 'draft'
-		
+
 	def default_name(self, cr, uid, context={}):
 		return '/'
-		
+
 	def default_created_time(self, cr, uid, context={}):
 		return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-		
+
 	def default_created_user_id(self, cr, uid, context={}):
 		return uid
 
@@ -51,32 +51,32 @@ class formulir_1111_a1(osv.osv):
 			res[formulir.id] = {
 										'total_dpp' : 0.0,
 										}
-		return res		
-	
+		return res
+
 	_columns = 	{
-								'name' : fields.char(string='# Dokumen', size=30, required=True, readonly=True),
-								'company_id' : fields.many2one(string='Perusahaan', obj='res.company', required=True),
-								'nama_pkp' : fields.char(string='Nama PKP', size=255, required=True),
-								'npwp' : fields.char(string='NPWP', size=50, required=True),
-								'masa_pajak_id' : fields.many2one(string='Masa Pajak', obj='pajak.masa_pajak', required=True),
-								'pembetulan_ke' : fields.integer(string='Pembetulan Ke-', required=True),             
-								'detail_ids' : fields.one2many(string='Detail', obj='pajak.detail_formulir_1111_a1', fields_id='formulir_id'),     
-								'total_dpp' : fields.function(fnct=function_amount_all, type='float', string='Jumlah DPP', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'), 
-								'note' : fields.text(string='Note'),
-								'state' : fields.selection([('draft','Draft'),('confirm','Waiting For Approval'),('approve','Ready To Process'),('done','Done'),('cancel','Cancel')], 'Status', readonly=True),
-								'created_time' : fields.datetime(string='Created Time', readonly=True),
-								'created_user_id' : fields.many2one(string='Created By', obj='res.users', readonly=True),
-								'confirmed_time' : fields.datetime(string='Confirmed Time', readonly=True),
-								'confirmed_user_id' : fields.many2one(string='Confirmed By', obj='res.users', readonly=True),						
-								'approved_time' : fields.datetime(string='Approved Time', readonly=True),
-								'approved_user_id' : fields.many2one(string='Approved By', obj='res.users', readonly=True),		
-								'processed_time' : fields.datetime(string='Processed Time', readonly=True),
-								'processed_user_id' : fields.many2one(string='Process By', obj='res.users', readonly=True),				
-								'cancelled_time' : fields.datetime(string='Processed Time', readonly=True),
-								'cancelled_user_id' : fields.many2one(string='Process By', obj='res.users', readonly=True),																								
-								'cancelled_reason' : fields.text(string='Cancelled Reason', readonly=True),
-								}	
-				
+                'name' : fields.char(string='# Dokumen', size=30, required=True, readonly=True),
+                'company_id' : fields.many2one(string='Perusahaan', obj='res.company', required=True),
+                'nama_pkp' : fields.char(string='Nama PKP', size=255, required=True),
+                'npwp' : fields.char(string='NPWP', size=50, required=True),
+                'masa_pajak_id' : fields.many2one(string='Masa Pajak', obj='pajak.masa_pajak', required=True),
+                'pembetulan_ke' : fields.integer(string='Pembetulan Ke-', required=True),
+                'detail_ids' : fields.one2many(string='Detail', obj='pajak.detail_formulir_1111_a1', fields_id='formulir_id'),
+                'total_dpp' : fields.function(fnct=function_amount_all, type='float', string='Jumlah DPP', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
+                'note' : fields.text(string='Note'),
+                'state' : fields.selection([('draft','Draft'),('confirm','Waiting For Approval'),('approve','Ready To Process'),('done','Done'),('cancel','Cancel')], 'Status', readonly=True),
+                'created_time' : fields.datetime(string='Created Time', readonly=True),
+                'created_user_id' : fields.many2one(string='Created By', obj='res.users', readonly=True),
+                'confirmed_time' : fields.datetime(string='Confirmed Time', readonly=True),
+                'confirmed_user_id' : fields.many2one(string='Confirmed By', obj='res.users', readonly=True),
+                'approved_time' : fields.datetime(string='Approved Time', readonly=True),
+                'approved_user_id' : fields.many2one(string='Approved By', obj='res.users', readonly=True),
+                'processed_time' : fields.datetime(string='Processed Time', readonly=True),
+                'processed_user_id' : fields.many2one(string='Process By', obj='res.users', readonly=True),
+                'cancelled_time' : fields.datetime(string='Processed Time', readonly=True),
+                'cancelled_user_id' : fields.many2one(string='Process By', obj='res.users', readonly=True),
+                'cancelled_reason' : fields.text(string='Cancelled Reason', readonly=True),
+								}
+
 	_defaults =	{
 							'name' : default_name,
 							'state' : default_state,
@@ -86,39 +86,39 @@ class formulir_1111_a1(osv.osv):
 
 	def workflow_action_confirm(self, cr, uid, ids, context={}):
 		for id in ids:
-                        if not self.create_sequence(cr, uid, id):
-                                return False
-                        
-			if not self.log_audit_trail(cr, uid, id, 'confirmed'):
-                                return False
-		return True
+            if not self.create_sequence(cr, uid, id):
+                return False
+
+            if not self.log_audit_trail(cr, uid, id, 'confirmed'):
+                return False
+        return True
 
 	def workflow_action_approve(self, cr, uid, ids, context={}):
 		for id in ids:
 			if not self.log_audit_trail(cr, uid, id, 'approved'):
-                                return False
-		return True			
-		
+                return False
+		return True
+
 	def workflow_action_done(self, cr, uid, ids, context={}):
 		for id in ids:
 			if not self.log_audit_trail(cr, uid, id, 'processed'):
-                                return False
-		return True		
-		
+                return False
+		return True
+
 	def workflow_action_cancel(self, cr, uid, ids, context={}):
 		for id in ids:
 			if not self.log_audit_trail(cr, uid, id, 'cancelled'):
-                                return False
-		return True		
-				
+                return False
+		return True
+
 	def button_action_set_to_draft(self, cr, uid, ids, context={}):
 		for id in ids:
-                        if not self.delete_workflow_instance(self, cr, uid, id):
-				return False
+                if not self.delete_workflow_instance(self, cr, uid, id):
+			    return False
 
 			if not self.create_workflow_instance(self, cr, uid, id):
 				return False
-				
+
 		return True
 
         def button_action_cancel(self, cr, uid, ids, context={}):
@@ -137,10 +137,10 @@ class formulir_1111_a1(osv.osv):
         def log_audit_trail(self, cr, uid, id, event):
                 #TODO: Ticket #35
                 return True
-                
+
         def clear_log(self, cr, uid, id):
                 #TODO: Tiket #39
-                return True                
+                return True
 
         def delete_workflow_instance(self, cr, uid, id):
                 #TODO: Ticket #36
@@ -153,7 +153,7 @@ class formulir_1111_a1(osv.osv):
         def create_sequence(self, cr, uid, id):
                 #TODO: Ticket #40
                 return True
-                
+
         def onchange_company_id(self, cr, uid, ids, comapny_id):
                 #TODO: Ticket #38
                 value = {}
@@ -162,15 +162,15 @@ class formulir_1111_a1(osv.osv):
 
                 return {'value' : value, 'domain' : domain, 'warning' : warning}
 
-		
-		
+
+
 
 formulir_1111_a1()
 
 class detail_formulir_1111_a1(osv.osv):
     _name = 'pajak.detail_formulir_1111_a1'
     _description = 'Detail Formulir 1111 A1'
-    
+
     _columns =  {
                             'partner_id' : fields.many2one(string='Pembeli', obj='res.partner', required=True),
                             'nomor_dokumen' : fields.char(string='Nomor Dokumen Tertentu', size=100, required=True),
@@ -179,7 +179,7 @@ class detail_formulir_1111_a1(osv.osv):
                             'keterangan' : fields.char(string='Keterangan', size=255),
                             'formulir_id' : fields.many2one(string='Formulir 1111 A1', obj='pajak.formulir_1111_a1'),
                             }
-                            
+
 detail_formulir_1111_a1()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

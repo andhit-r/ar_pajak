@@ -29,7 +29,7 @@ from datetime import datetime
 
 class formulir_1111_ab(osv.osv):
 	_name = 'pajak.formulir_1111_ab'
-	_description = 'Rekapitulasi Penyerahan Dan Perolehan'
+	_description = 'Formulir 1111 AB'
 	_inherit = ['mail.thread']
 	
 	def default_state(self, cr, uid, context={}):
@@ -47,10 +47,14 @@ class formulir_1111_ab(osv.osv):
 		return False
 
 	
-			
-	
 	_columns = 	{
 								'name' : fields.char(string='# SPT', size=30, required=True, readonly=True),
+                                'company_id' : fields.many2one(string='Perusahaan', obj='res.company', required=True),
+                                'nama_pkp' : fields.char(string='Nama PKP', size=100, required=True),
+                                'npwp' : fields.char(string='NPWP', size=50, required=True),
+                                'masa_pajak_id' : fields.many2one(string='Masa Pajak', obj='pajak.masa_pajak', required=True),
+                                'pembetulan_ke' : fields.integer(string='Pembetulan Ke', required=True),
+                                'item1A' : fields.float(string='A. Ekspor BKP Berwujud/BKP Tidak Berwujud/JKP', digits_compute=dp.get_precision('Account'), required=True),
 
                                 
 
