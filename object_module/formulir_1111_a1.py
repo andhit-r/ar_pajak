@@ -48,9 +48,9 @@ class formulir_1111_a1(osv.osv):
 		#TODO: Tiket 34
 		res = {}
 		for formulir in self.browse(cr, uid, ids):
-			res[formulir.id] = {
-										'total_dpp' : 0.0,
-										}
+			res[formulir.id] =      {
+                                                'total_dpp' : 0.0,
+						}
 		return res
 
 	_columns = 	{
@@ -85,39 +85,39 @@ class formulir_1111_a1(osv.osv):
 							}
 
 	def workflow_action_confirm(self, cr, uid, ids, context={}):
-		for id in ids:
-            if not self.create_sequence(cr, uid, id):
-                return False
+                for id in ids:
+                    if not self.create_sequence(cr, uid, id):
+                        return False
 
-            if not self.log_audit_trail(cr, uid, id, 'confirmed'):
-                return False
-        return True
+                    if not self.log_audit_trail(cr, uid, id, 'confirmed'):
+                        return False
+                return True
 
 	def workflow_action_approve(self, cr, uid, ids, context={}):
 		for id in ids:
 			if not self.log_audit_trail(cr, uid, id, 'approved'):
-                return False
+                                return False
 		return True
 
 	def workflow_action_done(self, cr, uid, ids, context={}):
 		for id in ids:
 			if not self.log_audit_trail(cr, uid, id, 'processed'):
-                return False
+                                return False
 		return True
 
 	def workflow_action_cancel(self, cr, uid, ids, context={}):
 		for id in ids:
 			if not self.log_audit_trail(cr, uid, id, 'cancelled'):
-                return False
+                                return False
 		return True
 
 	def button_action_set_to_draft(self, cr, uid, ids, context={}):
 		for id in ids:
-                if not self.delete_workflow_instance(self, cr, uid, id):
-			    return False
+                        if not self.delete_workflow_instance(self, cr, uid, id):
+                                return False
 
 			if not self.create_workflow_instance(self, cr, uid, id):
-				return False
+                                return False
 
 		return True
 
@@ -172,12 +172,12 @@ class detail_formulir_1111_a1(osv.osv):
     _description = 'Detail Formulir 1111 A1'
 
     _columns =  {
-                            'partner_id' : fields.many2one(string='Pembeli', obj='res.partner', required=True),
-                            'nomor_dokumen' : fields.char(string='Nomor Dokumen Tertentu', size=100, required=True),
-                            'tanggal_dokumen' : fields.date(string='Tanggal Dokumen Tertentu', required=True),
-                            'dpp' : fields.float(string='DPP', digits_compute=dp.get_precision('Account')),
-                            'keterangan' : fields.char(string='Keterangan', size=255),
-                            'formulir_id' : fields.many2one(string='Formulir 1111 A1', obj='pajak.formulir_1111_a1'),
+                    'partner_id' : fields.many2one(string='Pembeli', obj='res.partner', required=True),
+                    'nomor_dokumen' : fields.char(string='Nomor Dokumen Tertentu', size=100, required=True),
+                    'tanggal_dokumen' : fields.date(string='Tanggal Dokumen Tertentu', required=True),
+                    'dpp' : fields.float(string='DPP', digits_compute=dp.get_precision('Account')),
+                    'keterangan' : fields.char(string='Keterangan', size=255),
+                    'formulir_id' : fields.many2one(string='Formulir 1111 A1', obj='pajak.formulir_1111_a1'),
                             }
 
 detail_formulir_1111_a1()
