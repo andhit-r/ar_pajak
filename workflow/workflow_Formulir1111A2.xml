@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="wkf_pajak_formulir1111A2" model="workflow">
+            <field name="name">Formulir 1111 A2</field>
+            <field name="osv">pajak.formulir_1111_a2</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <record id="act_pajak_draftFormulir1111A2" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_pajak_formulir1111A2"/>
+            <field name="name">draft</field>
+			<field name="flow_start">True</field>
+            <field name="kind">dummy</field>
+        </record>   		    
+
+        <record id="act_pajak_confirmFormulir1111A2" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_pajak_formulir1111A2"/>
+            <field name="name">confirm</field>
+            <field name="action">workflow_action_confirm()</field>
+            <field name="kind">function</field>
+        </record>
+
+        <record id="act_pajak_approveFormulir1111A2" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_pajak_formulir1111A2"/>
+            <field name="name">waiting</field>
+            <field name="action">workflow_action_approve()</field>
+            <field name="kind">function</field>
+        </record>
+        
+        <record id="act_pajak_doneFormulir1111A2" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_pajak_formulir1111A2"/>
+            <field name="name">done</field>
+            <field name="action">workflow_action_done()</field>
+            <field name="kind">function</field>
+            <field name="flow_stop">True</field>
+        </record>       
+        
+        <record id="act_pajak_cancelFormulir1111A2" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_pajak_formulir1111A2"/>
+            <field name="name">cancel</field>
+            <field name="action">workflow_action_cancel()</field>
+            <field name="kind">function</field>
+            <field name="flow_stop">True</field>
+        </record>                
+        
+        <!-- TRANSITION -->
+        <record id="transition_pajak_voucherDraft2Confirm" model="workflow.transition">
+            <field name="act_from" ref="act_pajak_draftFormulir1111A2"/>
+            <field name="act_to" ref="act_pajak_confirmFormulir1111A2"/>
+            <field name="signal">button_confirm</field>
+            <field name="condition">True</field>
+        </record>      
+        
+        <record id="transition_pajak_voucherConfirm2Approve" model="workflow.transition">
+            <field name="act_from" ref="act_pajak_confirmFormulir1111A2"/>
+            <field name="act_to" ref="act_pajak_approveFormulir1111A2"/>
+			<field name="signal">button_approve</field>
+            <field name="condition">True</field>            
+        </record>           
+        
+        <record id="transition_pajak_voucherApprove2Done" model="workflow.transition">
+            <field name="act_from" ref="act_pajak_approveFormulir1111A2"/>
+            <field name="act_to" ref="act_pajak_doneFormulir1111A2"/>
+            <field name="signal">button_process</field>
+            <field name="condition">True</field>            
+        </record>  
+
+        
+        <record id="transition_pajak_voucherDraft2Cancel" model="workflow.transition">
+            <field name="act_from" ref="act_pajak_draftFormulir1111A2"/>
+            <field name="act_to" ref="act_pajak_cancelFormulir1111A2"/>
+            <field name="signal">button_cancel</field>
+            <field name="condition">True</field>
+        </record>      
+        
+        <record id="transition_pajak_voucherConfirm2Cancel" model="workflow.transition">
+            <field name="act_from" ref="act_pajak_confirmFormulir1111A2"/>
+            <field name="act_to" ref="act_pajak_cancelFormulir1111A2"/>
+            <field name="signal">button_cancel</field>
+            <field name="condition">True</field>
+        </record>                                       
+        
+        <record id="transition_pajak_voucherApprove2Cancel" model="workflow.transition">
+            <field name="act_from" ref="act_pajak_approveFormulir1111A2"/>
+            <field name="act_to" ref="act_pajak_cancelFormulir1111A2"/>
+            <field name="signal">button_cancel</field>
+            <field name="condition">True</field>
+        </record>    
+        
+        
+
+
+    </data>
+</openerp>
+
