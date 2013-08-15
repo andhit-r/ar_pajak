@@ -27,6 +27,9 @@ from openerp import netsvc
 from openerp import pooler
 from datetime import datetime
 
+
+
+
 class formulir_1111_a2(osv.osv):
 	_name = 'pajak.formulir_1111_a2'
 	_description = 'Formulir 1111 A2'
@@ -39,12 +42,15 @@ class formulir_1111_a2(osv.osv):
 		return '/'
 		
 	def default_created_time(self, cr, uid, context={}):
-		#TODO: Ticket #5
+		#TODO: Ticket #47
 		return False
 		
+
 	def default_created_user_id(self, cr, uid, context={}):
-		#TODO: Ticket #6
-		return False
+        return uid
+    
+		
+	    
 
 	_columns = 	{
 								'name' : fields.char(string='# Dokumen', size=30, required=True, readonly=True),
@@ -54,6 +60,9 @@ class formulir_1111_a2(osv.osv):
 								'masa_pajak_id' : fields.many2one(string='Masa Pajak', obj='pajak.masa_pajak', required=True),
 								'pembetulan_ke' : fields.integer(string='Pembetulan Ke-', required=True),
 								'detail_ids' : fields.one2many(string='Detail', obj='pajak.detail_formulir_1111_a2', fields_id='formulir_id'),
+                                'total_dpp' : fields.function(fnct=function_amount_all, string='Total DPP', type='float', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
+                                'total_ppn' : fields.function(fnct=function_amount_all, string='Total PPN', type='float', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
+                                'total_ppnbm' : fields.function(fnct=function_amount_all, string='Total PPnBM', type='float', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
 								'note' : fields.text(string='Note'),                   
 								'state' : fields.selection([('draft','Draft'),('confirm','Waiting For Approval'),('approve','Ready To Process'),('done','Done'),('cancel','Cancel')], 'Status', readonly=True),
 								'created_time' : fields.datetime(string='Created Time', readonly=True),
@@ -163,4 +172,4 @@ class detail_formulir_1111_a2(osv.osv):
                                 }
 detail_formulir_1111_a2()
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:autoindent
