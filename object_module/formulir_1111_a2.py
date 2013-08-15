@@ -63,12 +63,12 @@ class formulir_1111_a2(osv.osv):
 
     _columns =  {
                 'name' : fields.char(string='# Dokumen', size=30, required=True, readonly=True),
-                'company_id' : fields.many2one(string='Perusahaan', obj='res.company', required=True),
-                'nama_pkp' : fields.char(string='Nama PKP', size=255, required=True),
-                'npwp' : fields.char(string='NPWP', size=50, required=True),
-                'masa_pajak_id' : fields.many2one(string='Masa Pajak', obj='pajak.masa_pajak', required=True),
-                'pembetulan_ke' : fields.integer(string='Pembetulan Ke-', required=True),
-                'detail_ids' : fields.one2many(string='Detail', obj='pajak.detail_formulir_1111_a2', fields_id='formulir_id'),
+                'company_id' : fields.many2one(string='Perusahaan', obj='res.company', required=True), #TODO: Ticket #54
+                'nama_pkp' : fields.char(string='Nama PKP', size=255, required=True), #TODO: Ticket #54
+                'npwp' : fields.char(string='NPWP', size=50, required=True), #TODO: Ticket #54
+                'masa_pajak_id' : fields.many2one(string='Masa Pajak', obj='pajak.masa_pajak', required=True), #TODO: Ticket #54
+                'pembetulan_ke' : fields.integer(string='Pembetulan Ke-', required=True), #TODO: Ticket #54
+                'detail_ids' : fields.one2many(string='Detail', obj='pajak.detail_formulir_1111_a2', fields_id='formulir_id'), #TODO: Ticket #54
                 'total_dpp' : fields.function(fnct=function_amount_all, string='Total DPP', type='float', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
                 'total_ppn' : fields.function(fnct=function_amount_all, string='Total PPN', type='float', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
                 'total_ppnbm' : fields.function(fnct=function_amount_all, string='Total PPnBM', type='float', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
@@ -158,6 +158,7 @@ class formulir_1111_a2(osv.osv):
         return True
                 
     def onchange_company_id(self, cr, uid, ids, comapny_id):
+        #TODO: Ticket #53
         value = {}
         domain = {}
         warning = {}
