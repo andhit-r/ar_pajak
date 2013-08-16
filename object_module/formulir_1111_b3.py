@@ -157,7 +157,7 @@ class formulir_1111_b3(osv.osv):
         #TODO: Ticket #76
         return True
             
-    def onchange_company_id(self, cr, uid, ids, comapny_id):
+    def onchange_company_id(self, cr, uid, ids, company_id):
         #TODO: Ticket #77
         value = {}
         domain = {}
@@ -165,7 +165,7 @@ class formulir_1111_b3(osv.osv):
         
         return {'value' : value, 'domain' : domain, 'warning' : warning}                  
 
-    def create_instance(self, cr, uid, id):
+    def create_sequence(self, cr, uid, id):
         #TODO: Ticket #78
         return True
 
