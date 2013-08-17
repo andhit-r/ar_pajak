@@ -21,6 +21,23 @@
 					parent="menu_pajak_fakturPajakHeader"
 					action="waction_pajak_fakturPajak"
 		/>	
+
+		<menuitem 	
+					id="menu_pajak_notaRetur"
+					name="Nota Retur"
+					sequence="2"
+					parent="menu_pajak_fakturPajakHeader"
+					action="waction_pajak_notaRetur"
+		/>	
+
+		<menuitem 	
+					id="menu_pajak_notaPembatalan"
+					name="Nota Pembatalan"
+					sequence="3"
+					parent="menu_pajak_fakturPajakHeader"
+					action="waction_pajak_notaPembatalan"
+		/>	
+
 		<menuitem 	
 					id="menu_pajak_sspHeader"
 					name="SSP"
