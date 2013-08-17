@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution	
+#    OpenERP, Open Source Management Solution   
 #    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>). All Rights Reserved
 #    $Id$
 #
@@ -28,36 +28,57 @@ from openerp import pooler
 from datetime import datetime
 
 class formulir_1111_ab(osv.osv):
-	_name = 'pajak.formulir_1111_ab'
-	_description = 'Formulir 1111 AB'
-	_inherit = ['mail.thread']
-	
-	def default_state(self, cr, uid, context={}):
-		return 'draft'
-		
-	def default_name(self, cr, uid, context={}):
-		return '/'
-		
-	def default_created_time(self, cr, uid, context={}):
-		#TODO: Ticket #5
-		return False
-		
-	def default_created_user_id(self, cr, uid, context={}):
-		#TODO: Ticket #6
-		return False
+    _name = 'pajak.formulir_1111_ab'
+    _description = 'Formulir 1111 AB'
+    _inherit = ['mail.thread']
+    
+    def default_state(self, cr, uid, context={}):
+        return 'draft'
+        
+    def default_name(self, cr, uid, context={}):
+        return '/'
+        
+    def default_created_time(self, cr, uid, context={}):
+        #TODO: Ticket #79
+        return False
+        
+    def default_created_user_id(self, cr, uid, context={}):
+        return uid
 
-	
-	_columns = 	{
+    def function_amount_all(self, cr, uid, ids, name, args, context=None):
+        #TODO: Ticket #81
+        res = {}
+        for id in ids:
+            res[id] =   {
+                        'itemA1' : 0.0, # Diambil dari formulir 1111 A.1
+                        'item1B1_dpp' : 0.0, # Diambil dari formulir 1111 A.2
+                        'item1B1_ppn' : 0.0, # Diambil dari formulir 1111 A.2
+                        'item1B1_ppnbm' : 0.0, # Diambil dari formulir 1111 A.2
+                        'item2A_dpp' : 0.0, # Diambil dari formulir 1111 B.1
+                        'item2A_ppn' : 0.0, # Diambil dari formulir 1111 B.1
+                        'item2A_ppnbm' : 0.0, # Diambil dari formulir 1111 B.1
+                        'item2B_dpp' : 0.0, #Diambil dari formulir 1111 B.2
+                        'item2B_ppn' : 0.0, # Diambil dari formulir 1111 B.2
+                        'item2B_ppnbm' : 0.0, # Diambil dari formulir 1111 B.2
+                        'item2C_dpp' : 0.0, # Diambil dari formulir 1111 B.3
+                        'item2C_ppn' : 0.0, # Diambil dari formulir 1111 B.3
+                        'item2C_ppnbm' : 0.0, # Diambil dari formulir 1111 B.3
+                        }
+        return res
+
+
+    
+    _columns =  {
                         'name' : fields.char(string='# SPT', size=30, required=True, readonly=True),
                         'company_id' : fields.many2one(string='Perusahaan', obj='res.company', required=True),
                         'nama_pkp' : fields.char(string='Nama PKP', size=100, required=True),
                         'npwp' : fields.char(string='NPWP', size=50, required=True),
                         'masa_pajak_id' : fields.many2one(string='Masa Pajak', obj='pajak.masa_pajak', required=True),
                         'pembetulan_ke' : fields.integer(string='Pembetulan Ke', required=True),
-                        'item1A' : fields.float(string='A. Ekspor BKP Berwujud/BKP Tidak Berwujud/JKP', digits_compute=dp.get_precision('Account')), #TODO
-                        'item1B1_dpp' : fields.float(string='1. Penyerahan Dalam Negeri dengan Faktur Pajak yang tidak ditanggung', digits_compute=dp.get_precision('Account')), #TODO
-                        'item1B1_ppn' : fields.float(string='1. Penyerahan Dalam Negeri dengan Faktur Pajak yang tidak ditanggung', digits_compute=dp.get_precision('Account')), #TODO
-                        'item1B1_ppnbm' : fields.float(string='1. Penyerahan Dalam Negeri dengan Faktur Pajak yang tidak ditanggung', digits_compute=dp.get_precision('Account')), #TODO
+                        'item1A' : fields.float(string='A. Ekspor BKP Berwujud/BKP Tidak Berwujud/JKP', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
+                        'item1B1_dpp' : fields.float(string='1. Penyerahan Dalam Negeri dengan Faktur Pajak yang tidak ditanggung', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
+                        'item1B1_ppn' : fields.float(string='1. Penyerahan Dalam Negeri dengan Faktur Pajak yang tidak ditanggung', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
+                        'item1B1_ppnbm' : fields.float(string='1. Penyerahan Dalam Negeri dengan Faktur Pajak yang tidak ditanggung', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
                         'item1B2_dpp' : fields.float(string='2. Penyerahan Dalam Negeri dengan Faktur Pajak yang ditanggung', digits_compute=dp.get_precision('Account')),
                         'item1B2_ppn' : fields.float(string='2. Penyerahan Dalam Negeri dengan Faktur Pajak yang ditanggung', digits_compute=dp.get_precision('Account')),
                         'item1B2_ppnbm' : fields.float(string='2. Penyerahan Dalam Negeri dengan Faktur Pajak yang ditanggung', digits_compute=dp.get_precision('Account')),
@@ -73,15 +94,15 @@ class formulir_1111_ab(osv.osv):
                         'item1C4_dpp' : fields.float(string='4. Penyerahan yang dibebaskan dari pengenaan PPN atau PPN dan PPnBM', digits_compute=dp.get_precision('Account')),
                         'item1C4_ppn' : fields.float(string='4. Penyerahan yang dibebaskan dari pengenaan PPN atau PPN dan PPnBM', digits_compute=dp.get_precision('Account')),
                         'item1C4_ppnbm' : fields.float(string='4. Penyerahan yang dibebaskan dari pengenaan PPN atau PPN dan PPnBM', digits_compute=dp.get_precision('Account')),                         
-                        'item2A_dpp' : fields.float(string='Item II.A', digits_compute=dp.get_precision('Account')), #TODO
-                        'item2A_ppn' : fields.float(string='Item II.A', digits_compute=dp.get_precision('Account')), #TODO
-                        'item2A_ppnbm' : fields.float(string='Item II.A', digits_compute=dp.get_precision('Account')), #TODO
-                        'item2B_dpp' : fields.float(string='Item II.B', digits_compute=dp.get_precision('Account')), #TODO
-                        'item2B_ppn' : fields.float(string='Item II.B', digits_compute=dp.get_precision('Account')), #TODO
-                        'item2B_ppnbm' : fields.float(string='Item II.B', digits_compute=dp.get_precision('Account')), #TODO
-                        'item2C_dpp' : fields.float(string='Item II.C', digits_compute=dp.get_precision('Account')), #TODO
-                        'item2C_ppn' : fields.float(string='Item II.C', digits_compute=dp.get_precision('Account')), #TODO
-                        'item2C_ppnbm' : fields.float(string='Item II.C', digits_compute=dp.get_precision('Account')), #TODO
+                        'item2A_dpp' : fields.float(string='Item II.A', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
+                        'item2A_ppn' : fields.float(string='Item II.A', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
+                        'item2A_ppnbm' : fields.float(string='Item II.A', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
+                        'item2B_dpp' : fields.float(string='Item II.B', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
+                        'item2B_ppn' : fields.float(string='Item II.B', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
+                        'item2B_ppnbm' : fields.float(string='Item II.B', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
+                        'item2C_dpp' : fields.float(string='Item II.C', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
+                        'item2C_ppn' : fields.float(string='Item II.C', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
+                        'item2C_ppnbm' : fields.float(string='Item II.C', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
                         'item2D_dpp' : fields.float(string='Item II.D', digits_compute=dp.get_precision('Account')),
                         'item2D_ppn' : fields.float(string='Item II.D', digits_compute=dp.get_precision('Account')),
                         'item2D_ppnbm' : fields.float(string='Item II.D', digits_compute=dp.get_precision('Account')),
@@ -95,100 +116,101 @@ class formulir_1111_ab(osv.osv):
                         'created_time' : fields.datetime(string='Created Time', readonly=True),
                         'created_user_id' : fields.many2one(string='Created By', obj='res.users', readonly=True),
                         'confirmed_time' : fields.datetime(string='Confirmed Time', readonly=True),
-                        'confirmed_user_id' : fields.many2one(string='Confirmed By', obj='res.users', readonly=True),						
+                        'confirmed_user_id' : fields.many2one(string='Confirmed By', obj='res.users', readonly=True),                       
                         'approved_time' : fields.datetime(string='Approved Time', readonly=True),
-                        'approved_user_id' : fields.many2one(string='Approved By', obj='res.users', readonly=True),		
+                        'approved_user_id' : fields.many2one(string='Approved By', obj='res.users', readonly=True),     
                         'processed_time' : fields.datetime(string='Processed Time', readonly=True),
-                        'processed_user_id' : fields.many2one(string='Process By', obj='res.users', readonly=True),				
+                        'processed_user_id' : fields.many2one(string='Process By', obj='res.users', readonly=True),             
                         'cancelled_time' : fields.datetime(string='Processed Time', readonly=True),
-                        'cancelled_user_id' : fields.many2one(string='Process By', obj='res.users', readonly=True),																								
+                        'cancelled_user_id' : fields.many2one(string='Process By', obj='res.users', readonly=True),                                                                                             
                         'cancelled_reason' : fields.text(string='Cancelled Reason', readonly=True),
-								}	
-				
-	_defaults =	{
+                                }   
+                
+    _defaults = {
                         'name' : default_name,
                         'state' : default_state,
                         'created_time' : default_created_time,
                         'created_user_id' : default_created_user_id,
-			}
+            }
 
-	def workflow_action_confirm(self, cr, uid, ids, context={}):
-		for id in ids:
-			if not self.log_audit(cr, uid, id, 'confirmed'):
-                                return False
-		return True
+    def workflow_action_confirm(self, cr, uid, ids, context={}):
+        for id in ids:
+            if not self.log_audit_trail(cr, uid, id, 'confirmed'):
+                return False
+        return True
 
-	def workflow_action_approve(self, cr, uid, ids, context={}):
-		for id in ids:
-			if not self.log_audit(cr, uid, id, 'approved'):
-                                return False
-		return True			
-		
-	def workflow_action_done(self, cr, uid, ids, context={}):
-		for id in ids:
-			if not self.log_audit(cr, uid, id, 'procced'):
-                                return False
-		return True		
-		
-	def workflow_action_cancel(self, cr, uid, ids, context={}):
-		for id in ids:
-			if not self.log_audit(cr, uid, id, 'cancelled'):
-                                return False
-		return True		
-		
+    def workflow_action_approve(self, cr, uid, ids, context={}):
+        for id in ids:
+            if not self.log_audit_trail(cr, uid, id, 'approved'):
+                return False
+        return True         
+        
+    def workflow_action_done(self, cr, uid, ids, context={}):
+        for id in ids:
+            if not self.log_audit_trail(cr, uid, id, 'procced'):
+                return False
+        return True     
+        
+    def workflow_action_cancel(self, cr, uid, ids, context={}):
+        for id in ids:
+            if not self.log_audit_trail(cr, uid, id, 'cancelled'):
+                return False
+        return True     
+        
+    def button_action_set_to_draft(self, cr, uid, ids, context={}):
+        for id in ids:
+            if not self.delete_workflow_instance(self, cr, uid, id):
+                return False
 
+            if not self.create_workflow_instance(self, cr, uid, id):
+                return False
+        
+        return True
 
-		
-	def button_action_set_to_draft(self, cr, uid, ids, context={}):
-                for id in ids:
-                        if not self.delete_workflow_instance(self, cr, uid, id):
-                                return False
+        
+    def button_action_cancel(self, cr, uid, ids, context={}):
+        wkf_service = netsvc.LocalService('workflow')
+        for id in ids:
+            if not self.delete_workflow_instance(self, cr, uid, id):
+                return False
 
-                        if not self.create_workflow_instance(self, cr, uid, id):
-                                return False
-				
-		return True
+            if not self.create_workflow_instance(self, cr, uid, id):
+                return False
 
-		
-        def button_action_cancel(self, cr, uid, ids, context={}):
-                wkf_service = netsvc.LocalService('workflow')
-                for id in ids:
-                        if not self.delete_workflow_instance(self, cr, uid, id):
-                                return False
+            wkf_service.trg_validate(uid, 'pajak.formulir_1111_ab', id, 'button_cancel', cr)
 
-                        if not self.create_workflow_instance(self, cr, uid, id):
-                                return False
+            return True
 
-                        wkf_service.trg_validate(uid, 'pajak.formulir_1111_ab', id, 'button_cancel', cr)
+    def log_audit_trail(self, cr, uid, id, event):
+        #TODO: Ticket #82
+        return True
 
-                return True
-
-        def log_audit_trail(self, cr, uid, id, event):
-                #TODO:
-                return True
-
-        def clear_log_audit(self, cr, uid, id):
-                #TODO
-                return True
+    def clear_log_audit(self, cr, uid, id):
+        #TODO: Ticket #83
+        return True
         
 
-        def delete_workflow_instance(self, cr, uid, id):
-                #TODO:
-                return True
+    def delete_workflow_instance(self, cr, uid, id):
+        #TODO: Ticket #84
+        return True
 
-        def create_workflow_instance(self, cr, uid, id):
-                #TODO:
-                return True
+    def create_workflow_instance(self, cr, uid, id):
+        #TODO: Ticket #85
+        return True
 
-        def onchange_company_id(self, cr, uid, ids, company_id):
-                #TODO
-                value = {}
-                domain = {}
-                warning = {}
-                return {'value' : value, 'domain' : domain, 'warning' : warning}
+    def onchange_company_id(self, cr, uid, ids, company_id):
+        #TODO: Ticket #86
+        value = {}
+        domain = {}
+        warning = {}
+        return {'value' : value, 'domain' : domain, 'warning' : warning}
 
-		
-		
+    def create_sequence(self, cr, uid, id):
+        #TODO: Ticket #87
+        return True
+
+        
+        
 
 formulir_1111_ab()
 
