@@ -56,6 +56,7 @@
                     'view/view_NotaRetur.xml',
                     'view/view_NotaPembatalan.xml',
                     'view/view_ResCurrency.xml',
+                    'view/view_ResCompany.xml',
                     'view/view_SuratSetorPajak.xml',
                     'view/view_Formulir1111.xml',
                     'view/view_Formulir1111A1.xml',
