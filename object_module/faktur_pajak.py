@@ -51,8 +51,7 @@ class faktur_pajak(osv.osv):
         return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         
     def default_created_user_id(self, cr, uid, context={}):
-        #TODO: Ticket #6
-        return False
+        return uid
 
     def function_amount_all(self, cr, uid, ids, name, args, context=None):
         #TODO: Tiket 11
