@@ -158,9 +158,6 @@ class faktur_pajak(osv.osv):
         obj_company = self.pool.get('res.company')
         
         faktur_pajak = self.browse(cr, uid, [id])[0]
-        
-        if faktur_pajak.name != '/':
-            return True
             
         sequence = obj_sequence.next_by_id(cr, uid, faktur_pajak.company_id.sequence_faktur_pajak.id)
         self.write(cr, uid, [id], {'name' : sequence})
