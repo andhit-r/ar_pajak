@@ -139,11 +139,17 @@ class faktur_pajak(osv.osv):
 
     def onchange_partner_id(self, cr, uid, ids, partner_id):
         #TODO: Ticket #8
+
+        obj_res_partner = self.pool.get('res.partner')
+
         value = {}
         domain = {}
         warning = {}
+
+        if partner_id:
+            npwp = obj_res_partner.browse(cr, uid, partner_id).npwp
         
-        return {'value' : value, 'domain' : domain, 'warning' : warning}
+        return {'value' : {'partner_npwp' : npwp}, 'domain' : domain, 'warning' : warning}}
         
     def create_sequence(self, cr, uid, id):
         #TODO: Ticket #9
