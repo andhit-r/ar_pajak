@@ -25,6 +25,8 @@ import akun_pajak
 import jenis_setor_pajak
 import tax_rate
 import faktur_pajak
+import nota_retur
+import nota_pembatalan
 import surat_setor_pajak
 
 import formulir_1111

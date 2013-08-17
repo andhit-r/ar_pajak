@@ -27,9 +27,9 @@ from openerp import netsvc
 from openerp import pooler
 from datetime import datetime
 
-class nota_retur(osv.osv):
-    _name = 'pajak.nota_retur'
-    _description = 'Nota Retur'
+class nota_pembatalan(osv.osv):
+    _name = 'pajak.nota_pembatalan'
+    _description = 'Nota Pembatalan'
     _inherit = ['mail.thread']
     
     def default_state(self, cr, uid, context={}):
@@ -39,22 +39,22 @@ class nota_retur(osv.osv):
         return '/'
         
     def default_company_id(self, cr, uid, context={}):
-        #TODO : Ticket #88
+        #TODO : Ticket #99
         return False
         
-    def default_nota_retur_date(self, cr, uid, context={}):
-        #TODO: Ticket #89
+    def default_nota_pembatalan_date(self, cr, uid, context={}):
+        #TODO: Ticket #100
         return False
         
     def default_created_time(self, cr, uid, context={}):
-        #TODO: Ticket #90
+        #TODO: Ticket #101
         return False
         
     def default_created_user_id(self, cr, uid, context={}):
         return uid
 
     def function_total_dikembalikan(self, cr, uid, ids, name, args, context=None):
-        #TODO: Tiket 91
+        #TODO: Tiket 102
         res = {}
         for id in ids:
             res[id] = 0.0
@@ -63,17 +63,17 @@ class nota_retur(osv.osv):
         
     
     _columns =  {
-                'name' : fields.char(string='# Nota Retur', size=30, required=True, readonly=True),
+                'name' : fields.char(string='# Nota Pembatalan', size=30, required=True, readonly=True),
                 'company_id' : fields.many2one(obj='res.company', string='Company', required=True),
                 'company_npwp' : fields.char(string='Company NPWP', size=30, required=True),
                 'partner_id' : fields.many2one(obj='res.partner', string='Partner', required=True),
                 'partner_npwp' : fields.char(string='Partner NPWP', size=30, required=True),
                 'signature_id' : fields.many2one(obj='res.users', string='Signature', readonly=True),
-                'nota_retur_line_ids' : fields.one2many(obj='pajak.nota_retur_line', fields_id='nota_retur_id', string='Nota Retur Line'),
+                'nota_pembatalan_line_ids' : fields.one2many(obj='pajak.nota_pembatalan_line', fields_id='nota_pembatalan_id', string='Nota Pembatalan Line'),
                 'total_dikembalikan' : fields.function(string='Jumlah Harga Jual BKP Dikembalikan', fnct=function_total_dikembalikan, digits_compute=dp.get_precision('Account'), method=True, store=True),
                 'ppn_diminta' : fields.float(string='PPN Yang Diminta Kembali', digits_compute=dp.get_precision('Account'), required=True),
                 'ppnbm_diminta' : fields.float(string='PPnBM Yang Diminta Kembali', digits_compute=dp.get_precision('Account'), required=True),
-                'nota_retur_date' : fields.date(string='Date', required=True),
+                'nota_pembatalan_date' : fields.date(string='Date', required=True),
                 'faktur_pajak_id' : fields.many2one(string='Faktur Pajak', obj='pajak.faktur_pajak', required=True),
                 'note' : fields.text(string='Note'),
                 'state' : fields.selection([('draft','Draft'),('confirm','Waiting For Approval'),('approve','Ready To Process'),('done','Done'),('cancel','Cancel')], 'Status', readonly=True),
@@ -94,7 +94,7 @@ class nota_retur(osv.osv):
     _defaults = {
                 'name' : default_name,
                 'company_id' : default_company_id,
-                'nota_retur_date' : default_nota_retur_date,
+                'nota_pembatalan_date' : default_nota_pembatalan_date,
                 'state' : default_state,
                 'created_time' : default_created_time,
                 'created_user_id' : default_created_user_id,
@@ -128,7 +128,7 @@ class nota_retur(osv.osv):
         return True     
         
     def onchange_company_id(self, cr, uid, ids, company_id):
-        #TODO: Ticket #92
+        #TODO: Ticket #103
         value = {}
         domain = {}
         warning = {}
@@ -136,7 +136,7 @@ class nota_retur(osv.osv):
         return {'value' : value, 'domain' : domain, 'warning' : warning}
 
     def onchange_partner_id(self, cr, uid, ids, partner_id):
-        #TODO: Ticket #93
+        #TODO: Ticket #104
         value = {}
         domain = {}
         warning = {}
@@ -144,7 +144,7 @@ class nota_retur(osv.osv):
         return {'value' : value, 'domain' : domain, 'warning' : warning}
         
     def create_sequence(self, cr, uid, id):
-        #TODO: Ticket #94
+        #TODO: Ticket #105
         return True
         
     def button_action_set_to_draft(self, cr, uid, ids, context={}):
@@ -167,35 +167,35 @@ class nota_retur(osv.osv):
             if not self.create_workflow_instance(self, cr, uid, id):
                 return False
 
-            wkf_service.trg_validate(uid, 'pajak.nota_retur', id, 'button_cancel', cr)
+            wkf_service.trg_validate(uid, 'pajak.nota_pembatalan', id, 'button_cancel', cr)
 
         return True
 
     def log_audit_trail(self, cr, uid, id, event):
-        #TODO: Ticket #95
+        #TODO: Ticket #106
         return True
 
     def delete_workflow_instance(self, cr, uid, id):
-        #TODO: Ticket #96
+        #TODO: Ticket #107
         return True
 
     def create_workflow_instance(self, cr, uid, id):
-        #TODO: Ticket #97
+        #TODO: Ticket #108
         return True
     
     def clear_log_audit(self, cr, uid, id):
-        #TODO: Ticket #98
+        #TODO: Ticket #109
         return True
 
 
         
         
 
-nota_retur()
+nota_pembatalan()
 
-class nota_retur_line(osv.osv):
-    _name = 'pajak.nota_retur_line'
-    _description = 'Nota Retur Line'
+class nota_pembatalan_line(osv.osv):
+    _name = 'pajak.nota_pembatalan_line'
+    _description = 'Nota Pembatalan Line'
    
     def function_subtotal(self, cr, uid, ids, name, args, context=None):
         #TODO: Ticket #
@@ -211,10 +211,10 @@ class nota_retur_line(osv.osv):
                 'product_id' : fields.many2one(obj='product.product', string='Product'),
                 'quantity' : fields.float(string='Quantity', digits=(16,2)),
                 'unit_price' : fields.float(string='Unit Price', digits_compute=dp.get_precision('Account'), required=True),
-                'nota_retur_id' : fields.many2one(obj='pajak.nota_retur', string='# Nota Retur', ondelete='cascade'),
+                'nota_pembatalan_id' : fields.many2one(obj='pajak.nota_pembatalan', string='# Nota Pembatalan', ondelete='cascade'),
                 'subtotal':fields.function(string='Subtotal', fnct=function_subtotal, digits_compute=dp.get_precision('Account'), method=True, store=True),
                 }   
 
-nota_retur_line()
+nota_pembatalan_line()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
