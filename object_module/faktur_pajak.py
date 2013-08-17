@@ -45,10 +45,10 @@ class faktur_pajak(osv.osv):
         return company_id
         
     def default_faktur_pajak_date(self, cr, uid, context={}):
-        return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        return datetime.now().strftime('%Y-%m-%d')
         
     def default_created_time(self, cr, uid, context={}):
-        return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        return datetime.now().strftime('%Y-%m-%d')
         
     def default_created_user_id(self, cr, uid, context={}):
         return uid
@@ -134,8 +134,9 @@ class faktur_pajak(osv.osv):
        
         if company_id:
             npwp = obj_res_company.browse(cr, uid, company_id).partner_id.npwp
+            value.update({'company_npwp' : npwp})
 
-        return {'value' : {'company_npwp': npwp}, 'domain' : domain, 'warning' : warning}
+        return {'value' : value, 'domain' : domain, 'warning' : warning}
 
     def onchange_partner_id(self, cr, uid, ids, partner_id):
         #TODO: Ticket #8
@@ -148,8 +149,9 @@ class faktur_pajak(osv.osv):
 
         if partner_id:
             npwp = obj_res_partner.browse(cr, uid, partner_id).npwp
+            value.update({'partner_npwp' : npwp})
         
-        return {'value' : {'partner_npwp' : npwp}, 'domain' : domain, 'warning' : warning}
+        return {'value' : value, 'domain' : domain, 'warning' : warning}
         
     def create_sequence(self, cr, uid, id):
         #TODO: Ticket #9
