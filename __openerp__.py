@@ -28,7 +28,7 @@
     """,
     'website': 'http://andhitiarama.wordpress.com',
     'images' : [],
-    'depends' : ['product', 'ar_base_amount_to_text'],
+    'depends' : ['product', 'ar_base_amount_to_text','ar_base_perusahaan'],
     'data' : [  
                     'security/ir.model.access.csv',
                     'security/data_Application.xml',
