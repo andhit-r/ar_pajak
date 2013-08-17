@@ -45,8 +45,7 @@ class faktur_pajak(osv.osv):
         return company_id
         
     def default_faktur_pajak_date(self, cr, uid, context={}):
-        #TODO: Ticket #4
-        return False
+        return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         
     def default_created_time(self, cr, uid, context={}):
         #TODO: Ticket #5
