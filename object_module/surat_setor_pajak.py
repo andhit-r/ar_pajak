@@ -169,6 +169,10 @@ class surat_setor_pajak(osv.osv):
 		
 	def create_workflow_instance(self, cr, uid, id):
 		#TODO Ticket #26
+
+        wkf_service = netsvc.LocalService('workflow')
+        wkf_service.trg_create(uid, 'pajak.surat_setor_pajak', id, cr)
+
 		return True
     
     def onchange_company_id(self, cr, uid, ids, company_id):
