@@ -248,6 +248,10 @@ class faktur_pajak(osv.osv):
 
     def create_workflow_instance(self, cr, uid, id):
         #TODO: Ticket #14
+
+        wkf_service = netsvc.LocalService('workflow')
+        wkf_service.trg_create(uid, 'pajak.faktur_pajak', id, cr)
+
         return True
 
         
