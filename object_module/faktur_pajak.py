@@ -157,9 +157,10 @@ class faktur_pajak(osv.osv):
         #TODO: Ticket #9
         
         obj_sequence = self.pool.get('ir.sequence')
-        obj_company = self.pool.get('res.company')
-        
         faktur_pajak = self.browse(cr, uid, [id])[0]
+        
+        if not faktur_pajak.company_id.sequence_faktur_pajak:
+            raise osv.except_osv('Warning!', 'Please define sequence for Faktur Pajak')
             
         sequence = obj_sequence.next_by_id(cr, uid, faktur_pajak.company_id.sequence_faktur_pajak.id)
         self.write(cr, uid, [id], {'name' : sequence})
