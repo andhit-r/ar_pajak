@@ -173,6 +173,25 @@ class nota_pembatalan(osv.osv):
 
     def log_audit_trail(self, cr, uid, id, event):
         #TODO: Ticket #106
+        if state not in ['created','confirmed','approved','processed','cancelled']:
+            raise osv.except_osv(_('Peringatan!'),_('Error pada method log_audit'))
+            return False
+			
+            state_dict = 	{
+                            'created' : 'draft',
+                            'confirmed' : 'confirm',
+                            'approved' : 'approve',
+                            'processed' : 'done',
+                            'cancelled' : 'cancel'
+                            }
+                    
+            val =	{
+                            '%s_user_id' % (state) : uid ,
+                            '%s_time' % (state) : datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                            'state' : state_dict.get(state, False),
+                            }
+                                    
+            self.write(cr, uid, [id], val)
         return True
 
     def delete_workflow_instance(self, cr, uid, id):
