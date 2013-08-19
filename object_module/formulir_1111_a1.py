@@ -159,6 +159,22 @@ class formulir_1111_a1(osv.osv):
 
         def clear_log(self, cr, uid, id):
                 #TODO: Tiket #39
+
+                val =	{
+                        'created_user_id' : False,
+                        'created_time' : False,		
+                        'confirmed_user_id' : False,
+                        'confirmed_time' : False,
+                        'approved_user_id' : False,
+                        'approved_time' : False,
+                        'processed_user_id' : False,
+                        'processed_time' : False,
+                        'cancelled_user_id' : False,
+                        'cancelled_time' : False,
+                        }
+					
+                self.write(cr, uid, [id], val)
+
                 return True
 
         def delete_workflow_instance(self, cr, uid, id):
