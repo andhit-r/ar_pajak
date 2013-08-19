@@ -47,7 +47,7 @@ class surat_setor_pajak(osv.osv):
     
     def default_signature_ssp_id(self, cr, uid, context={}):
             #TODO  Ticket #23
-            return False
+            return uid
     
     def default_state(self, cr, uid, context={}):
             return 'draft'
