@@ -204,15 +204,15 @@ class nota_pembatalan(osv.osv):
 
     def create_workflow_instance(self, cr, uid, id):
         #TODO: Ticket #108
+
+        wkf_service = netsvc.LocalService('workflow')
+        wkf_service.trg_create(uid, 'pajak.nota_pembatalan', id, cr)
+
         return True
     
     def clear_log_audit(self, cr, uid, id):
         #TODO: Ticket #109
         return True
-
-
-        
-        
 
 nota_pembatalan()
 
