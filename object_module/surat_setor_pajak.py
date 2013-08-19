@@ -55,8 +55,13 @@ class surat_setor_pajak(osv.osv):
     def function_amount_to_text(self, cr, uid, ids, name, args, context=None):
             #TODO Ticket #24
             res = {}
-            for id in ids:
-                    res[id] = '-'
+            amount_to_text = []
+            obj_surat_setor_pajak = self.pool.get('pajak.surat_setor_pajak')
+            obj_res_currency = self.pool.get('res.currency')
+
+            for surat_setor_pajak in obj_surat_setor_pajak.browse(cr, uid, ids):
+                amount_to_text = obj_res_currency.terbilang(cr, uid, surat_setor_pajak.company_id.currency_id.id ,surat_setor_pajak.amount_spp)
+                res[surat_setor_pajak.id] = amount_to_text
             return res
 
     _columns = {
