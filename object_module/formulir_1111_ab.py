@@ -236,9 +236,6 @@ class formulir_1111_ab(osv.osv):
         #TODO: Ticket #87
         return True
 
-        
-        
-
 formulir_1111_ab()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
