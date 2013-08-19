@@ -163,6 +163,9 @@ class formulir_1111_a1(osv.osv):
 
         def delete_workflow_instance(self, cr, uid, id):
                 #TODO: Ticket #36
+                wkf_service = netsvc.LocalService('workflow')
+
+                wkf_service.trg_delete(uid, 'pajak.formulir_1111_a1', id, cr)
                 return True
 
         def create_workflow_instance(self, cr, uid, id):
