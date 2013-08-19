@@ -204,6 +204,10 @@ class nota_retur(osv.osv):
 
     def create_workflow_instance(self, cr, uid, id):
         #TODO: Ticket #97
+
+        wkf_service = netsvc.LocalService('workflow')
+        wkf_service.trg_create(uid, 'pajak.nota_retur', id, cr)
+
         return True
     
     def clear_log_audit(self, cr, uid, id):
