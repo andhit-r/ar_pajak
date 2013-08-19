@@ -56,12 +56,27 @@ class faktur_pajak(osv.osv):
     def function_amount_all(self, cr, uid, ids, name, args, context=None):
         #TODO: Tiket 11
         res = {}
+        untaxed = 0.0
+        base = 0.0
+        amount_tax = 0.0
+
+        obj_faktur_pajak_line = self.pool.get('pajak.faktur_pajak_line')
+
         for faktur in self.browse(cr, uid, ids):
-            res[faktur.id] = {
-                                        'untaxed' : 0.0,
-                                        'base' : 0.0,
-                                        'amount_tax' : 0.0,
-                                        }
+            kriteria = [('faktur_pajak_id', '=', faktur.id)]
+            line_ids = obj_faktur_pajak_line.search(cr, uid, kriteria)
+            if line_ids:
+                for line in obj_faktur_pajak_line.browse(cr, uid, line_ids):
+                    base =+ line.subtotal
+            
+            untaxed = (base - faktur.discount - faktur.advance_payment) 
+            amount_tax = (10/100 * untaxed)
+
+        res[faktur.id] = {
+                                    'untaxed' : untaxed,
+                                    'base' : base,
+                                    'amount_tax' : amount_tax,
+                                    }
         return res
     
             
