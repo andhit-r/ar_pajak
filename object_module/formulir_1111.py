@@ -49,9 +49,6 @@ class formulir_1111(osv.osv):
 	def default_created_user_id(self, cr, uid, context={}):
 		return uid
 
-	
-			
-	
 	_columns = 	{
 								'name' : fields.char(string='# SPT', size=30, required=True, readonly=True),
 								'company_id' : fields.many2one(obj='res.company', string='Nama PKP', required=True),
@@ -138,55 +135,70 @@ class formulir_1111(osv.osv):
 							'created_user_id' : default_created_user_id,
 							}
 
-	def workflow_action_confirm(self, cr, uid, ids, context={}):
-		for id in ids:
-			self.write(cr, uid, [id], {'state' : 'confirm'})
-		return True
+        def workflow_action_confirm(self, cr, uid, ids, context={}):
+                for id in ids:
+                        self.write(cr, uid, [id], {'state' : 'confirm'})
+                return True
 
-	def workflow_action_approve(self, cr, uid, ids, context={}):
-		for id in ids:
-			self.write(cr, uid, [id], {'state' : 'approve'})
-		return True			
-		
-	def workflow_action_done(self, cr, uid, ids, context={}):
-		for id in ids:
-			self.write(cr, uid, [id], {'state' : 'done'})
-		return True		
-		
-	def workflow_action_cancel(self, cr, uid, ids, context={}):
-		for id in ids:
-			self.write(cr, uid, [id], {'state' : 'cancel'})
-		return True		
-		
+        def workflow_action_approve(self, cr, uid, ids, context={}):
+                for id in ids:
+                        self.write(cr, uid, [id], {'state' : 'approve'})
+                return True			
+                
+        def workflow_action_done(self, cr, uid, ids, context={}):
+                for id in ids:
+                        self.write(cr, uid, [id], {'state' : 'done'})
+                return True		
+                
+        def workflow_action_cancel(self, cr, uid, ids, context={}):
+                for id in ids:
+                        self.write(cr, uid, [id], {'state' : 'cancel'})
+                return True		
 
+        def button_action_set_to_draft(self, cr, uid, ids, context={}):
+                for id in ids:
+                        if not self.delete_workflow_instance(self, cr, uid, id):
+                                return False
 
-		
-	def button_action_set_to_draft(self, cr, uid, ids, context={}):
-		for id in ids:
-			if not self.delete_workflow_instance(self, cr, uid, id):
-				return False
-
-			if not self.create_workflow_instance(self, cr, uid, id):
-				return False
-				
-		return True
-
+                        if not self.create_workflow_instance(self, cr, uid, id):
+                                return False
+                                
+                return True
 		
         def button_action_cancel(self, cr, uid, ids, context={}):
                 wkf_service = netsvc.LocalService('workflow')
                 for id in ids:
-                                if not self.delete_workflow_instance(self, cr, uid, id):
-                                        return False
+                    if not self.delete_workflow_instance(self, cr, uid, id):
+                            return False
 
-                                if not self.create_workflow_instance(self, cr, uid, id):
-                                        return False
+                    if not self.create_workflow_instance(self, cr, uid, id):
+                            return False
 
-                                wkf_service.trg_validate(uid, 'pajak.formulir_1111', id, 'button_cancel', cr)
+                    wkf_service.trg_validate(uid, 'pajak.formulir_1111', id, 'button_cancel', cr)
 
                 return True
 
         def log_audit_trail(self, cr, uid, id, event):
                 #TODO: Ticket #31
+                if state not in ['created','confirmed','approved','processed','cancelled']:
+                    raise osv.except_osv(_('Peringatan!'),_('Error pada method log_audit'))
+                    return False
+                                
+                    state_dict = 	{
+                                    'created' : 'draft',
+                                    'confirmed' : 'confirm',
+                                    'approved' : 'approve',
+                                    'processed' : 'done',
+                                    'cancelled' : 'cancel'
+                                    }
+                            
+                    val =	{
+                                    '%s_user_id' % (state) : uid ,
+                                    '%s_time' % (state) : datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                                    'state' : state_dict.get(state, False),
+                                    }
+                                            
+                    self.write(cr, uid, [id], val)
                 return True
 
         def delete_workflow_instance(self, cr, uid, id):
@@ -196,9 +208,6 @@ class formulir_1111(osv.osv):
         def create_workflow_instance(self, cr, uid, id):
                 #TODO: Ticket #33
                 return True
-
-		
-		
 
 formulir_1111()
 

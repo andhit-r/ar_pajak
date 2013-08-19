@@ -254,9 +254,6 @@ class faktur_pajak(osv.osv):
 
         return True
 
-        
-        
-
 faktur_pajak()
 
 class faktur_pajak_line(osv.osv):
