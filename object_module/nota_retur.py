@@ -214,10 +214,6 @@ class nota_retur(osv.osv):
         #TODO: Ticket #98
         return True
 
-
-        
-        
-
 nota_retur()
 
 class nota_retur_line(osv.osv):
