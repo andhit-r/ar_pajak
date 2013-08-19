@@ -40,7 +40,7 @@ class formulir_1111_b3(osv.osv):
         
     def default_created_time(self, cr, uid, context={}):
         #TODO: Ticket #71
-        return False
+        return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         
     def default_created_user_id(self, cr, uid, context={}):
        return uid
@@ -147,14 +147,41 @@ class formulir_1111_b3(osv.osv):
 
     def log_audit_trail(self, cr, uid, id, event):
         #TODO: Ticket #74
+        if state not in ['created','confirmed','approved','processed','cancelled']:
+            raise osv.except_osv(_('Peringatan!'),_('Error pada method log_audit'))
+            return False
+			
+            state_dict = 	{
+                            'created' : 'draft',
+                            'confirmed' : 'confirm',
+                            'approved' : 'approve',
+                            'processed' : 'done',
+                            'cancelled' : 'cancel'
+                            }
+                    
+            val =	{
+                            '%s_user_id' % (state) : uid ,
+                            '%s_time' % (state) : datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                            'state' : state_dict.get(state, False),
+                            }
+                                    
+            self.write(cr, uid, [id], val)
         return True
 
     def delete_workflow_instance(self, cr, uid, id):
         #TODO: Ticket #75
+
+        wkf_service = netsvc.LocalService('workflow')
+        wkf_service.trg_delete(uid, 'pajak.formulir_1111_b3', id, cr)
+
         return True
 
     def create_workflow_instance(self, cr, uid, id):
         #TODO: Ticket #76
+
+        wkf_service = netsvc.LocalService('workflow')
+        wkf_service.trg_create(uid, 'pajak.formulir_1111_b3', id, cr)
+
         return True
             
     def onchange_company_id(self, cr, uid, ids, company_id):

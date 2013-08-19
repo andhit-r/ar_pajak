@@ -48,7 +48,7 @@ class faktur_pajak(osv.osv):
         return datetime.now().strftime('%Y-%m-%d')
         
     def default_created_time(self, cr, uid, context={}):
-        return datetime.now().strftime('%Y-%m-%d')
+        return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         
     def default_created_user_id(self, cr, uid, context={}):
         return uid
@@ -56,12 +56,27 @@ class faktur_pajak(osv.osv):
     def function_amount_all(self, cr, uid, ids, name, args, context=None):
         #TODO: Tiket 11
         res = {}
+        untaxed = 0.0
+        base = 0.0
+        amount_tax = 0.0
+
+        obj_faktur_pajak_line = self.pool.get('pajak.faktur_pajak_line')
+
         for faktur in self.browse(cr, uid, ids):
-            res[faktur.id] = {
-                                        'untaxed' : 0.0,
-                                        'base' : 0.0,
-                                        'amount_tax' : 0.0,
-                                        }
+            kriteria = [('faktur_pajak_id', '=', faktur.id)]
+            line_ids = obj_faktur_pajak_line.search(cr, uid, kriteria)
+            if line_ids:
+                for line in obj_faktur_pajak_line.browse(cr, uid, line_ids):
+                    base =+ line.subtotal
+            
+            untaxed = (base - faktur.discount - faktur.advance_payment) 
+            amount_tax = (10/100 * untaxed)
+
+        res[faktur.id] = {
+                                    'untaxed' : untaxed,
+                                    'base' : base,
+                                    'amount_tax' : amount_tax,
+                                    }
         return res
     
             
@@ -203,18 +218,42 @@ class faktur_pajak(osv.osv):
 
     def log_audit_trail(self, cr, uid, id, event):
         #TODO: Ticket #12
+        if state not in ['created','confirmed','approved','processed','cancelled']:
+            raise osv.except_osv(_('Peringatan!'),_('Error pada method log_audit'))
+            return False
+			
+            state_dict = 	{
+                            'created' : 'draft',
+                            'confirmed' : 'confirm',
+                            'approved' : 'approve',
+                            'processed' : 'done',
+                            'cancelled' : 'cancel'
+                            }
+                    
+            val =	{
+                            '%s_user_id' % (state) : uid ,
+                            '%s_time' % (state) : datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                            'state' : state_dict.get(state, False),
+                            }
+                                    
+            self.write(cr, uid, [id], val)
         return True
 
     def delete_workflow_instance(self, cr, uid, id):
         #TODO: Ticket #13
+
+        wkf_service = netsvc.LocalService('workflow')
+        wkf_service.trg_delete(uid, 'pajak.faktur_pajak', id, cr)
+
         return True
 
     def create_workflow_instance(self, cr, uid, id):
         #TODO: Ticket #14
-        return True
 
-        
-        
+        wkf_service = netsvc.LocalService('workflow')
+        wkf_service.trg_create(uid, 'pajak.faktur_pajak', id, cr)
+
+        return True
 
 faktur_pajak()
 

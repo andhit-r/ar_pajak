@@ -136,18 +136,61 @@ class formulir_1111_a1(osv.osv):
 
         def log_audit_trail(self, cr, uid, id, event):
                 #TODO: Ticket #35
+                if state not in ['created','confirmed','approved','processed','cancelled']:
+                    raise osv.except_osv(_('Peringatan!'),_('Error pada method log_audit'))
+                    return False
+                                
+                    state_dict = 	{
+                                    'created' : 'draft',
+                                    'confirmed' : 'confirm',
+                                    'approved' : 'approve',
+                                    'processed' : 'done',
+                                    'cancelled' : 'cancel'
+                                    }
+                            
+                    val =	{
+                                    '%s_user_id' % (state) : uid ,
+                                    '%s_time' % (state) : datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                                    'state' : state_dict.get(state, False),
+                                    }
+                                            
+                    self.write(cr, uid, [id], val)
                 return True
 
         def clear_log(self, cr, uid, id):
                 #TODO: Tiket #39
+
+                val =	{
+                        'created_user_id' : False,
+                        'created_time' : False,		
+                        'confirmed_user_id' : False,
+                        'confirmed_time' : False,
+                        'approved_user_id' : False,
+                        'approved_time' : False,
+                        'processed_user_id' : False,
+                        'processed_time' : False,
+                        'cancelled_user_id' : False,
+                        'cancelled_time' : False,
+                        }
+					
+                self.write(cr, uid, [id], val)
+
                 return True
 
         def delete_workflow_instance(self, cr, uid, id):
                 #TODO: Ticket #36
+                wkf_service = netsvc.LocalService('workflow')
+
+                wkf_service.trg_delete(uid, 'pajak.formulir_1111_a1', id, cr)
                 return True
 
         def create_workflow_instance(self, cr, uid, id):
                 #TODO: Ticket #37
+
+                wkf_service = netsvc.LocalService('workflow')
+
+                wkf_service.trg_create(uid, 'pajak.formulir_1111_a1', id, cr)
+
                 return True
 
         def create_sequence(self, cr, uid, id):

@@ -43,11 +43,11 @@ class surat_setor_pajak(osv.osv):
     
     def default_date_ssp(self, cr, uid, context={}):
             #TODO Ticket #22
-            return False
+            return datetime.now().strftime('%Y-%m-%d')
     
     def default_signature_ssp_id(self, cr, uid, context={}):
             #TODO  Ticket #23
-            return False
+            return uid
     
     def default_state(self, cr, uid, context={}):
             return 'draft'
@@ -55,8 +55,13 @@ class surat_setor_pajak(osv.osv):
     def function_amount_to_text(self, cr, uid, ids, name, args, context=None):
             #TODO Ticket #24
             res = {}
-            for id in ids:
-                    res[id] = '-'
+            amount_to_text = []
+            obj_surat_setor_pajak = self.pool.get('pajak.surat_setor_pajak')
+            obj_res_currency = self.pool.get('res.currency')
+
+            for surat_setor_pajak in obj_surat_setor_pajak.browse(cr, uid, ids):
+                amount_to_text = obj_res_currency.terbilang(cr, uid, surat_setor_pajak.company_id.currency_id.id ,surat_setor_pajak.amount_spp)
+                res[surat_setor_pajak.id] = amount_to_text
             return res
 
     _columns = {
@@ -102,77 +107,106 @@ class surat_setor_pajak(osv.osv):
     
     def workflow_action_confirm(self, cr, uid, ids, context={}):
     	for id in ids:
-    		self.write(cr, uid, [id], {'state' : 'confirm'})
-		return True
+            self.write(cr, uid, [id], {'state' : 'confirm'})
+            return True
 		
     def workflow_action_approve(self, cr, uid, ids, context={}):
     	for id in ids:
-    		self.write(cr, uid, [id], {'state' : 'approve'})
-		return True		
+            self.write(cr, uid, [id], {'state' : 'approve'})
+            return True		
 		
     def workflow_action_done(self, cr, uid, ids, context={}):
     	for id in ids:
-    		self.write(cr, uid, [id], {'state' : 'done'})
-		return True		
+            self.write(cr, uid, [id], {'state' : 'done'})
+            return True		
 		
     def workflow_action_cancel(self, cr, uid, ids, context={}):
     	for id in ids:
-    		if not self.reset_audit_trail(cr, uid, id):
-    			return False
-    			
-    		self.write(cr, uid, [id], {'state' : 'cancel'})
-		return True		
+            if not self.reset_audit_trail(cr, uid, id):
+                return False
+                    
+            self.write(cr, uid, [id], {'state' : 'cancel'})
+        return True		
 		
-	def button_action_cancel(self, cr, uid, ids, context={}):
-		"""
-		Method that runs by Cancel button
-		"""
+    def button_action_cancel(self, cr, uid, ids, context={}):
+        """
+        Method that runs by Cancel button
+        """
+        
+        for id in ids:
+                if not self.delete_workflow_instance(cr, uid, id):
+                        return False
+                        
+                if not self.create_workflow_instance(cr, uid, id):
+                        return False	
+                        
+                wkf_service.trg_validate(uid, 'pajak.surat_setor_pajak', id, 'button_cancel', cr)
+                        
+        return True
 		
-		for id in ids:
-			if not self.delete_workflow_instance(cr, uid, id):
-				return False
-				
-			if not self.create_workflow_instance(cr, uid, id):
-				return False	
-				
-			wkf_service.trg_validate(uid, 'pajak.surat_setor_pajak', id, 'button_cancel', cr)
-				
+    def button_action_set_to_draft(self, cr, uid, ids, context={}):
+        """
+        Method that runs by Set To Draft button
+        """
+        for id in ids:
+                if not self.delete_workflow_instance(cr, uid, id):
+                        return False
+                        
+                if not self.create_workflow_instance(cr, uid, id):
+                        return False				
+                        
+                if not self.reset_audit_trail(cr, uid, id):
+                        return False
+                        
+        return True		
+		
+    def reset_audit_trail(self, cr, uid, id):
+        #TODO Ticket #25
+
+		val =	{
+					'created_user_id' : False,
+					'created_time' : False,		
+					'confirmed_user_id' : False,
+					'confirmed_time' : False,
+					'approved_user_id' : False,
+					'approved_time' : False,
+					'done_user_id' : False,
+					'done_time' : False,
+					}
+					
+		self.write(cr, uid, [id], val)
+		
 		return True
-		
-	def button_action_set_to_draft(self, cr, uid, ids, context={}):
-		"""
-		Method that runs by Set To Draft button
-		"""
-		for id in ids:
-			if not self.delete_workflow_instance(cr, uid, id):
-				return False
-				
-			if not self.create_workflow_instance(cr, uid, id):
-				return False				
-				
-			if not self.reset_audit_trail(cr, uid, id):
-				return False
-				
-		return True		
-		
-	def reset_audit_trail(self, cr, uid, id):
-		#TODO Ticket #25
-		return True
-		
-	def delete_workflow_instance(self, cr, uid, id):
-		#TODO Ticket #27
-		return True
-		
-	def create_workflow_instance(self, cr, uid, id):
-		#TODO Ticket #26
-		return True
+            
+    def delete_workflow_instance(self, cr, uid, id):
+        #TODO Ticket #27
+
+        wkf_service = netsvc.LocalService('workflow')
+        wkf_service.trg_delete(uid, 'pajak.surat_setor_pajak', id, cr)
+
+        return True
+            
+    def create_workflow_instance(self, cr, uid, id):
+        #TODO Ticket #26
+
+        wkf_service = netsvc.LocalService('workflow')
+        wkf_service.trg_create(uid, 'pajak.surat_setor_pajak', id, cr)
+
+        return True
     
     def onchange_company_id(self, cr, uid, ids, company_id):
-    	value = {}
-    	domain = {}
-    	warning = {}
-    	#TODO
-    	return {'value' : value, 'domain' : domain, 'warning' : warning}
+    	#TODO 28
+        obj_res_company = self.pool.get('res.company')
+
+        value = {}
+        domain = {}
+        warning = {}
+       
+        if company_id:
+            npwp = obj_res_company.browse(cr, uid, company_id).partner_id.npwp
+            value.update({'npwp' : npwp})
+
+        return {'value' : value, 'domain' : domain, 'warning' : warning}
 
 surat_setor_pajak()
 
