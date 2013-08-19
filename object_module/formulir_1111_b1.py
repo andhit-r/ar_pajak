@@ -120,9 +120,6 @@ class formulir_1111_b1(osv.osv):
                 return True
         return True     
         
-
-
-        
     def button_action_set_to_draft(self, cr, uid, ids, context={}):
         for id in ids:
             if not self.delete_workflow_instance(self, cr, uid, id):
@@ -149,6 +146,25 @@ class formulir_1111_b1(osv.osv):
 
     def log_audit_trail(self, cr, uid, id, event):
         #TODO: Ticket #56
+        if state not in ['created','confirmed','approved','processed','cancelled']:
+            raise osv.except_osv(_('Peringatan!'),_('Error pada method log_audit'))
+            return False
+			
+            state_dict = 	{
+                            'created' : 'draft',
+                            'confirmed' : 'confirm',
+                            'approved' : 'approve',
+                            'processed' : 'done',
+                            'cancelled' : 'cancel'
+                            }
+                    
+            val =	{
+                            '%s_user_id' % (state) : uid ,
+                            '%s_time' % (state) : datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                            'state' : state_dict.get(state, False),
+                            }
+                                    
+            self.write(cr, uid, [id], val)
         return True
 
     def delete_workflow_instance(self, cr, uid, id):
