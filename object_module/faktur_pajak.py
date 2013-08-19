@@ -240,6 +240,10 @@ class faktur_pajak(osv.osv):
 
     def delete_workflow_instance(self, cr, uid, id):
         #TODO: Ticket #13
+
+        wkf_service = netsvc.LocalService('workflow')
+        wkf_service.trg_delete(uid, 'pajak.faktur_pajak', id, cr)
+
         return True
 
     def create_workflow_instance(self, cr, uid, id):
