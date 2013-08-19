@@ -162,7 +162,21 @@ class surat_setor_pajak(osv.osv):
 		
     def reset_audit_trail(self, cr, uid, id):
         #TODO Ticket #25
-        return True
+
+		val =	{
+					'created_user_id' : False,
+					'created_time' : False,		
+					'confirmed_user_id' : False,
+					'confirmed_time' : False,
+					'approved_user_id' : False,
+					'approved_time' : False,
+					'done_user_id' : False,
+					'done_time' : False,
+					}
+					
+		self.write(cr, uid, [id], val)
+		
+		return True
             
     def delete_workflow_instance(self, cr, uid, id):
         #TODO Ticket #27
