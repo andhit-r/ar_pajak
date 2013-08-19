@@ -43,7 +43,7 @@ class surat_setor_pajak(osv.osv):
     
     def default_date_ssp(self, cr, uid, context={}):
             #TODO Ticket #22
-            return False
+            return datetime.now().strftime('%Y-%m-%d')
     
     def default_signature_ssp_id(self, cr, uid, context={}):
             #TODO  Ticket #23
@@ -102,78 +102,78 @@ class surat_setor_pajak(osv.osv):
     
     def workflow_action_confirm(self, cr, uid, ids, context={}):
     	for id in ids:
-    		self.write(cr, uid, [id], {'state' : 'confirm'})
-		return True
+            self.write(cr, uid, [id], {'state' : 'confirm'})
+            return True
 		
     def workflow_action_approve(self, cr, uid, ids, context={}):
     	for id in ids:
-    		self.write(cr, uid, [id], {'state' : 'approve'})
-		return True		
+            self.write(cr, uid, [id], {'state' : 'approve'})
+            return True		
 		
     def workflow_action_done(self, cr, uid, ids, context={}):
     	for id in ids:
-    		self.write(cr, uid, [id], {'state' : 'done'})
-		return True		
+            self.write(cr, uid, [id], {'state' : 'done'})
+            return True		
 		
     def workflow_action_cancel(self, cr, uid, ids, context={}):
     	for id in ids:
-    		if not self.reset_audit_trail(cr, uid, id):
-    			return False
-    			
-    		self.write(cr, uid, [id], {'state' : 'cancel'})
-		return True		
+            if not self.reset_audit_trail(cr, uid, id):
+                return False
+                    
+            self.write(cr, uid, [id], {'state' : 'cancel'})
+        return True		
 		
-	def button_action_cancel(self, cr, uid, ids, context={}):
-		"""
-		Method that runs by Cancel button
-		"""
+    def button_action_cancel(self, cr, uid, ids, context={}):
+        """
+        Method that runs by Cancel button
+        """
+        
+        for id in ids:
+                if not self.delete_workflow_instance(cr, uid, id):
+                        return False
+                        
+                if not self.create_workflow_instance(cr, uid, id):
+                        return False	
+                        
+                wkf_service.trg_validate(uid, 'pajak.surat_setor_pajak', id, 'button_cancel', cr)
+                        
+        return True
 		
-		for id in ids:
-			if not self.delete_workflow_instance(cr, uid, id):
-				return False
-				
-			if not self.create_workflow_instance(cr, uid, id):
-				return False	
-				
-			wkf_service.trg_validate(uid, 'pajak.surat_setor_pajak', id, 'button_cancel', cr)
-				
-		return True
+    def button_action_set_to_draft(self, cr, uid, ids, context={}):
+        """
+        Method that runs by Set To Draft button
+        """
+        for id in ids:
+                if not self.delete_workflow_instance(cr, uid, id):
+                        return False
+                        
+                if not self.create_workflow_instance(cr, uid, id):
+                        return False				
+                        
+                if not self.reset_audit_trail(cr, uid, id):
+                        return False
+                        
+        return True		
 		
-	def button_action_set_to_draft(self, cr, uid, ids, context={}):
-		"""
-		Method that runs by Set To Draft button
-		"""
-		for id in ids:
-			if not self.delete_workflow_instance(cr, uid, id):
-				return False
-				
-			if not self.create_workflow_instance(cr, uid, id):
-				return False				
-				
-			if not self.reset_audit_trail(cr, uid, id):
-				return False
-				
-		return True		
-		
-	def reset_audit_trail(self, cr, uid, id):
-		#TODO Ticket #25
-		return True
-		
-	def delete_workflow_instance(self, cr, uid, id):
-		#TODO Ticket #27
+    def reset_audit_trail(self, cr, uid, id):
+        #TODO Ticket #25
+        return True
+            
+    def delete_workflow_instance(self, cr, uid, id):
+        #TODO Ticket #27
 
         wkf_service = netsvc.LocalService('workflow')
         wkf_service.trg_delete(uid, 'pajak.surat_setor_pajak', id, cr)
 
-		return True
-		
-	def create_workflow_instance(self, cr, uid, id):
-		#TODO Ticket #26
+        return True
+            
+    def create_workflow_instance(self, cr, uid, id):
+        #TODO Ticket #26
 
         wkf_service = netsvc.LocalService('workflow')
         wkf_service.trg_create(uid, 'pajak.surat_setor_pajak', id, cr)
 
-		return True
+        return True
     
     def onchange_company_id(self, cr, uid, ids, company_id):
     	value = {}
