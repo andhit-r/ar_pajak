@@ -170,6 +170,11 @@ class formulir_1111_a1(osv.osv):
 
         def create_workflow_instance(self, cr, uid, id):
                 #TODO: Ticket #37
+
+                wkf_service = netsvc.LocalService('workflow')
+
+                wkf_service.trg_create(uid, 'pajak.formulir_1111_a1', id, cr)
+
                 return True
 
         def create_sequence(self, cr, uid, id):
