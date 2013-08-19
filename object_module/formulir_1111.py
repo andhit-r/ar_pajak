@@ -40,7 +40,11 @@ class formulir_1111(osv.osv):
 		
 	def default_company_id(self, cr, uid, context={}):
 		#TODO : Ticket #29
-		return False
+                obj_res_company = self.pool.get('res.company')
+        
+                company_id = obj_res_company._company_default_get(cr, uid, 'res.partner', context=context)
+
+		return company_id
 		
 	def default_created_time(self, cr, uid, context={}):
 		#TODO: Ticket #30
