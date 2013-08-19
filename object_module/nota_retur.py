@@ -196,6 +196,10 @@ class nota_retur(osv.osv):
 
     def delete_workflow_instance(self, cr, uid, id):
         #TODO: Ticket #96
+
+        wkf_service = netsvc.LocalService('workflow')
+        wkf_service.trg_delete(uid, 'pajak.nota_retur', id, cr)
+
         return True
 
     def create_workflow_instance(self, cr, uid, id):
