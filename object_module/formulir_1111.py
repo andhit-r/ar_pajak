@@ -44,7 +44,7 @@ class formulir_1111(osv.osv):
 		
 	def default_created_time(self, cr, uid, context={}):
 		#TODO: Ticket #30
-		return False
+		return datetime.now().strftime('%Y-%m-%d')
 		
 	def default_created_user_id(self, cr, uid, context={}):
 		return uid
