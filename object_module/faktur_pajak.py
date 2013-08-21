@@ -67,16 +67,16 @@ class faktur_pajak(osv.osv):
             line_ids = obj_faktur_pajak_line.search(cr, uid, kriteria)
             if line_ids:
                 for line in obj_faktur_pajak_line.browse(cr, uid, line_ids):
-                    base =+ line.subtotal
+                    base += line.subtotal
             
             untaxed = (base - faktur.discount - faktur.advance_payment) 
             amount_tax = (10/100 * untaxed)
 
-        res[faktur.id] = {
-                                    'untaxed' : untaxed,
-                                    'base' : base,
-                                    'amount_tax' : amount_tax,
-                                    }
+            res[faktur.id] = {
+                                        'untaxed' : untaxed,
+                                        'base' : base,
+                                        'amount_tax' : amount_tax,
+                                        }
         return res
     
             

@@ -47,10 +47,19 @@ class formulir_1111_a1(osv.osv):
 	def function_amount_all(self, cr, uid, ids, name, args, context=None):
 		#TODO: Tiket 34
 		res = {}
+                total_dpp = 0.0
+
+                obj_pajak_formulir_1111_a1_detail = self.pool.get('pajak.detail_formulir_1111_a1')
+
 		for formulir in self.browse(cr, uid, ids):
-			res[formulir.id] =      {
-                                                'total_dpp' : 0.0,
-						}
+                    kriteria = [('formulir_id','=',formulir.id)]
+                    detail_ids = obj_pajak_formulir_1111_a1_detail.search(cr, uid, kriteria)
+                    if detail_ids:
+                        for detail in obj_pajak_formulir_1111_a1_detail.browse(cr, uid, detail_ids):
+                            total_dpp += detail.dpp
+                    res[formulir.id] = {
+                                        'total_dpp' : total_dpp,
+                                        }
 		return res
 
 	_columns = 	{
