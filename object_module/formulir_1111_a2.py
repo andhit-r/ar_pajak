@@ -209,6 +209,16 @@ class formulir_1111_a2(osv.osv):
 
     def create_sequence(cr, uid, id):
         #TODO: Ticket #49
+        obj_sequence = self.pool.get('ir.sequence')
+        obj_company = self.pool.get('res.company')
+        
+        formulir = self.browse(cr, uid, [id])[0]
+
+        if formulir.company_id.sequence_formulir_1111_a2.id:
+            sequence = obj_sequence.next_by_id(cr, uid, formulir.company_id.sequence_formulir_1111_a2.id)
+            self.write(cr, uid, [id], {'name' : sequence})
+        else:
+            raise osv.except_osv(_('Peringatan'),_('Sequence Formulir 1111 A2 Belum Di-Set'))
         return True
 
 
