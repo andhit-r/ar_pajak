@@ -29,6 +29,7 @@ class res_company(osv.osv):
 
 	_columns =	{
 							'sequence_faktur_pajak' : fields.many2one(string="Sequence Faktur Pajak", obj="ir.sequence"),
+							'sequence_formulir_1111_a1' : fields.many2one(string="Sequence Formulir 1111 A1", obj="ir.sequence"),
 							}
 		
 res_company()

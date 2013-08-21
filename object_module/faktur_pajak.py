@@ -175,11 +175,12 @@ class faktur_pajak(osv.osv):
         obj_company = self.pool.get('res.company')
         
         faktur_pajak = self.browse(cr, uid, [id])[0]
-            
-        sequence = obj_sequence.next_by_id(cr, uid, faktur_pajak.company_id.sequence_faktur_pajak.id)
-        self.write(cr, uid, [id], {'name' : sequence})
-            
-        
+
+        if faktur_pajak.company_id.sequence_faktur_pajak.id:
+            sequence = obj_sequence.next_by_id(cr, uid, faktur_pajak.company_id.sequence_faktur_pajak.id)
+            self.write(cr, uid, [id], {'name' : sequence})
+        else:
+            raise osv.except_osv(_('Peringatan'),_('Sequence Faktur Pajak Belum Di-Set'))
         return True
         
     def select_sequence(self, cr, uid, id, faktur_pajak_sequence):
