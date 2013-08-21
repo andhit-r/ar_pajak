@@ -47,7 +47,7 @@ class nota_retur(osv.osv):
         
     def default_nota_retur_date(self, cr, uid, context={}):
         #TODO: Ticket #89
-        return False
+        return datetime.now().strftime('%Y-%m-%d')
         
     def default_created_time(self, cr, uid, context={}):
         #TODO: Ticket #90
