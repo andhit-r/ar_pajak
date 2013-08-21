@@ -1,23 +1,18 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#
 #    OpenERP, Open Source Management Solution   
 #    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>). All Rights Reserved
 #    $Id$
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
-#
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
-#
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
 ##############################################################################
 
 
@@ -67,16 +62,16 @@ class faktur_pajak(osv.osv):
             line_ids = obj_faktur_pajak_line.search(cr, uid, kriteria)
             if line_ids:
                 for line in obj_faktur_pajak_line.browse(cr, uid, line_ids):
-                    base =+ line.subtotal
+                    base += line.subtotal
             
             untaxed = (base - faktur.discount - faktur.advance_payment) 
             amount_tax = (10/100 * untaxed)
 
-        res[faktur.id] = {
-                                    'untaxed' : untaxed,
-                                    'base' : base,
-                                    'amount_tax' : amount_tax,
-                                    }
+            res[faktur.id] = {
+                                        'untaxed' : untaxed,
+                                        'base' : base,
+                                        'amount_tax' : amount_tax,
+                                        }
         return res
     
             
@@ -181,6 +176,13 @@ class faktur_pajak(osv.osv):
         self.write(cr, uid, [id], {'name' : sequence})
             
         
+
+        if faktur_pajak.company_id.sequence_faktur_pajak.id:
+            sequence = obj_sequence.next_by_id(cr, uid, faktur_pajak.company_id.sequence_faktur_pajak.id)
+            self.write(cr, uid, [id], {'name' : sequence})
+        else:
+            raise osv.except_osv(_('Peringatan'),_('Sequence Faktur Pajak Belum Di-Set'))
+
         return True
         
     def select_sequence(self, cr, uid, id, faktur_pajak_sequence):
@@ -216,7 +218,7 @@ class faktur_pajak(osv.osv):
 
         return True
 
-    def log_audit_trail(self, cr, uid, id, event):
+    def log_audit_trail(self, cr, uid, id, state):
         #TODO: Ticket #12
         if state not in ['created','confirmed','approved','processed','cancelled']:
             raise osv.except_osv(_('Peringatan!'),_('Error pada method log_audit'))

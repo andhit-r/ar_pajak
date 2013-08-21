@@ -11,6 +11,14 @@
                         <page string="Pajak">
                             <group>
                                 <field name="sequence_faktur_pajak"/>
+                                <field name="sequence_formulir_1111_a1"/>
+                                <field name="sequence_formulir_1111_a2"/>
+                                <field name="sequence_formulir_1111_ab"/>
+                                <field name="sequence_formulir_1111_b1"/>
+                                <field name="sequence_formulir_1111_b2"/>
+                                <field name="sequence_formulir_1111_b3"/>
+                                <field name="sequence_nota_pembatalan"/>
+                                <field name="sequence_nota_retur"/>
                             </group>
                         </page>
 	                </page>		

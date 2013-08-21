@@ -27,9 +27,6 @@ from openerp import netsvc
 from openerp import pooler
 from datetime import datetime
 
-
-
-
 class formulir_1111_a2(osv.osv):
     _name = 'pajak.formulir_1111_a2'
     _description = 'Formulir 1111 A2'
@@ -43,6 +40,7 @@ class formulir_1111_a2(osv.osv):
 
     def default_created_time(self, cr, uid, context={}):
         #TODO: Ticket #47
+
         return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
     def default_created_user_id(self, cr, uid, context={}):
@@ -51,11 +49,24 @@ class formulir_1111_a2(osv.osv):
     def function_amount_all(self, cr, uid, ids, name, args, context=None):
         #TODO: Ticket #48
         res = {}
-        for id in ids:
+        total_dpp = 0.0
+        total_ppn = 0.0
+        total_ppnbm = 0.0
+
+        obj_pajak_formulir_1111_a2_detail = self.pool.get('pajak.detail_formulir_1111_a2')
+        
+        for formulir in self.browse(cr, uid, ids):
+            kriteria = [('formulir_id', '=', formulir.id)]
+            detail_ids = obj_pajak_formulir_1111_a2_detail.search(cr, uid, kriteria)
+            if detail_ids:
+                for detail in obj_pajak_formulir_1111_a2_detail.browse(cr, uid, detail_ids):
+                    total_dpp += detail.dpp
+                    total_ppn += detail.ppn
+                    total_ppnbm += detail.ppnbm
             res[id] =   {
-                        'total_dpp' : 0.0,
-                        'total_ppn' : 0.0,
-                        'total_ppnbm' : 0.0
+                        'total_dpp' : total_dpp,
+                        'total_ppn' : total_ppn,
+                        'total_ppnbm' : total_ppnbm
                         }
         return res
     
@@ -185,15 +196,33 @@ class formulir_1111_a2(osv.osv):
                 
     def onchange_company_id(self, cr, uid, ids, comapny_id):
         #TODO: Ticket #53
+        obj_res_company = self.pool.get('res.company')
+
         value = {}
         domain = {}
         warning = {}
-            
+       
+        if company_id:
+            npwp = obj_res_company.browse(cr, uid, company_id).partner_id.npwp
+            value.update({'npwp' : npwp})
+
         return {'value' : value, 'domain' : domain, 'warning' : warning}                
 
     def create_sequence(cr, uid, id):
         #TODO: Ticket #49
-        return True
+        obj_sequence = self.pool.get('ir.sequence')
+        obj_company = self.pool.get('res.company')
+        
+        formulir = self.browse(cr, uid, [id])[0]
+
+        if formulir.name == '/':
+
+            if formulir.company_id.sequence_formulir_1111_a2.id:
+                sequence = obj_sequence.next_by_id(cr, uid, formulir.company_id.sequence_formulir_1111_a2.id)
+                self.write(cr, uid, [id], {'name' : sequence})
+            else:
+                raise osv.except_osv(_('Peringatan'),_('Sequence Formulir 1111 A2 Belum Di-Set'))
+            return True
 
 
 formulir_1111_a2()

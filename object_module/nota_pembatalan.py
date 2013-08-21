@@ -40,11 +40,14 @@ class nota_pembatalan(osv.osv):
         
     def default_company_id(self, cr, uid, context={}):
         #TODO : Ticket #99
-        return False
+        obj_res_company = self.pool.get('res.company')
+
+        company_id = obj_res_company._company_default_get(cr, uid, 'res.partner', context=context)
+        return company_id
         
     def default_nota_pembatalan_date(self, cr, uid, context={}):
         #TODO: Ticket #100
-        return False
+        return datetime.now().strftime('%Y-%m-%d')
         
     def default_created_time(self, cr, uid, context={}):
         #TODO: Ticket #101
@@ -129,23 +132,47 @@ class nota_pembatalan(osv.osv):
         
     def onchange_company_id(self, cr, uid, ids, company_id):
         #TODO: Ticket #103
+        obj_res_company = self.pool.get('res.company')
+
         value = {}
         domain = {}
         warning = {}
-        
+       
+        if company_id:
+            npwp = obj_res_company.browse(cr, uid, company_id).partner_id.npwp
+            value.update({'company_npwp' : npwp})
+
         return {'value' : value, 'domain' : domain, 'warning' : warning}
 
     def onchange_partner_id(self, cr, uid, ids, partner_id):
         #TODO: Ticket #104
+        obj_res_partner = self.pool.get('res.partner')
+
         value = {}
         domain = {}
         warning = {}
+
+        if partner_id:
+            npwp = obj_res_partner.browse(cr, uid, partner_id).npwp
+            value.update({'partner_npwp' : npwp})
         
         return {'value' : value, 'domain' : domain, 'warning' : warning}
         
     def create_sequence(self, cr, uid, id):
         #TODO: Ticket #105
-        return True
+        obj_sequence = self.pool.get('ir.sequence')
+        obj_company = self.pool.get('res.company')
+        
+        nota_pembatalan = self.browse(cr, uid, [id])[0]
+
+        if nota_pembatalan.name == '/':
+
+            if nota_pembatalan.company_id.sequence_nota_pembatalan.id:
+                sequence = obj_sequence.next_by_id(cr, uid, nota_pembatalan.company_id.sequence_nota_pembatalan.id)
+                self.write(cr, uid, [id], {'name' : sequence})
+            else:
+                raise osv.except_osv(_('Peringatan'),_('Sequence Nota Pembatalan Belum Di-Set'))
+            return True
         
     def button_action_set_to_draft(self, cr, uid, ids, context={}):
         for id in ids:
@@ -212,6 +239,21 @@ class nota_pembatalan(osv.osv):
     
     def clear_log_audit(self, cr, uid, id):
         #TODO: Ticket #109
+        val =	{
+                'created_user_id' : False,
+                'created_time' : False,		
+                'confirmed_user_id' : False,
+                'confirmed_time' : False,
+                'approved_user_id' : False,
+                'approved_time' : False,
+                'processed_user_id' : False,
+                'processed_time' : False,
+                'cancelled_user_id' : False,
+                'cancelled_time' : False,
+                }
+			
+        self.write(cr, uid, [id], val)
+
         return True
 
 nota_pembatalan()

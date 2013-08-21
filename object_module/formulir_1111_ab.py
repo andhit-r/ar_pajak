@@ -206,6 +206,22 @@ class formulir_1111_ab(osv.osv):
 
     def clear_log_audit(self, cr, uid, id):
         #TODO: Ticket #83
+
+        val =	{
+                'created_user_id' : False,
+                'created_time' : False,		
+                'confirmed_user_id' : False,
+                'confirmed_time' : False,
+                'approved_user_id' : False,
+                'approved_time' : False,
+                'processed_user_id' : False,
+                'processed_time' : False,
+                'cancelled_user_id' : False,
+                'cancelled_time' : False,
+                }
+			
+        self.write(cr, uid, [id], val)
+
         return True
         
 
@@ -227,14 +243,32 @@ class formulir_1111_ab(osv.osv):
 
     def onchange_company_id(self, cr, uid, ids, company_id):
         #TODO: Ticket #86
+        obj_res_company = self.pool.get('res.company')
+
         value = {}
         domain = {}
         warning = {}
+    
+        if company_id:
+            npwp = obj_res_company.browse(cr, uid, company_id).partner_id.npwp
+            value.update({'npwp' : npwp})
+
         return {'value' : value, 'domain' : domain, 'warning' : warning}
 
     def create_sequence(self, cr, uid, id):
         #TODO: Ticket #87
-        return True
+        obj_sequence = self.pool.get('ir.sequence')
+        obj_res_company = self.pool.get('res.company')
+
+        formulir_1111_ab = self.browse(cr, uid, [id])[0]
+
+        if formulir_1111_ab.name == '/':
+            if formulir_1111_ab.company_id.sequence_formulir_1111_ab.id:
+                sequence = obj_sequence.next_by_id(cr, uid, formulir_1111_ab.company_id.sequence_formulir_1111_ab.id)
+                self.write(cr, uid, [id], {'name' : sequence})
+            else:
+                raise osv.except_osv(_('Perigatan'),_('Sequence Formulir 1111 AB Belum Di-Set'))
+            return True
 
 formulir_1111_ab()
 

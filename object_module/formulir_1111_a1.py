@@ -47,10 +47,19 @@ class formulir_1111_a1(osv.osv):
 	def function_amount_all(self, cr, uid, ids, name, args, context=None):
 		#TODO: Tiket 34
 		res = {}
+                total_dpp = 0.0
+
+                obj_pajak_formulir_1111_a1_detail = self.pool.get('pajak.detail_formulir_1111_a1')
+
 		for formulir in self.browse(cr, uid, ids):
-			res[formulir.id] =      {
-                                                'total_dpp' : 0.0,
-						}
+                    kriteria = [('formulir_id','=',formulir.id)]
+                    detail_ids = obj_pajak_formulir_1111_a1_detail.search(cr, uid, kriteria)
+                    if detail_ids:
+                        for detail in obj_pajak_formulir_1111_a1_detail.browse(cr, uid, detail_ids):
+                            total_dpp += detail.dpp
+                    res[formulir.id] = {
+                                        'total_dpp' : total_dpp,
+                                        }
 		return res
 
 	_columns = 	{
@@ -195,18 +204,32 @@ class formulir_1111_a1(osv.osv):
 
         def create_sequence(self, cr, uid, id):
                 #TODO: Ticket #40
-                return True
+                obj_sequence = self.pool.get('ir.sequence')
+                obj_res_company = self.pool.get('res.company')
+
+                formulir_1111_a1 = self.browse(cr, uid, [id])[0]
+
+                if formulir_1111_a1.name == '/':
+                    if formulir_1111_a1.company_id.sequence_formulir_1111_a1.id:
+                        sequence = obj_sequence.next_by_id(cr, uid, formulir_1111_a1.company_id.sequence_formulir_1111_a1.id)
+                        self.write(cr, uid, [id], {'name' : sequence})
+                    else:
+                        raise osv.except_osv(_('Perigatan'),_('Sequence Formulir 1111 A1 Belum Di-Set'))
+                    return True
 
         def onchange_company_id(self, cr, uid, ids, comapny_id):
                 #TODO: Ticket #38
+                obj_res_company = self.pool.get('res.company')
+
                 value = {}
                 domain = {}
                 warning = {}
+            
+                if company_id:
+                    npwp = obj_res_company.browse(cr, uid, company_id).partner_id.npwp
+                    value.update({'npwp' : npwp})
 
                 return {'value' : value, 'domain' : domain, 'warning' : warning}
-
-
-
 
 formulir_1111_a1()
 

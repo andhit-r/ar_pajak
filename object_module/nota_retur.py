@@ -40,11 +40,14 @@ class nota_retur(osv.osv):
         
     def default_company_id(self, cr, uid, context={}):
         #TODO : Ticket #88
-        return False
+        obj_res_company = self.pool.get('res.company')
+
+        company_id = obj_res_company._company_default_get(cr, uid, 'res.partner', context=context)
+        return company_id
         
     def default_nota_retur_date(self, cr, uid, context={}):
         #TODO: Ticket #89
-        return False
+        return datetime.now().strftime('%Y-%m-%d')
         
     def default_created_time(self, cr, uid, context={}):
         #TODO: Ticket #90
@@ -129,22 +132,44 @@ class nota_retur(osv.osv):
         
     def onchange_company_id(self, cr, uid, ids, company_id):
         #TODO: Ticket #92
+        obj_res_company = self.pool.get('res.company')
+
         value = {}
         domain = {}
         warning = {}
-        
+       
+        if company_id:
+            npwp = obj_res_company.browse(cr, uid, company_id).partner_id.npwp
+            value.update({'company_npwp' : npwp})
+
         return {'value' : value, 'domain' : domain, 'warning' : warning}
 
     def onchange_partner_id(self, cr, uid, ids, partner_id):
         #TODO: Ticket #93
+        obj_res_partner = self.pool.get('res.partner')
+
         value = {}
         domain = {}
         warning = {}
+
+        if partner_id:
+            npwp = obj_res_partner.browse(cr, uid, partner_id).npwp
+            value.update({'partner_npwp' : npwp})
         
         return {'value' : value, 'domain' : domain, 'warning' : warning}
         
     def create_sequence(self, cr, uid, id):
         #TODO: Ticket #94
+        obj_sequence = self.pool.get('ir.sequence')
+        obj_company = self.pool.get('res.company')
+        
+        nota_retur = self.browse(cr, uid, [id])[0]
+
+        if nota_retur.company_id.sequence_nota_retur.id:
+            sequence = obj_sequence.next_by_id(cr, uid, nota_retur.company_id.sequence_nota_retur.id)
+            self.write(cr, uid, [id], {'name' : sequence})
+        else:
+            raise osv.except_osv(_('Peringatan'),_('Sequence Nota Retur Belum Di-Set'))
         return True
         
     def button_action_set_to_draft(self, cr, uid, ids, context={}):
@@ -212,6 +237,21 @@ class nota_retur(osv.osv):
     
     def clear_log_audit(self, cr, uid, id):
         #TODO: Ticket #98
+        val =	{
+                'created_user_id' : False,
+                'created_time' : False,		
+                'confirmed_user_id' : False,
+                'confirmed_time' : False,
+                'approved_user_id' : False,
+                'approved_time' : False,
+                'processed_user_id' : False,
+                'processed_time' : False,
+                'cancelled_user_id' : False,
+                'cancelled_time' : False,
+                }
+			
+        self.write(cr, uid, [id], val)
+
         return True
 
 nota_retur()
