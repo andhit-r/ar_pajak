@@ -132,10 +132,16 @@ class nota_retur(osv.osv):
         
     def onchange_company_id(self, cr, uid, ids, company_id):
         #TODO: Ticket #92
+        obj_res_company = self.pool.get('res.company')
+
         value = {}
         domain = {}
         warning = {}
-        
+       
+        if company_id:
+            npwp = obj_res_company.browse(cr, uid, company_id).partner_id.npwp
+            value.update({'company_npwp' : npwp})
+
         return {'value' : value, 'domain' : domain, 'warning' : warning}
 
     def onchange_partner_id(self, cr, uid, ids, partner_id):
