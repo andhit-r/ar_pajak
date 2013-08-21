@@ -40,7 +40,10 @@ class nota_pembatalan(osv.osv):
         
     def default_company_id(self, cr, uid, context={}):
         #TODO : Ticket #99
-        return False
+        obj_res_company = self.pool.get('res.company')
+
+        company_id = obj_res_company._company_default_get(cr, uid, 'res.partner', context=context)
+        return company_id
         
     def default_nota_pembatalan_date(self, cr, uid, context={}):
         #TODO: Ticket #100
