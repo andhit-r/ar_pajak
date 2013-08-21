@@ -160,7 +160,19 @@ class nota_pembatalan(osv.osv):
         
     def create_sequence(self, cr, uid, id):
         #TODO: Ticket #105
-        return True
+        obj_sequence = self.pool.get('ir.sequence')
+        obj_company = self.pool.get('res.company')
+        
+        nota_pembatalan = self.browse(cr, uid, [id])[0]
+
+        if nota_pembatalan.name == '/':
+
+            if nota_pembatalan.company_id.sequence_nota_pembatalan.id:
+                sequence = obj_sequence.next_by_id(cr, uid, nota_pembatalan.company_id.sequence_nota_pembatalan.id)
+                self.write(cr, uid, [id], {'name' : sequence})
+            else:
+                raise osv.except_osv(_('Peringatan'),_('Sequence Nota Pembatalan Belum Di-Set'))
+            return True
         
     def button_action_set_to_draft(self, cr, uid, ids, context={}):
         for id in ids:

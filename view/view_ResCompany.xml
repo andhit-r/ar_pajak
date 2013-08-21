@@ -17,6 +17,7 @@
                                 <field name="sequence_formulir_1111_b1"/>
                                 <field name="sequence_formulir_1111_b2"/>
                                 <field name="sequence_formulir_1111_b3"/>
+                                <field name="sequence_nota_pembatalan"/>
                             </group>
                         </page>
 	                </page>		
