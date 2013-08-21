@@ -40,7 +40,10 @@ class nota_retur(osv.osv):
         
     def default_company_id(self, cr, uid, context={}):
         #TODO : Ticket #88
-        return False
+        obj_res_company = self.pool.get('res.company')
+
+        company_id = obj_res_company._company_default_get(cr, uid, 'res.partner', context=context)
+        return company_id
         
     def default_nota_retur_date(self, cr, uid, context={}):
         #TODO: Ticket #89
