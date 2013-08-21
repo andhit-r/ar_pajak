@@ -46,7 +46,8 @@ class formulir_1111_b2(osv.osv):
         return uid
 
     def function_amount_all(self, cr, uid, ids, name, args, context={}):
-        #TODO: Ticket #62
+        #TODO: Ticket #70
+
         res = {}
         total_dpp = 0.0
         total_ppn = 0.0
