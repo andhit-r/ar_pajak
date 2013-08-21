@@ -47,7 +47,7 @@ class nota_pembatalan(osv.osv):
         
     def default_nota_pembatalan_date(self, cr, uid, context={}):
         #TODO: Ticket #100
-        return False
+        return datetime.now().strftime('%Y-%m-%d')
         
     def default_created_time(self, cr, uid, context={}):
         #TODO: Ticket #101
