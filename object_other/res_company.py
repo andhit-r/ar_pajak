@@ -31,6 +31,7 @@ class res_company(osv.osv):
 							'sequence_faktur_pajak' : fields.many2one(string="Sequence Faktur Pajak", obj="ir.sequence"),
 							'sequence_formulir_1111_a1' : fields.many2one(string="Sequence Formulir 1111 A1", obj="ir.sequence"),
 							'sequence_formulir_1111_a2' : fields.many2one(string="Sequence Formulir 1111 A2", obj="ir.sequence"),
+							'sequence_formulir_1111_ab' : fields.many2one(string="Sequence Formulir 1111 AB", obj="ir.sequence"),
 							}
 		
 res_company()
