@@ -199,14 +199,17 @@ class formulir_1111_a1(osv.osv):
 
         def onchange_company_id(self, cr, uid, ids, comapny_id):
                 #TODO: Ticket #38
+                obj_res_company = self.pool.get('res.company')
+
                 value = {}
                 domain = {}
                 warning = {}
+            
+                if company_id:
+                    npwp = obj_res_company.browse(cr, uid, company_id).partner_id.npwp
+                    value.update({'npwp' : npwp})
 
                 return {'value' : value, 'domain' : domain, 'warning' : warning}
-
-
-
 
 formulir_1111_a1()
 
