@@ -51,11 +51,12 @@ class faktur_pajak(osv.osv):
     def function_amount_all(self, cr, uid, ids, name, args, context=None):
         #TODO: Tiket 11
         res = {}
-        untaxed = 0.0
-        base = 0.0
-        amount_tax = 0.0
 
         for faktur in self.browse(cr, uid, ids):
+            untaxed = 0.0
+            base = 0.0
+            amount_tax = 0.0
+
             if faktur.faktur_pajak_line_ids:
                 for line in faktur.faktur_pajak_line_ids:
                     base += line.subtotal            
