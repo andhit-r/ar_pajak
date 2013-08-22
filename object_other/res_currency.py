@@ -79,7 +79,27 @@ class res_currency(osv.osv):
             
     def compute_tax(self, cr, uid, from_currency_id, to_currency_id, from_amount, round=True, currency_rate_type_from=False, currency_rate_type_to=False, context=None):
         #TODO: Ticket #20
-        return True
+        if not context:
+            context = {}
+        if not from_currency_id:
+            from_currency_id = to_currency_id
+        if not to_currency_id:
+            to_currency_id = from_currency_id
+        xc = self.browse(cr, uid, [from_currency_id,to_currency_id], context=context)
+        from_currency = (xc[0].id == from_currency_id and xc[0]) or xc[1]
+        to_currency = (xc[0].id == to_currency_id and xc[0]) or xc[1]
+        if (to_currency_id == from_currency_id) and (currency_rate_type_from == currency_rate_type_to):
+            if round:
+                return self.round(cr, uid, to_currency, from_amount)
+            else:
+                return from_amount
+        else:
+            context.update({'currency_rate_type_from': currency_rate_type_from, 'currency_rate_type_to': currency_rate_type_to})
+            rate = self.get_tax_conversion_rate(cr, uid, from_currency, to_currency, context=context)
+            if round:
+                return self.round(cr, uid, to_currency, from_amount * rate)
+            else:
+                return from_amount * rate
 res_currency()
 
 
