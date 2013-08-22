@@ -294,7 +294,8 @@ class faktur_pajak_ppnbm_line(osv.osv):
     def function_ppnbm_amount(self, cr, uid, ids, name, args, context=None):
         #TODO: Ticket #111
         res = {}
-        for id in ids:
+        for faktur_pajak_ppnbm_line in self.browse(cr, uid, ids):
+            total_ppnbm_amount = 0.0
             res[id] = 0.0
         return res
     
