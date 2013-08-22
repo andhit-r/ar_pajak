@@ -26,6 +26,7 @@ import openerp.addons.decimal_precision as dp
 from openerp import netsvc
 from openerp import pooler
 from datetime import datetime
+from openerp.tools.translate import _
 
 class formulir_1111_b3(osv.osv):
     _name = 'pajak.formulir_1111_b3'
@@ -92,11 +93,11 @@ class formulir_1111_b3(osv.osv):
                                 }   
                 
     _defaults = {
-                            'name' : default_name,
-                            'state' : default_state,
-                            'created_time' : default_created_time,
-                            'created_user_id' : default_created_user_id,
-                            }
+                'name' : default_name,
+                'state' : default_state,
+                'created_time' : default_created_time,
+                'created_user_id' : default_created_user_id,
+                }
 
     def workflow_action_confirm(self, cr, uid, ids, context={}):
         for id in ids:
