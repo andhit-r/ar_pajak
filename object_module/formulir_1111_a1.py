@@ -215,7 +215,8 @@ class formulir_1111_a1(osv.osv):
                         self.write(cr, uid, [id], {'name' : sequence})
                     else:
                         raise osv.except_osv(_('Perigatan'),_('Sequence Formulir 1111 A1 Belum Di-Set'))
-                    return True
+                        return False
+                return True
 
         def onchange_company_id(self, cr, uid, ids, comapny_id):
                 #TODO: Ticket #38
