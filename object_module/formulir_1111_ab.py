@@ -75,10 +75,10 @@ class formulir_1111_ab(osv.osv):
                         'npwp' : fields.char(string='NPWP', size=50, required=True),
                         'masa_pajak_id' : fields.many2one(string='Masa Pajak', obj='pajak.masa_pajak', required=True),
                         'pembetulan_ke' : fields.integer(string='Pembetulan Ke', required=True),
-                        'item1A' : fields.float(string='A. Ekspor BKP Berwujud/BKP Tidak Berwujud/JKP', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
-                        'item1B1_dpp' : fields.float(string='1. Penyerahan Dalam Negeri dengan Faktur Pajak yang tidak ditanggung', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
-                        'item1B1_ppn' : fields.float(string='1. Penyerahan Dalam Negeri dengan Faktur Pajak yang tidak ditanggung', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
-                        'item1B1_ppnbm' : fields.float(string='1. Penyerahan Dalam Negeri dengan Faktur Pajak yang tidak ditanggung', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
+                        'item1A' : fields.function(fnct=function_amount_all, type='float', string='A. Ekspor BKP Berwujud/BKP Tidak Berwujud/JKP', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'), #TODO: Ticket #80
+                        'item1B1_dpp' : fields.function(fnct=function_amount_all, type='float', string='1. Penyerahan Dalam Negeri dengan Faktur Pajak yang tidak ditanggung', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'), #TODO: Ticket #80
+                        'item1B1_ppn' : fields.function(fnct=function_amount_all, type='float', string='1. Penyerahan Dalam Negeri dengan Faktur Pajak yang tidak ditanggung', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'), #TODO: Ticket #80
+                        'item1B1_ppnbm' : fields.function(fnct=function_amount_all, type='float', string='1. Penyerahan Dalam Negeri dengan Faktur Pajak yang tidak ditanggung', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'), #TODO: Ticket #80
                         'item1B2_dpp' : fields.float(string='2. Penyerahan Dalam Negeri dengan Faktur Pajak yang ditanggung', digits_compute=dp.get_precision('Account')),
                         'item1B2_ppn' : fields.float(string='2. Penyerahan Dalam Negeri dengan Faktur Pajak yang ditanggung', digits_compute=dp.get_precision('Account')),
                         'item1B2_ppnbm' : fields.float(string='2. Penyerahan Dalam Negeri dengan Faktur Pajak yang ditanggung', digits_compute=dp.get_precision('Account')),
@@ -94,15 +94,15 @@ class formulir_1111_ab(osv.osv):
                         'item1C4_dpp' : fields.float(string='4. Penyerahan yang dibebaskan dari pengenaan PPN atau PPN dan PPnBM', digits_compute=dp.get_precision('Account')),
                         'item1C4_ppn' : fields.float(string='4. Penyerahan yang dibebaskan dari pengenaan PPN atau PPN dan PPnBM', digits_compute=dp.get_precision('Account')),
                         'item1C4_ppnbm' : fields.float(string='4. Penyerahan yang dibebaskan dari pengenaan PPN atau PPN dan PPnBM', digits_compute=dp.get_precision('Account')),                         
-                        'item2A_dpp' : fields.float(string='Item II.A', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
-                        'item2A_ppn' : fields.float(string='Item II.A', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
-                        'item2A_ppnbm' : fields.float(string='Item II.A', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
-                        'item2B_dpp' : fields.float(string='Item II.B', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
-                        'item2B_ppn' : fields.float(string='Item II.B', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
-                        'item2B_ppnbm' : fields.float(string='Item II.B', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
-                        'item2C_dpp' : fields.float(string='Item II.C', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
-                        'item2C_ppn' : fields.float(string='Item II.C', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
-                        'item2C_ppnbm' : fields.float(string='Item II.C', digits_compute=dp.get_precision('Account')), #TODO: Ticket #80
+                        'item2A_dpp' : fields.function(fnct=function_amount_all, type='float', string='Item II.A', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'), #TODO: Ticket #80
+                        'item2A_ppn' : fields.function(fnct=function_amount_all, type='float', string='Item II.A', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'), #TODO: Ticket #80
+                        'item2A_ppnbm' : fields.function(fnct=function_amount_all, type='float', string='Item II.A', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'), #TODO: Ticket #80
+                        'item2B_dpp' : fields.function(fnct=function_amount_all, type='float', string='Item II.B', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'), #TODO: Ticket #80
+                        'item2B_ppn' : fields.function(fnct=function_amount_all, type='float', string='Item II.B', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'), #TODO: Ticket #80
+                        'item2B_ppnbm' : fields.function(fnct=function_amount_all, type='float', string='Item II.B', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'), #TODO: Ticket #80
+                        'item2C_dpp' : fields.function(fnct=function_amount_all, type='float', string='Item II.C', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'), #TODO: Ticket #80
+                        'item2C_ppn' : fields.function(fnct=function_amount_all, type='float', string='Item II.C', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'), #TODO: Ticket #80
+                        'item2C_ppnbm' : fields.function(fnct=function_amount_all, type='float', string='Item II.C', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'), #TODO: Ticket #80
                         'item2D_dpp' : fields.float(string='Item II.D', digits_compute=dp.get_precision('Account')),
                         'item2D_ppn' : fields.float(string='Item II.D', digits_compute=dp.get_precision('Account')),
                         'item2D_ppnbm' : fields.float(string='Item II.D', digits_compute=dp.get_precision('Account')),
