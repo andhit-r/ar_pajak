@@ -56,12 +56,30 @@ class res_currency(osv.osv):
                 }
                                                     
     def get_tax_conversion_rate(self, cr, uid, from_currency, to_currency, context=None):
-            #TODO: Ticket #19
-            return True							
+        #TODO: Ticket #19
+        if context is None:
+            context = {}
+        ctx = context.copy()
+        ctx.update({'currency_rate_type_id': ctx.get('currency_rate_type_from')})
+        from_currency = self.browse(cr, uid, from_currency.id, context=ctx)
+
+        ctx.update({'currency_rate_type_id': ctx.get('currency_rate_type_to')})
+        to_currency = self.browse(cr, uid, to_currency.id, context=ctx)
+
+        if from_currency.rate == 0 or to_currency.rate == 0:
+            date = context.get('date', time.strftime('%Y-%m-%d'))
+            if from_currency.rate == 0:
+                currency_symbol = from_currency.symbol
+            else:
+                currency_symbol = to_currency.symbol
+            raise osv.except_osv(_('Error'), _('No rate found \n' \
+                    'for the currency: %s \n' \
+                    'at the date: %s') % (currency_symbol, date))
+        return to_currency.tax_rate/from_currency.tax_rate							
             
     def compute_tax(self, cr, uid, from_currency_id, to_currency_id, from_amount, round=True, currency_rate_type_from=False, currency_rate_type_to=False, context=None):
-            #TODO: Ticket #20
-            return True
+        #TODO: Ticket #20
+        return True
 res_currency()
 
 
