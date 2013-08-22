@@ -50,11 +50,11 @@ class formulir_1111_b2(osv.osv):
         #TODO: Ticket #70
 
         res = {}
-        total_dpp = 0.0
-        total_ppn = 0.0
-        total_ppnbm = 0.0
         
         for formulir in self.browse(cr, uid, ids):
+            total_dpp = 0.0
+            total_ppn = 0.0
+            total_ppnbm = 0.0
             if formulir.detail_ids:
                 for detail in formulir.detail_ids:
                     total_dpp += detail.dpp
