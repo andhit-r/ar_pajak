@@ -165,11 +165,14 @@ class nota_retur(osv.osv):
         
         nota_retur = self.browse(cr, uid, [id])[0]
 
-        if nota_retur.company_id.sequence_nota_retur.id:
-            sequence = obj_sequence.next_by_id(cr, uid, nota_retur.company_id.sequence_nota_retur.id)
-            self.write(cr, uid, [id], {'name' : sequence})
-        else:
-            raise osv.except_osv(_('Peringatan'),_('Sequence Nota Retur Belum Di-Set'))
+        if nota_retur.name == '/':
+
+            if nota_retur.company_id.sequence_nota_retur.id:
+                sequence = obj_sequence.next_by_id(cr, uid, nota_retur.company_id.sequence_nota_retur.id)
+                self.write(cr, uid, [id], {'name' : sequence})
+            else:
+                raise osv.except_osv(_('Peringatan'),_('Sequence Nota Retur Belum Di-Set'))
+                return False
         return True
         
     def button_action_set_to_draft(self, cr, uid, ids, context={}):
