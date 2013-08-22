@@ -268,7 +268,8 @@ class formulir_1111_ab(osv.osv):
                 self.write(cr, uid, [id], {'name' : sequence})
             else:
                 raise osv.except_osv(_('Perigatan'),_('Sequence Formulir 1111 AB Belum Di-Set'))
-            return True
+                return False
+        return True
 
 formulir_1111_ab()
 
