@@ -26,6 +26,7 @@ import openerp.addons.decimal_precision as dp
 from openerp import netsvc
 from openerp import pooler
 from datetime import datetime
+from openerp.tools.translate import _
 
 class formulir_1111_a2(osv.osv):
     _name = 'pajak.formulir_1111_a2'
@@ -123,16 +124,22 @@ class formulir_1111_a2(osv.osv):
 
     def workflow_action_cancel(self, cr, uid, ids, context={}):
         for id in ids:
-            if not self.log_audir_trail(cr, uid, id, 'cancelled'):
+            if not self.log_audit_trail(cr, uid, id, 'cancelled'):
                 return False
         return True
 
     def button_action_set_to_draft(self, cr, uid, ids, context={}):
         for id in ids:
-            if not self.delete_workflow_instance(self, cr, uid, id):
+            if not self.delete_workflow_instance(cr, uid, id):
                 return False
 
-            if not self.create_workflow_instance(self, cr, uid, id):
+            if not self.create_workflow_instance(cr, uid, id):
+                return False
+            
+            if not self.clear_log_audit(cr, uid, id):
+                return False
+
+            if not self.log_audit_trail(cr, uid, 'created'):
                 return False
 
         return True
@@ -141,17 +148,17 @@ class formulir_1111_a2(osv.osv):
     def button_action_cancel(self, cr, uid, ids, context={}):
         wkf_service = netsvc.LocalService('workflow')
         for id in ids:
-            if not self.delete_workflow_instance(self, cr, uid, id):
+            if not self.delete_workflow_instance(cr, uid, id):
                 return False
 
-            if not self.create_workflow_instance(self, cr, uid, id):
+            if not self.create_workflow_instance(cr, uid, id):
                 return False
 
             wkf_service.trg_validate(uid, 'pajak.formulir_1111_a2', id, 'button_cancel', cr)
 
             return True
 
-    def log_audit_trail(self, cr, uid, id, event):
+    def log_audit_trail(self, cr, uid, id, state):
         #TODO: Ticket #50
         if state not in ['created','confirmed','approved','processed','cancelled']:
             raise osv.except_osv(_('Peringatan!'),_('Error pada method log_audit'))
@@ -166,10 +173,10 @@ class formulir_1111_a2(osv.osv):
                             }
                     
             val =	{
-                            '%s_user_id' % (state) : uid ,
-                            '%s_time' % (state) : datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                            'state' : state_dict.get(state, False),
-                            }
+                    '%s_user_id' % (state) : uid ,
+                    '%s_time' % (state) : datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                    'state' : state_dict.get(state, False),
+                    }
                                     
             self.write(cr, uid, [id], val)
         return True
