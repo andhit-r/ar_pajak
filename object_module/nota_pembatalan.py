@@ -172,7 +172,8 @@ class nota_pembatalan(osv.osv):
                 self.write(cr, uid, [id], {'name' : sequence})
             else:
                 raise osv.except_osv(_('Peringatan'),_('Sequence Nota Pembatalan Belum Di-Set'))
-            return True
+                return False
+        return True
         
     def button_action_set_to_draft(self, cr, uid, ids, context={}):
         for id in ids:
