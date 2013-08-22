@@ -28,39 +28,33 @@ from openerp import pooler
 from datetime import datetime
 
 class formulir_1111_a1(osv.osv):
-	_name = 'pajak.formulir_1111_a1'
-	_description = 'Formulir 1111 A1'
-	_inherit = ['mail.thread']
+        _name = 'pajak.formulir_1111_a1'
+        _description = 'Formulir 1111 A1'
+        _inherit = ['mail.thread']
 
-	def default_state(self, cr, uid, context={}):
-		return 'draft'
+        def default_state(self, cr, uid, context={}):
+                return 'draft'
 
-	def default_name(self, cr, uid, context={}):
-		return '/'
+        def default_name(self, cr, uid, context={}):
+                return '/'
 
-	def default_created_time(self, cr, uid, context={}):
-		return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        def default_created_time(self, cr, uid, context={}):
+                return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-	def default_created_user_id(self, cr, uid, context={}):
-		return uid
+        def default_created_user_id(self, cr, uid, context={}):
+                return uid
 
-	def function_amount_all(self, cr, uid, ids, name, args, context=None):
-		#TODO: Tiket 34
-		res = {}
-                total_dpp = 0.0
-
-                obj_pajak_formulir_1111_a1_detail = self.pool.get('pajak.detail_formulir_1111_a1')
-
-		for formulir in self.browse(cr, uid, ids):
-                    kriteria = [('formulir_id','=',formulir.id)]
-                    detail_ids = obj_pajak_formulir_1111_a1_detail.search(cr, uid, kriteria)
-                    if detail_ids:
-                        for detail in obj_pajak_formulir_1111_a1_detail.browse(cr, uid, detail_ids):
-                            total_dpp += detail.dpp
-                    res[formulir.id] = {
-                                        'total_dpp' : total_dpp,
-                                        }
-		return res
+        def function_amount_all(self, cr, uid, ids, name, args, context=None):
+            #TODO: Tiket 34
+            res = {}
+            total_dpp = 0.0
+            
+            for formulir in self.browse(cr, uid, ids):
+                if formulir.detail_ids:
+                    for detail in formulir.detail_ids:
+                        total_dpp += detail.dpp
+                res[formulir.id] = {'total_dpp' : total_dpp}
+            return res
 
 	_columns = 	{
                 'name' : fields.char(string='# Dokumen', size=30, required=True, readonly=True),
