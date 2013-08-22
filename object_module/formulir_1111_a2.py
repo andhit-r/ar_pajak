@@ -222,7 +222,8 @@ class formulir_1111_a2(osv.osv):
                 self.write(cr, uid, [id], {'name' : sequence})
             else:
                 raise osv.except_osv(_('Peringatan'),_('Sequence Formulir 1111 A2 Belum Di-Set'))
-            return True
+                return False
+        return True
 
 
 formulir_1111_a2()
