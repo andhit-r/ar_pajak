@@ -72,12 +72,12 @@ class formulir_1111_b2(osv.osv):
     
     _columns =  {
                                 'name' : fields.char(string='# SPT', size=30, required=True, readonly=True),
-                                'company_id' : fields.many2one(string='Perusahaan', obj='res.company', required=True), #TODO: Ticket #67
-                                'nama_pkp' : fields.char(string='Nama PKP', size=255, required=True), #TODO: Ticket #67
-                                'npwp' : fields.char(string='NPWP', size=50, required=True), #TODO: Ticket #67
-                                'masa_pajak_id' : fields.many2one(string='Masa Pajak', obj='pajak.masa_pajak', required=True), #TODO: Ticket #67
-                                'pembetulan_ke' : fields.integer(string='Pembetulan Ke-', required=True), #TODO: Ticket #67
-                                'detail_ids' : fields.one2many(string='Detail', obj='pajak.detail_formulir_1111_b2', fields_id='formulir_id'), #TODO: Ticket #67
+                                'company_id' : fields.many2one(string='Perusahaan', obj='res.company', required=True, readonly=True, states={'draft':[('readonly',False)]}), #TODO: Ticket #67
+                                'nama_pkp' : fields.char(string='Nama PKP', size=255, required=True, readonly=True, states={'draft':[('readonly',False)]}), #TODO: Ticket #67
+                                'npwp' : fields.char(string='NPWP', size=50, required=True, readonly=True, states={'draft':[('readonly',False)]}), #TODO: Ticket #67
+                                'masa_pajak_id' : fields.many2one(string='Masa Pajak', obj='pajak.masa_pajak', required=True, readonly=True, states={'draft':[('readonly',False)]}), #TODO: Ticket #67
+                                'pembetulan_ke' : fields.integer(string='Pembetulan Ke-', required=True, readonly=True, states={'draft':[('readonly',False)]}), #TODO: Ticket #67
+                                'detail_ids' : fields.one2many(string='Detail', obj='pajak.detail_formulir_1111_b2', fields_id='formulir_id', readonly=True, states={'draft':[('readonly',False)]}), #TODO: Ticket #67
                                 'total_dpp' : fields.function(string='Total DPP', fnct=function_amount_all, digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
                                 'total_ppn' : fields.function(string='Total PPN', fnct=function_amount_all, digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
                                 'total_ppnbm' : fields.function(string='Total PPnBM', fnct=function_amount_all, digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
