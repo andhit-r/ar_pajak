@@ -51,14 +51,10 @@ class formulir_1111_b1(osv.osv):
         total_dpp = 0.0
         total_ppn = 0.0
         total_ppnbm = 0.0
-
-        obj_pajak_formulir_1111_b1_detail = self.pool.get('pajak.detail_formulir_1111_b1')
         
         for formulir in self.browse(cr, uid, ids):
-            kriteria = [('formulir_id', '=', formulir.id)]
-            detail_ids = obj_pajak_formulir_1111_b1_detail.search(cr, uid, kriteria)
-            if detail_ids:
-                for detail in obj_pajak_formulir_1111_b1_detail.browse(cr, uid, detail_ids):
+            if formulir.detail_ids:
+                for detail in formulir.detail_ids:
                     total_dpp += detail.dpp
                     total_ppn += detail.ppn
                     total_ppnbm += detail.ppnbm
