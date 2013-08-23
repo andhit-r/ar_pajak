@@ -173,11 +173,18 @@ class faktur_pajak(osv.osv):
         #TODO: Ticket #9
         
         obj_sequence = self.pool.get('ir.sequence')
+        obj_faktur_pajak_sequence = self.pool.get('pajak.faktur_pajak_sequence')
+
         faktur_pajak = self.browse(cr, uid, [id])[0]
         
         if faktur_pajak.company_id.sequence_faktur_pajak:
             sequence = obj_sequence.next_by_id(cr, uid, faktur_pajak.company_id.sequence_faktur_pajak.id)
             self.write(cr, uid, [id], {'name' : sequence})
+            
+            val = { 'name' : sequence,
+                    'faktur_pajak_id' : faktur_pajak.id,
+            }
+            obj_faktur_pajak_sequence.create(cr, uid, val)
         else:
             raise osv.except_osv(_('Peringatan'),_('Sequence Faktur Pajak Belum Di-Set'))
             return False
@@ -303,6 +310,16 @@ class faktur_pajak_line(osv.osv):
         value = {}
         domain = {}
         warning = {}
+
+        obj_product = self.pool.get('product.product')
+
+        kriteria = [('id', '=', product_id)]
+        product_ids = obj_product.search(cr, uid, kriteria)
+
+        if product_ids:
+            product = obj_product.browse(cr, uid, product_ids)[0]
+            value.update({'subtotal' : product.list_price, 'name' : product.name})
+            
         return {'value' : value, 'domain' : domain, 'warning' : warning}
 
 faktur_pajak_line()
@@ -316,7 +333,8 @@ class faktur_pajak_ppnbm_line(osv.osv):
         res = {}
         for faktur_pajak_ppnbm_line in self.browse(cr, uid, ids):
             total_ppnbm_amount = 0.0
-            res[id] = 0.0
+            total_ppnbm_amount = faktur_pajak_ppnbm_line.base * faktur_pajak_ppnbm_line.ppnbm_rate
+            res[faktur_pajak_ppnbm_line.id] = total_ppnbm_amount
         return res
     
     _columns =  {
