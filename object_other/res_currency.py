@@ -22,6 +22,7 @@
 
 
 from openerp.osv import fields, osv, orm
+import time
 
 class res_currency(osv.osv):
     _name = 'res.currency'
