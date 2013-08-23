@@ -96,7 +96,7 @@
                                     <field name="item2A_dpp" nolabel="1"/>
                                     <field name="item2A_ppn" nolabel="1"/>
                                     <field name="item2A_ppnbm" nolabel="1"/>
-                                    <label string="Perolehan BKP/JKP dari Dalam Negeri Yang PM-nya Dapat Dikreditkan"/>
+                                    <strong><label string="Perolehan BKP/JKP dari Dalam Negeri Yang PM-nya Dapat Dikreditkan"/></strong>
                                     <field name="item2B_dpp" nolabel="1"/>
                                     <field name="item2B_ppn" nolabel="1"/>
                                     <field name="item2B_ppnbm" nolabel="1"/>
@@ -104,6 +104,10 @@
                                     <field name="item2C_dpp" nolabel="1"/>
                                     <field name="item2C_ppn" nolabel="1"/>
                                     <field name="item2C_ppnbm" nolabel="1"/>
+                                    <label string="Jumlah Perolehan (II.A + II.B + II.C)"/>
+                                    <field name="item2D_dpp" nolabel="1"/>
+                                    <field name="item2D_ppn" nolabel="1"/>
+                                    <field name="item2D_ppnbm" nolabel="1"/>
 
 
                                 </group>
