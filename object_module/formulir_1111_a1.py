@@ -48,9 +48,9 @@ class formulir_1111_a1(osv.osv):
     def function_amount_all(self, cr, uid, ids, name, args, context=None):
         #TODO: Tiket 34
         res = {}
-        total_dpp = 0.0
             
         for formulir in self.browse(cr, uid, ids):
+            total_dpp = 0.0
             if formulir.detail_ids:
                 for detail in formulir.detail_ids:
                     total_dpp += detail.dpp

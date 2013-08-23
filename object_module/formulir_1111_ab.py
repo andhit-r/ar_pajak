@@ -48,8 +48,22 @@ class formulir_1111_ab(osv.osv):
     def function_amount_all(self, cr, uid, ids, name, args, context=None):
         #TODO: Ticket #81
         res = {}
-        for id in ids:
-            res[id] =   {
+        itemA1 = 0.00
+        item1B1_dpp = 0.00
+        item1B1_ppn = 0.00
+        item1B1_ppnbm = 0.00
+        item2A_dpp = 0.00
+        item2A_ppn = 0.00
+        item2A_ppnbm = 0.00
+        item2B_dpp = 0.00
+        item2B_ppn = 0.00
+        item2B_ppnbm = 0.00
+        item2C_dpp = 0.00
+        item2C_ppn = 0.00
+        item2C_ppnbm = 0.00
+
+        for formulir in self.browse(cr, uid, ids):
+            res[formulir.id] =   {
                         'itemA1' : 0.0, # Diambil dari formulir 1111 A.1
                         'item1B1_dpp' : 0.0, # Diambil dari formulir 1111 A.2
                         'item1B1_ppn' : 0.0, # Diambil dari formulir 1111 A.2

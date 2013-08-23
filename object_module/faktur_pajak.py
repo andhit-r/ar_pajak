@@ -50,11 +50,12 @@ class faktur_pajak(osv.osv):
     def function_amount_all(self, cr, uid, ids, name, args, context=None):
         #TODO: Tiket 11
         res = {}
-        untaxed = 0.0
-        base = 0.0
-        amount_tax = 0.0
 
         for faktur in self.browse(cr, uid, ids):
+            untaxed = 0.0
+            base = 0.0
+            amount_tax = 0.0
+
             if faktur.faktur_pajak_line_ids:
                 for line in faktur.faktur_pajak_line_ids:
                     base += line.subtotal            
@@ -214,6 +215,21 @@ class faktur_pajak(osv.osv):
 
     def clear_log_audit(self, cr, uid, id):
         #TODO: Ticket #110
+        val =	{
+                'created_user_id' : False,
+                'created_time' : False,		
+                'confirmed_user_id' : False,
+                'confirmed_time' : False,
+                'approved_user_id' : False,
+                'approved_time' : False,
+                'processed_user_id' : False,
+                'processed_time' : False,
+                'cancelled_user_id' : False,
+                'cancelled_time' : False,
+                }
+			
+        self.write(cr, uid, [id], val)
+
         return True
 
     def log_audit_trail(self, cr, uid, id, state):
@@ -277,7 +293,8 @@ class faktur_pajak_ppnbm_line(osv.osv):
     def function_ppnbm_amount(self, cr, uid, ids, name, args, context=None):
         #TODO: Ticket #111
         res = {}
-        for id in ids:
+        for faktur_pajak_ppnbm_line in self.browse(cr, uid, ids):
+            total_ppnbm_amount = 0.0
             res[id] = 0.0
         return res
     

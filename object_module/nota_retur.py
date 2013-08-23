@@ -59,9 +59,9 @@ class nota_retur(osv.osv):
     def function_total_dikembalikan(self, cr, uid, ids, name, args, context=None):
         #TODO: Tiket 91
         res = {}
-        total_dikembalikan = 0.0
 
         for nota_retur in self.browse(cr, uid, ids):
+            total_dikembalikan = 0.0
             if nota_retur.nota_retur_line_ids:
                 for line in nota_retur.nota_retur_line_ids:
                     total_dikembalikan += line.subtotal
