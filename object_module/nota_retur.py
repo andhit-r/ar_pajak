@@ -297,6 +297,16 @@ class nota_retur_line(osv.osv):
         value = {}
         domain = {}
         warning = {}
+
+        obj_product = self.pool.get('product.product')
+
+        kriteria = [('id', '=', product_id)]
+        product_ids = obj_product.search(cr, uid, kriteria)
+
+        if product_ids:
+            product = obj_product.browse(cr, uid, product_ids)[0]
+            value.update({'unit_price' : product.list_price, 'name' : product.name})
+            
         return {'value' : value, 'domain' : domain, 'warning' : warning}
 
 nota_retur_line()
