@@ -25,12 +25,12 @@
     'category' : 'Accounting & Finance',
     'summary' : 'Manage Indonesia taxform',
     'description' : """
-    Indonesian tax module with no dependency to accounting module
+Indonesian tax module with no dependency to accounting module
 
-    The main purpose is to provide a tools for company who want to manage their taxform digitally without
-    have to manage accounting. Both print and e-SPT connection will be provide.
+The main purpose is to provide a tools for company who want to manage their taxform digitally without
+have to manage accounting. Both print and e-SPT connection will be provide.
 
-    Accounting connection will be handle on additional module.
+Accounting connection will be handle on additional module.
 
     """,
     'website': 'http://andhitiarama.wordpress.com',
