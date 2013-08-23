@@ -25,12 +25,12 @@
     'category' : 'Accounting & Finance',
     'summary' : 'Manage Indonesia taxform',
     'description' : """
-    Indonesian tax module with no dependency to accounting module
+Indonesian tax module with no dependency to accounting module
 
-    The main purpose is to provide a tools for company who want to manage their taxform digitally without
-    have to manage accounting. Both print and e-SPT connection will be provide.
+The main purpose is to provide a tools for company who want to manage their taxform digitally without
+have to manage accounting. Both print and e-SPT connection will be provide.
 
-    Accounting connection will be handle on additional module.
+Accounting connection will be handle on additional module.
 
     """,
     'website': 'http://andhitiarama.wordpress.com',
@@ -67,6 +67,7 @@
                     'view/view_ResCompany.xml',
                     'view/view_SuratSetorPajak.xml',
                     'view/view_Formulir1111.xml',
+                    'view/view_Formulir1111AB.xml',
                     'view/view_Formulir1111A1.xml',
                     'view/view_Formulir1111A2.xml',
                     'view/view_Formulir1111B1.xml',
@@ -79,6 +80,7 @@
                     'window_action/waction_NotaRetur.xml',
                     'window_action/waction_NotaPembatalan.xml',
                     'window_action/waction_Formulir1111.xml',
+                    'window_action/waction_Formulir1111AB.xml',
                     'window_action/waction_Formulir1111A1.xml',
                     'window_action/waction_Formulir1111A2.xml',
                     'window_action/waction_Formulir1111B1.xml',
