@@ -162,7 +162,8 @@ class nota_retur(osv.osv):
             value.update({'partner_npwp' : npwp})
         
         return {'value' : value, 'domain' : domain, 'warning' : warning}
-        
+
+       
     def write_cancel_description(self, cr, uid, id, reason):
         self.write(cr, uid, [id], {'cancelled_reason' : reason})
         return True
@@ -289,6 +290,13 @@ class nota_retur_line(osv.osv):
                 'nota_retur_id' : fields.many2one(obj='pajak.nota_retur', string='# Nota Retur', ondelete='cascade'),
                 'subtotal':fields.function(string='Subtotal', fnct=function_subtotal, digits_compute=dp.get_precision('Account'), method=True, store=True),
                 }   
+
+    def onchange_product_id(self, cr, uid, ids, product_id):
+        #TODO: Ticket #115
+        value = {}
+        domain = {}
+        warning = {}
+        return {'value' : value, 'domain' : domain, 'warning' : warning}
 
 nota_retur_line()
 

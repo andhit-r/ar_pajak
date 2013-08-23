@@ -290,6 +290,13 @@ class nota_pembatalan_line(osv.osv):
                 'subtotal':fields.function(string='Subtotal', fnct=function_subtotal, digits_compute=dp.get_precision('Account'), method=True, store=True),
                 }   
 
+    def onchange_product_id(self, cr, uid, ids, product_id):
+        #TODO: Ticket #116
+        value = {}
+        domain = {}
+        warning = {}
+        return {'value' : value, 'domain' : domain, 'warning' : warning}
+
 nota_pembatalan_line()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
