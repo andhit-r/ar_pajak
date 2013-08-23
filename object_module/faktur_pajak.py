@@ -63,11 +63,11 @@ class faktur_pajak(osv.osv):
                 untaxed = (base - faktur.discount - faktur.advance_payment) 
                 amount_tax = (0.1 * untaxed)
 
-            res[faktur.id] = {
-                                        'untaxed' : untaxed,
-                                        'base' : base,
-                                        'amount_tax' : amount_tax,
-                                        }
+            res[faktur.id] =    {
+                                'untaxed' : untaxed,
+                                'base' : base,
+                                'amount_tax' : amount_tax,
+                                }
         return res
     
             
