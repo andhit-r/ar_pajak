@@ -51,6 +51,62 @@
 						</group>
 						<notebook colspan="4">
 							<page string="Detail">
+                                <group name="group_4" colspan="4" col="4">
+                                    <label string="URAIAN"/>
+                                    <label string="DPP"/>
+                                    <label string="PPN"/>
+                                    <label string="PPN Bm"/>
+                                    <label string="I. Rakapitulasi Penyerahan"/>
+                                    <newline/>
+                                    <label string="A. Ekspor BKP Berwujud/BKP Tidak Berwujud/JKP"/>
+                                    <field name="item1A" nolabel="1"/>
+                                    <label string=" "/>
+                                    <label string=" "/>
+                                    <label string="B. Penyerahan Dalam Negeri"/>
+                                    <newline/>
+                                    <label string="1. Penyerahan Dalam negeri Dengan Faktur Pajak yang Tidak Ditanggung"/>
+                                    <field name="item1B1_dpp" nolabel="1"/>
+                                    <field name="item1B1_ppn" nolabel="1"/>
+                                    <field name="item1B1_ppnbm" nolabel="1"/>
+                                    <label string="2. Penyerahan Dalam Negeri Dengan faktur Pajak yang Ditanggung"/>
+                                    <field name="item1B1_dpp" nolabel="1"/>
+                                    <field name="item1B1_ppn" nolabel="1"/>
+                                    <field name="item1B1_ppnbm" nolabel="1"/>
+                                    <label string="C. Rincian Penyerahan Dalam Negeri"/>
+                                    <newline/>
+                                    <label string="1. Penyerahan yang PPN dan PPnBM-nya Harus Dipungut Sendiri"/>
+                                    <field name="item1C1_dpp" nolabel="1"/>
+                                    <field name="item1C1_ppn" nolabel="1"/>
+                                    <field name="item1C1_ppnbm" nolabel="1"/>
+                                    <label string="2. Penyerahan yang PPN dan PPnBM-nya Dipungut Oleh Pemungut PPN"/>
+                                    <field name="item1C2_dpp" nolabel="1"/>
+                                    <field name="item1C2_ppn" nolabel="1"/>
+                                    <field name="item1C2_ppnbm" nolabel="1"/>
+                                    <label string="3. Penyerahan yang PPN dan PPnBM-nya Tidak Dipungut"/>
+                                    <field name="item1C3_dpp" nolabel="1"/>
+                                    <field name="item1C3_ppn" nolabel="1"/>
+                                    <field name="item1C3_ppnbm" nolabel="1"/>
+                                    <label string="4. Penyerahan yang Dibebaskan Dari Pengenaan PPN atau PPN dan PPnBM"/>
+                                    <field name="item1C4_dpp" nolabel="1"/>
+                                    <field name="item1C4_ppn" nolabel="1"/>
+                                    <field name="item1C4_ppnbm" nolabel="1"/>
+                                    <label string="II. Rekapiulasi Perolehan"/>
+                                    <newline/>
+                                    <label string="A. Import BKP, Pemanfaatan BKP Tidak Berwujud Dari Luar Daerah Pabean, dan Pemanfaatan JKP dari Luar Daerah Pabean Yang PM-nya Dapat Dikreditkan"/>
+                                    <field name="item2A_dpp" nolabel="1"/>
+                                    <field name="item2A_ppn" nolabel="1"/>
+                                    <field name="item2A_ppnbm" nolabel="1"/>
+                                    <label string="Perolehan BKP/JKP dari Dalam Negeri Yang PM-nya Dapat Dikreditkan"/>
+                                    <field name="item2B_dpp" nolabel="1"/>
+                                    <field name="item2B_ppn" nolabel="1"/>
+                                    <field name="item2B_ppnbm" nolabel="1"/>
+                                    <label string="C. Impor Atau Perolehan Yang PM-nya Tidak Dapat Dikreditkan dan/atau Impor Atau Perolehan Yang Mendapat Fasilitas"/>
+                                    <field name="item2C_dpp" nolabel="1"/>
+                                    <field name="item2C_ppn" nolabel="1"/>
+                                    <field name="item2C_ppnbm" nolabel="1"/>
+
+
+                                </group>
 							</page>
 							<page string="Note">
 								<field name="note" placeholder="Additional notes..." nolabel="1" colspan="4"/>

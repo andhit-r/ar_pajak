@@ -22,7 +22,7 @@
 
 
 from osv import fields, osv
-from datetime import date
+from datetime import date, datetime
 import netsvc
 
 

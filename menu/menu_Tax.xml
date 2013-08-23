@@ -73,7 +73,7 @@
 					name="Formulir 1111 AB"
 					sequence="2"
 					parent="menu_pajak_sptMasaPPNHeader"
-					action="waction_pajak_formulir1111"
+					action="waction_pajak_formulir1111AB"
 		/>	
 
 		<menuitem 	
