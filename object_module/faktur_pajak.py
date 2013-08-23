@@ -140,6 +140,7 @@ class faktur_pajak(osv.osv):
         return True     
         
     def onchange_company_id(self, cr, uid, ids, company_id):
+        #TODO: Ticket #7
         obj_res_company = self.pool.get('res.company')
 
         value = {}
@@ -148,7 +149,8 @@ class faktur_pajak(osv.osv):
        
         if company_id:
             npwp = obj_res_company.browse(cr, uid, company_id).partner_id.npwp
-            value.update({'company_npwp' : npwp})
+            signature_id = obj_res_company.browse(cr, uid, company_id).faktur_pajak_signature_id.id
+            value.update({'company_npwp' : npwp, 'signature_id' : signature_id})
 
         return {'value' : value, 'domain' : domain, 'warning' : warning}
 
