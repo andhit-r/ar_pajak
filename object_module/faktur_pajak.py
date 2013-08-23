@@ -326,7 +326,8 @@ class faktur_pajak_ppnbm_line(osv.osv):
         res = {}
         for faktur_pajak_ppnbm_line in self.browse(cr, uid, ids):
             total_ppnbm_amount = 0.0
-            res[id] = 0.0
+            total_ppnbm_amount = faktur_pajak_ppnbm_line.base * faktur_pajak_ppnbm_line.ppnbm_rate
+            res[faktur_pajak_ppnbm_line.id] = total_ppnbm_amount
         return res
     
     _columns =  {
