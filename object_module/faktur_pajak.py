@@ -113,22 +113,30 @@ class faktur_pajak(osv.osv):
 
     def workflow_action_confirm(self, cr, uid, ids, context={}):
         for id in ids:
-            self.write(cr, uid, [id], {'state' : 'confirm'})
+            if not self.log_audit_trail(cr, uid, id, 'confirmed'):
+                return False
+
         return True
 
     def workflow_action_approve(self, cr, uid, ids, context={}):
         for id in ids:
-            self.write(cr, uid, [id], {'state' : 'approve'})
+            if not self.log_audit_trail(cr, uid, id, 'approved'):
+                return False
+
         return True         
         
     def workflow_action_done(self, cr, uid, ids, context={}):
         for id in ids:
-            self.write(cr, uid, [id], {'state' : 'done'})
+            if not self.log_audit_trail(cr, uid, id, 'processed'):
+                return False
+
         return True     
         
     def workflow_action_cancel(self, cr, uid, ids, context={}):
         for id in ids:
-            self.write(cr, uid, [id], {'state' : 'cancel'})
+            if not self.log_audit_trail(cr, uid, id, 'cancelled'):
+                return False
+
         return True     
         
     def onchange_company_id(self, cr, uid, ids, company_id):
@@ -313,7 +321,7 @@ class account_faktur_pajak_sequence(osv.osv):
     
     _columns =  {
                 'name' : fields.char('Name', size=30, readonly=True),
-                'faktur_pajak_id' : fields.many2one(obj='pajak.faktur_pajak', string='# Faktur Pajak', readonly=True, ondelete='cascase'),
+                'faktur_pajak_id' : fields.many2one(obj='pajak.faktur_pajak', string='# Faktur Pajak', readonly=True, ondelete='cascade'),
                 }   
             
 

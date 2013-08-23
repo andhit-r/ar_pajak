@@ -56,6 +56,7 @@
                     'workflow/workflow_Formulir1111B1.xml',
                     'workflow/workflow_Formulir1111B2.xml',
                     'workflow/workflow_Formulir1111B3.xml',
+                    'wizard/view_WizardConfirmFakturPajak.xml',
                     'view/view_TahunPajak.xml',
                     'view/view_AkunPajak.xml',
                     'view/view_JenisSetorPajak.xml',

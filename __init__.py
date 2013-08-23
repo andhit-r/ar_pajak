@@ -19,6 +19,7 @@
 #
 ##############################################################################
 
+import wizard
 import object_module
 import object_other
 

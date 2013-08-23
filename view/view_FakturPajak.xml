@@ -26,7 +26,7 @@
 			<field name="arch" type="xml">
 				<form string="Faktur Pajak" version="7.0">
 					<header>
-            			<button name="button_confirm" type="workflow" colspan="2" string="Confirm" icon="gtk-go-forward" states="draft" groups="ar_pajak.group_pajak_confirmFakturPajak"/>
+            			<button name="%(waction_pajak_wizardConfirmFakturPajak)d" type="action" colspan="2" string="Confirm" icon="gtk-go-forward" states="draft" groups="ar_pajak.group_pajak_confirmFakturPajak"/>
             			<button name="button_approve" type="workflow" colspan="2" string="Approve" icon="gtk-apply" states="confirm" groups="ar_pajak.group_pajak_approveFakturPajak"/>
             			<button name="button_done" type="workflow" colspan="2" string="Done" icon="gtk-yes" states="approve" groups="ar_pajak.group_pajak_processFakturPajak"/>
             			<button name="button_cancel" type="workflow" colspan="2" string="Cancel" icon="gtk-cancel" states="draft,confirm,approve" groups="ar_pajak.group_pajak_cancelFakturPajak"/>
