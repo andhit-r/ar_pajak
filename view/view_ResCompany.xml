@@ -19,6 +19,7 @@
                                 <field name="sequence_formulir_1111_b3"/>
                                 <field name="sequence_nota_pembatalan"/>
                                 <field name="sequence_nota_retur"/>
+                                <field name="faktur_pajak_signature_id"/>
                             </group>
                         </page>
 	                </page>		
