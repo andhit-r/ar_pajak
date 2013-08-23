@@ -145,7 +145,8 @@ class nota_retur(osv.osv):
        
         if company_id:
             npwp = obj_res_company.browse(cr, uid, company_id).partner_id.npwp
-            value.update({'company_npwp' : npwp})
+            signature_id = obj_res_company.browse(cr, uid, company_id).nota_retur_signature_id.id
+            value.update({'company_npwp' : npwp, 'signature_id' : signature_id})
 
         return {'value' : value, 'domain' : domain, 'warning' : warning}
 
