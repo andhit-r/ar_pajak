@@ -190,6 +190,10 @@ class faktur_pajak(osv.osv):
         #TODO: Ticket #10
         return True
 
+    def write_cancel_description(self, cr, uid, id, reason):
+        self.write(cr, uid, [id], {'cancelled_reason' : reason})
+        return True
+
         
     def button_action_set_to_draft(self, cr, uid, ids, context={}):
         for id in ids:

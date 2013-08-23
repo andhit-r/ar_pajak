@@ -160,6 +160,10 @@ class surat_setor_pajak(osv.osv):
                         
         return True		
 		
+    def write_cancel_description(self, cr, uid, id, reason):
+        self.write(cr, uid, [id], {'cancelled_reason' : reason})
+        return True
+
     def reset_audit_trail(self, cr, uid, id):
         #TODO Ticket #25
 

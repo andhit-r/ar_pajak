@@ -158,6 +158,10 @@ class formulir_1111_a2(osv.osv):
 
             return True
 
+    def write_cancel_descriprion(self, cr, uid, reason):
+        self.write(cr, uid, [id], {'cancelled_descriprion' : reason})
+        return True
+
     def log_audit_trail(self, cr, uid, id, state):
         #TODO: Ticket #50
         if state not in ['created','confirmed','approved','processed','cancelled']:

@@ -163,6 +163,10 @@ class nota_retur(osv.osv):
         
         return {'value' : value, 'domain' : domain, 'warning' : warning}
         
+    def write_cancel_description(self, cr, uid, id, reason):
+        self.write(cr, uid, [id], {'cancelled_reason' : reason})
+        return True
+
     def create_sequence(self, cr, uid, id):
         #TODO: Ticket #94
         obj_sequence = self.pool.get('ir.sequence')
