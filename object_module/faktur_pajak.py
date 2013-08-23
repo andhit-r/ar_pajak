@@ -19,7 +19,6 @@
 from openerp.osv import fields, osv, orm
 import openerp.addons.decimal_precision as dp
 from openerp import netsvc
-from openerp import pooler
 from datetime import datetime
 
 class faktur_pajak(osv.osv):
