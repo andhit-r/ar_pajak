@@ -38,7 +38,7 @@
 						<h3>
 							<label string="REKAPITULASI PENYERAHAN DAN PEROLEHAN"/>
 						</h3>
-						<group name="group_1" colspan="4" col="4">
+						<group name="group_1" colspan="4" col="2">
 							<group name="group_1_1" colspan="1" col="2">
 								<field name="company_id" widget="selection" on_change="onchange_company_id(company_id)"/>
 								<field name="nama_pkp"/>
@@ -48,6 +48,13 @@
 								<field name="masa_pajak_id"/>
 								<field name="pembetulan_ke"/>
 							</group>
+                            <group name="group_1_3" colspan="1" col="2">
+                                <field name="formulir_a1_id"/>
+                                <field name="formulir_a2_id"/>
+                                <field name="formulir_b1_id"/>
+                                <field name="formulir_b2_id"/>
+                                <field name="formulir_b3_id"/>
+                            </group>
 						</group>
 						<notebook colspan="4">
 							<page string="Detail">
@@ -108,8 +115,16 @@
                                     <field name="item2D_dpp" nolabel="1"/>
                                     <field name="item2D_ppn" nolabel="1"/>
                                     <field name="item2D_ppnbm" nolabel="1"/>
-
-
+                                </group>
+                                <group name="group_5" string="II. Perhitungan PM Yang Dapat Dikreditkan" colspan="4" col="2">
+                                    <field name="item3A" string="A. Pajak Masukan atas Perolehan yang Dapat Dikreditkan (II.A + II.B)"/>
+                                    <strong><label string="B. Pajak Masukan Lainnya :"/></strong>
+                                    <newline/>
+                                    <field name="item3B1" string="1. Kompetensi kelebihan PPN Masa Pajak Sebelumnya"/>
+                                    <field name="item3B2" string="2. Kompensasi kelebihan PPN karena pembetulan SPT PPN"/>
+                                    <field name="item3B3" string="3. Hasil Perhitungan Kembali Pajak Masukan yang telah dikreditkan sebagai penambah (pengurang) Pajak Masukan"/>
+                                    <field name="item3B4" string="4. Jumlah (III.B.1 + III.B.2 + III.B.3)"/>
+                                    <field name="item3C" string="C. Jumlah Pajak Masukan Yang dapat Diperhitungkan"/>
                                 </group>
 							</page>
 							<page string="Note">
