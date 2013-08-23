@@ -10,7 +10,7 @@
                 	<group>
 					<field name="select_sequence"/>
 					<newline/>
-                    <field name="sequence_id"/> <!--TODO: Ticket #113-->
+                    <field name="sequence_id" attrs="{'invisible': [('select_sequence','&lt;&gt;',True)]}"/> <!--TODO: Ticket #113-->
 					</group>
 					<footer>
 					<button name="run_wizard" type="object" string="Ok" colspan="2" class="oe_highlight"/>
