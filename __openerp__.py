@@ -35,7 +35,7 @@
     """,
     'website': 'http://andhitiarama.wordpress.com',
     'images' : [],
-    'depends' : ['product', 'ar_base_amount_to_text','ar_base_perusahaan'],
+    'depends' : ['product', 'ar_base', 'ar_base_amount_to_text','ar_base_perusahaan'],
     'data' : [  
                     'security/ir.model.access.csv',
                     'security/data_Application.xml',
@@ -56,6 +56,7 @@
                     'workflow/workflow_Formulir1111B1.xml',
                     'workflow/workflow_Formulir1111B2.xml',
                     'workflow/workflow_Formulir1111B3.xml',
+                    'wizard/view_WizardConfirmFakturPajak.xml',
                     'view/view_TahunPajak.xml',
                     'view/view_AkunPajak.xml',
                     'view/view_JenisSetorPajak.xml',

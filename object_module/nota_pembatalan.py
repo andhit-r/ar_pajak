@@ -59,9 +59,9 @@ class nota_pembatalan(osv.osv):
     def function_total_dikembalikan(self, cr, uid, ids, name, args, context=None):
         #TODO: Tiket 102
         res = {}
-        total_dikembalikan = 0.0
 
         for nota_pembatalan in self.browse(cr, uid, ids):
+            total_dikembalikan = 0.0
             if nota_pembatalan.nota_pembatalan_line_ids:
                 for line in nota_pembatalan.nota_pembatalan_line_ids:
                     total_dikembalikan += line.subtotal
@@ -76,7 +76,7 @@ class nota_pembatalan(osv.osv):
                 'company_npwp' : fields.char(string='Company NPWP', size=30, required=True),
                 'partner_id' : fields.many2one(obj='res.partner', string='Partner', required=True),
                 'partner_npwp' : fields.char(string='Partner NPWP', size=30, required=True),
-                'signature_id' : fields.many2one(obj='res.users', string='Signature', readonly=True),
+                'signature_id' : fields.many2one(obj='res.users', string='Signature', readonly=False, required=True),
                 'nota_pembatalan_line_ids' : fields.one2many(obj='pajak.nota_pembatalan_line', fields_id='nota_pembatalan_id', string='Nota Pembatalan Line'),
                 'total_dikembalikan' : fields.function(string='Jumlah Harga Jual BKP Dikembalikan', fnct=function_total_dikembalikan, digits_compute=dp.get_precision('Account'), method=True, store=True),
                 'ppn_diminta' : fields.float(string='PPN Yang Diminta Kembali', digits_compute=dp.get_precision('Account'), required=True),
@@ -163,6 +163,10 @@ class nota_pembatalan(osv.osv):
         
         return {'value' : value, 'domain' : domain, 'warning' : warning}
         
+    def write_cancel_description(self, cr, uid, id, reason):
+        self.write(cr, uid, [id], {'cancelled_reason' : reason})
+        return True
+
     def create_sequence(self, cr, uid, id):
         #TODO: Ticket #105
         obj_sequence = self.pool.get('ir.sequence')
@@ -285,6 +289,13 @@ class nota_pembatalan_line(osv.osv):
                 'nota_pembatalan_id' : fields.many2one(obj='pajak.nota_pembatalan', string='# Nota Pembatalan', ondelete='cascade'),
                 'subtotal':fields.function(string='Subtotal', fnct=function_subtotal, digits_compute=dp.get_precision('Account'), method=True, store=True),
                 }   
+
+    def onchange_product_id(self, cr, uid, ids, product_id):
+        #TODO: Ticket #116
+        value = {}
+        domain = {}
+        warning = {}
+        return {'value' : value, 'domain' : domain, 'warning' : warning}
 
 nota_pembatalan_line()
 

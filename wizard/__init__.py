@@ -19,8 +19,6 @@
 #
 ##############################################################################
 
-import wizard
-import object_module
-import object_other
+import wizard_confirm_faktur_pajak
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

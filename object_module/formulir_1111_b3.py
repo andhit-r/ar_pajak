@@ -49,11 +49,11 @@ class formulir_1111_b3(osv.osv):
     def function_amount_all(self, cr, uid, ids, name, args, context=None):
         #TODO: Ticket #72
         res = {}
-        total_dpp = 0.0
-        total_ppn = 0.0
-        total_ppnbm = 0.0
         
         for formulir in self.browse(cr, uid, ids):
+            total_dpp = 0.0
+            total_ppn = 0.0
+            total_ppnbm = 0.0
             if formulir.detail_ids:
                 for detail in formulir.detail_ids:
                     total_dpp += detail.dpp
@@ -159,6 +159,10 @@ class formulir_1111_b3(osv.osv):
 
             wkf_service.trg_validate(uid, 'pajak.formulir_1111_b3', id, 'button_cancel', cr)
 
+        return True
+
+    def write_cancel_description(self, cr, uid, id, reason):
+        self.write(cr, uid, [id], {'cancelled_reason' : reason})
         return True
 
     def log_audit_trail(self, cr, uid, id, state):

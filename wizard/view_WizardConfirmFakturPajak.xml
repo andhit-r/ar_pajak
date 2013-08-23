@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="form_pajak_wizardConfirmFakturPajak" model="ir.ui.view">
+            <field name="name">Form Wizard Confirm Faktur Pajak</field>
+            <field name="model">pajak.wizard_confirm_faktur_pajak</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Buat Timesheet" version="7.0">
+                	<group>
+					<field name="select_sequence"/>
+					<newline/>
+                    <field name="sequence_id"/> <!--TODO: Ticket #113-->
+					</group>
+					<footer>
+					<button name="run_wizard" type="object" string="Ok" colspan="2" class="oe_highlight"/>
+					<button special="cancel" string="Batal" colspan="2"/>
+					</footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="waction_pajak_wizardConfirmFakturPajak" model="ir.actions.act_window">
+            <field name="name">Confirm Faktur Pajak</field>
+            <field name="res_model">pajak.wizard_confirm_faktur_pajak</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>        
+    </data>
+</openerp>

@@ -19,7 +19,6 @@
 from openerp.osv import fields, osv, orm
 import openerp.addons.decimal_precision as dp
 from openerp import netsvc
-from openerp import pooler
 from datetime import datetime
 
 class faktur_pajak(osv.osv):
@@ -51,11 +50,12 @@ class faktur_pajak(osv.osv):
     def function_amount_all(self, cr, uid, ids, name, args, context=None):
         #TODO: Tiket 11
         res = {}
-        untaxed = 0.0
-        base = 0.0
-        amount_tax = 0.0
 
         for faktur in self.browse(cr, uid, ids):
+            untaxed = 0.0
+            base = 0.0
+            amount_tax = 0.0
+
             if faktur.faktur_pajak_line_ids:
                 for line in faktur.faktur_pajak_line_ids:
                     base += line.subtotal            
@@ -63,72 +63,80 @@ class faktur_pajak(osv.osv):
                 untaxed = (base - faktur.discount - faktur.advance_payment) 
                 amount_tax = (0.1 * untaxed)
 
-            res[faktur.id] = {
-                                        'untaxed' : untaxed,
-                                        'base' : base,
-                                        'amount_tax' : amount_tax,
-                                        }
+            res[faktur.id] =    {
+                                'untaxed' : untaxed,
+                                'base' : base,
+                                'amount_tax' : amount_tax,
+                                }
         return res
     
             
     
     _columns =  {
-                                'name' : fields.char(string='# Faktur Pajak', size=30, required=True, readonly=True),
-                                'company_id' : fields.many2one(obj='res.company', string='Company', required=True),
-                                'company_npwp' : fields.char(string='Company NPWP', size=30, required=True),
-                                'partner_id' : fields.many2one(obj='res.partner', string='Partner', required=True),
-                                'partner_npwp' : fields.char(string='Partner NPWP', size=30, required=True),
-                                'signature_id' : fields.many2one(obj='res.users', string='Signature', readonly=True),
-                                'discount' : fields.float(string='Discount', digits_compute=dp.get_precision('Account'), required=True),
-                                'advance_payment' : fields.float(string='Amount Advance Payment', digits_compute=dp.get_precision('Account'), required=True),
-                                'untaxed' : fields.function(fnct=function_amount_all, type='float', string='Untaxed', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
-                                'base' : fields.function(fnct=function_amount_all, type='float', string='Base', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
-                                'amount_tax' : fields.function(fnct=function_amount_all, string='Amount Tax', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
-                                'faktur_pajak_line_ids' : fields.one2many(obj='pajak.faktur_pajak_line', fields_id='faktur_pajak_id', string='Faktur Pajak Line'),
-                                'faktur_pajak_line_ppnbm_ids' : fields.one2many(obj='pajak.faktur_pajak_ppnbm_line', fields_id='faktur_pajak_id', string='Faktur Pajak PPN Bm Line'),
-                                'faktur_pajak_date' : fields.date(string='Date', required=True),
-                                'note' : fields.text(string='Note'),
-                                'state' : fields.selection([('draft','Draft'),('confirm','Waiting For Approval'),('approve','Ready To Process'),('done','Done'),('cancel','Cancel')], 'Status', readonly=True),
-                                'created_time' : fields.datetime(string='Created Time', readonly=True),
-                                'created_user_id' : fields.many2one(string='Created By', obj='res.users', readonly=True),
-                                'confirmed_time' : fields.datetime(string='Confirmed Time', readonly=True),
-                                'confirmed_user_id' : fields.many2one(string='Confirmed By', obj='res.users', readonly=True),                       
-                                'approved_time' : fields.datetime(string='Approved Time', readonly=True),
-                                'approved_user_id' : fields.many2one(string='Approved By', obj='res.users', readonly=True),     
-                                'processed_time' : fields.datetime(string='Processed Time', readonly=True),
-                                'processed_user_id' : fields.many2one(string='Process By', obj='res.users', readonly=True),             
-                                'cancelled_time' : fields.datetime(string='Processed Time', readonly=True),
-                                'cancelled_user_id' : fields.many2one(string='Process By', obj='res.users', readonly=True),                                                                                             
-                                'cancelled_reason' : fields.text(string='Cancelled Reason', readonly=True),
-                                }   
+                'name' : fields.char(string='# Faktur Pajak', size=30, required=True, readonly=True),
+                'company_id' : fields.many2one(obj='res.company', string='Company', required=True),
+                'company_npwp' : fields.char(string='Company NPWP', size=30, required=True),
+                'partner_id' : fields.many2one(obj='res.partner', string='Partner', required=True),
+                'partner_npwp' : fields.char(string='Partner NPWP', size=30, required=True),
+                'signature_id' : fields.many2one(obj='res.users', string='Signature', readonly=False, required=True),
+                'discount' : fields.float(string='Discount', digits_compute=dp.get_precision('Account'), required=True),
+                'advance_payment' : fields.float(string='Amount Advance Payment', digits_compute=dp.get_precision('Account'), required=True),
+                'untaxed' : fields.function(fnct=function_amount_all, type='float', string='Untaxed', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
+                'base' : fields.function(fnct=function_amount_all, type='float', string='Base', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
+                'amount_tax' : fields.function(fnct=function_amount_all, string='Amount Tax', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
+                'faktur_pajak_line_ids' : fields.one2many(obj='pajak.faktur_pajak_line', fields_id='faktur_pajak_id', string='Faktur Pajak Line'),
+                'faktur_pajak_line_ppnbm_ids' : fields.one2many(obj='pajak.faktur_pajak_ppnbm_line', fields_id='faktur_pajak_id', string='Faktur Pajak PPN Bm Line'),
+                'faktur_pajak_date' : fields.date(string='Date', required=True),
+                'note' : fields.text(string='Note'),
+                'state' : fields.selection([('draft','Draft'),('confirm','Waiting For Approval'),('approve','Ready To Process'),('done','Done'),('cancel','Cancel')], 'Status', readonly=True),
+                'created_time' : fields.datetime(string='Created Time', readonly=True),
+                'created_user_id' : fields.many2one(string='Created By', obj='res.users', readonly=True),
+                'confirmed_time' : fields.datetime(string='Confirmed Time', readonly=True),
+                'confirmed_user_id' : fields.many2one(string='Confirmed By', obj='res.users', readonly=True),                       
+                'approved_time' : fields.datetime(string='Approved Time', readonly=True),
+                'approved_user_id' : fields.many2one(string='Approved By', obj='res.users', readonly=True),     
+                'processed_time' : fields.datetime(string='Processed Time', readonly=True),
+                'processed_user_id' : fields.many2one(string='Process By', obj='res.users', readonly=True),             
+                'cancelled_time' : fields.datetime(string='Processed Time', readonly=True),
+                'cancelled_user_id' : fields.many2one(string='Process By', obj='res.users', readonly=True),                                                                                             
+                'cancelled_reason' : fields.text(string='Cancelled Reason', readonly=True),
+                }   
                 
     _defaults = {
-                            'name' : default_name,
-                            'company_id' : default_company_id,
-                            'faktur_pajak_date' : default_faktur_pajak_date,
-                            'state' : default_state,
-                            'created_time' : default_created_time,
-                            'created_user_id' : default_created_user_id,
-                            }
+                'name' : default_name,
+                'company_id' : default_company_id,
+                'faktur_pajak_date' : default_faktur_pajak_date,
+                'state' : default_state,
+                'created_time' : default_created_time,
+                'created_user_id' : default_created_user_id,
+                }
 
     def workflow_action_confirm(self, cr, uid, ids, context={}):
         for id in ids:
-            self.write(cr, uid, [id], {'state' : 'confirm'})
+            if not self.log_audit_trail(cr, uid, id, 'confirmed'):
+                return False
+
         return True
 
     def workflow_action_approve(self, cr, uid, ids, context={}):
         for id in ids:
-            self.write(cr, uid, [id], {'state' : 'approve'})
+            if not self.log_audit_trail(cr, uid, id, 'approved'):
+                return False
+
         return True         
         
     def workflow_action_done(self, cr, uid, ids, context={}):
         for id in ids:
-            self.write(cr, uid, [id], {'state' : 'done'})
+            if not self.log_audit_trail(cr, uid, id, 'processed'):
+                return False
+
         return True     
         
     def workflow_action_cancel(self, cr, uid, ids, context={}):
         for id in ids:
-            self.write(cr, uid, [id], {'state' : 'cancel'})
+            if not self.log_audit_trail(cr, uid, id, 'cancelled'):
+                return False
+
         return True     
         
     def onchange_company_id(self, cr, uid, ids, company_id):
@@ -165,13 +173,7 @@ class faktur_pajak(osv.osv):
         obj_sequence = self.pool.get('ir.sequence')
         faktur_pajak = self.browse(cr, uid, [id])[0]
         
-        if not faktur_pajak.company_id.sequence_faktur_pajak:
-            raise osv.except_osv('Warning!', 'Please define sequence for Faktur Pajak')
-            
-        sequence = obj_sequence.next_by_id(cr, uid, faktur_pajak.company_id.sequence_faktur_pajak.id)
-        self.write(cr, uid, [id], {'name' : sequence})
-
-        if faktur_pajak.company_id.sequence_faktur_pajak.id:
+        if faktur_pajak.company_id.sequence_faktur_pajak:
             sequence = obj_sequence.next_by_id(cr, uid, faktur_pajak.company_id.sequence_faktur_pajak.id)
             self.write(cr, uid, [id], {'name' : sequence})
         else:
@@ -188,13 +190,23 @@ class faktur_pajak(osv.osv):
         #TODO: Ticket #10
         return True
 
+    def write_cancel_description(self, cr, uid, id, reason):
+        self.write(cr, uid, [id], {'cancelled_reason' : reason})
+        return True
+
         
     def button_action_set_to_draft(self, cr, uid, ids, context={}):
         for id in ids:
-            if not self.delete_workflow_instance(self, cr, uid, id):
+            if not self.delete_workflow_instance(cr, uid, id):
                 return False
 
-            if not self.create_workflow_instance(self, cr, uid, id):
+            if not self.create_workflow_instance(cr, uid, id):
+                return False
+
+            if not self.clear_log_audit(cr, uid, id):
+                return False
+
+            if not self.log_audit_trail(cr, uid, id, 'created'):
                 return False
                 
         return True
@@ -203,13 +215,32 @@ class faktur_pajak(osv.osv):
     def button_action_cancel(self, cr, uid, ids, context={}):
         wkf_service = netsvc.LocalService('workflow')
         for id in ids:
-            if not self.delete_workflow_instance(self, cr, uid, id):
+            if not self.delete_workflow_instance(r, uid, id):
                 return False
 
-            if not self.create_workflow_instance(self, cr, uid, id):
+            if not self.create_workflow_instance(cr, uid, id):
                 return False
 
             wkf_service.trg_validate(uid, 'pajak.faktur_pajak', id, 'button_cancel', cr)
+
+        return True
+
+    def clear_log_audit(self, cr, uid, id):
+        #TODO: Ticket #110
+        val =	{
+                'created_user_id' : False,
+                'created_time' : False,		
+                'confirmed_user_id' : False,
+                'confirmed_time' : False,
+                'approved_user_id' : False,
+                'approved_time' : False,
+                'processed_user_id' : False,
+                'processed_time' : False,
+                'cancelled_user_id' : False,
+                'cancelled_time' : False,
+                }
+			
+        self.write(cr, uid, [id], val)
 
         return True
 
@@ -218,8 +249,8 @@ class faktur_pajak(osv.osv):
         if state not in ['created','confirmed','approved','processed','cancelled']:
             raise osv.except_osv(_('Peringatan!'),_('Error pada method log_audit'))
             return False
-			
-            state_dict = 	{
+            
+            state_dict =    {
                             'created' : 'draft',
                             'confirmed' : 'confirm',
                             'approved' : 'approve',
@@ -227,11 +258,11 @@ class faktur_pajak(osv.osv):
                             'cancelled' : 'cancel'
                             }
                     
-            val =	{
-                            '%s_user_id' % (state) : uid ,
-                            '%s_time' % (state) : datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                            'state' : state_dict.get(state, False),
-                            }
+            val =   {
+                    '%s_user_id' % (state) : uid ,
+                    '%s_time' % (state) : datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                    'state' : state_dict.get(state, False),
+                    }
                                     
             self.write(cr, uid, [id], val)
         return True
@@ -265,17 +296,32 @@ class faktur_pajak_line(osv.osv):
                 'subtotal':fields.float(string='Subtotal', digits_compute=dp.get_precision('Account')),
                 }   
 
+    def onchange_product_id(self, cr, uid, ids, product_id):
+        #TODO: Ticket #114
+        value = {}
+        domain = {}
+        warning = {}
+        return {'value' : value, 'domain' : domain, 'warning' : warning}
+
 faktur_pajak_line()
 
 class faktur_pajak_ppnbm_line(osv.osv):
     _name = 'pajak.faktur_pajak_ppnbm_line'
     _description = 'Faktur Pajak PPNBm Line'
+
+    def function_ppnbm_amount(self, cr, uid, ids, name, args, context=None):
+        #TODO: Ticket #111
+        res = {}
+        for faktur_pajak_ppnbm_line in self.browse(cr, uid, ids):
+            total_ppnbm_amount = 0.0
+            res[id] = 0.0
+        return res
     
     _columns =  {
-                                'ppnbm_rate' : fields.float(string='Rate', digits=(16,9), required=True),
-                                'base' : fields.float(string='Base', digits_compute=dp.get_precision('Account'), required=True),
-                                'ppnbm_amount' : fields.float(string='PPN Bm', digits_compute=dp.get_precision('Account'), required=True),
-                                'faktur_pajak_id' : fields.many2one(obj='pajak.faktur_pajak', string='# Faktur Pajak'),
+                'ppnbm_rate' : fields.float(string='Rate', digits=(16,9), required=True),
+                'base' : fields.float(string='Base', digits_compute=dp.get_precision('Account'), required=True),
+                'ppnbm_amount' : fields.function(string='PPN Bm', fnct=function_ppnbm_amount, type='float', digits_compute=dp.get_precision('Account'), method=True, store=True),
+                'faktur_pajak_id' : fields.many2one(obj='pajak.faktur_pajak', string='# Faktur Pajak', ondelete='cascade'),
                 }   
 
 faktur_pajak_ppnbm_line()
@@ -286,7 +332,7 @@ class account_faktur_pajak_sequence(osv.osv):
     
     _columns =  {
                 'name' : fields.char('Name', size=30, readonly=True),
-                'faktur_pajak_id' : fields.many2one(obj='pajak.faktur_pajak', string='# Faktur Pajak', readonly=True),
+                'faktur_pajak_id' : fields.many2one(obj='pajak.faktur_pajak', string='# Faktur Pajak', readonly=True, ondelete='cascade'),
                 }   
             
 

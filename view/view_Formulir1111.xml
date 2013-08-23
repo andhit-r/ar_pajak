@@ -22,8 +22,10 @@
 			<field name="arch" type="xml">
 				<form string="SPT Masa PPN" version="7.0">
 					<header>
+                        <button name="button_confirm" type="workflow" string="Confirm" colspan="2" states="draft"/>
 						<button name="button_approve" type="workflow" string="Approve" colspan="2" states="confirm"/>
-						<button name="button_process" type="workflow" string="Process" colspan="2" states="ready"/>
+						<button name="button_done" type="workflow" string="Done" colspan="2" states="approve"/>
+                        <button name="%(ar_base.waction_base_wizardCancelTransaction)d" string="Cancel" type="action" colspan="2" states="draft,confirm,approve,done"/>
 						<button name="button_action_set_to_draft" type="object" string="Set To Draft" colspan="2" states="cancel"/>
 						<field name="state" widget="statusbar" statusbar_visible="draft,confirm,approve,done"/>
 					</header>
