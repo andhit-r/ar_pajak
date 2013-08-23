@@ -76,7 +76,7 @@ class nota_retur(osv.osv):
                 'company_npwp' : fields.char(string='Company NPWP', size=30, required=True),
                 'partner_id' : fields.many2one(obj='res.partner', string='Partner', required=True),
                 'partner_npwp' : fields.char(string='Partner NPWP', size=30, required=True),
-                'signature_id' : fields.many2one(obj='res.users', string='Signature', readonly=True),
+                'signature_id' : fields.many2one(obj='res.users', string='Signature', readonly=False, required=True),
                 'nota_retur_line_ids' : fields.one2many(obj='pajak.nota_retur_line', fields_id='nota_retur_id', string='Nota Retur Line'),
                 'total_dikembalikan' : fields.function(string='Jumlah Harga Jual BKP Dikembalikan', fnct=function_total_dikembalikan, digits_compute=dp.get_precision('Account'), method=True, store=True),
                 'ppn_diminta' : fields.float(string='PPN Yang Diminta Kembali', digits_compute=dp.get_precision('Account'), required=True),

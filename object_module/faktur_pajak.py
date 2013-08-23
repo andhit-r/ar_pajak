@@ -78,7 +78,7 @@ class faktur_pajak(osv.osv):
                 'company_npwp' : fields.char(string='Company NPWP', size=30, required=True),
                 'partner_id' : fields.many2one(obj='res.partner', string='Partner', required=True),
                 'partner_npwp' : fields.char(string='Partner NPWP', size=30, required=True),
-                'signature_id' : fields.many2one(obj='res.users', string='Signature', readonly=True),
+                'signature_id' : fields.many2one(obj='res.users', string='Signature', readonly=False, required=True),
                 'discount' : fields.float(string='Discount', digits_compute=dp.get_precision('Account'), required=True),
                 'advance_payment' : fields.float(string='Amount Advance Payment', digits_compute=dp.get_precision('Account'), required=True),
                 'untaxed' : fields.function(fnct=function_amount_all, type='float', string='Untaxed', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
@@ -295,6 +295,13 @@ class faktur_pajak_line(osv.osv):
                 'faktur_pajak_id' : fields.many2one(obj='pajak.faktur_pajak', string='# Faktur Pajak'),
                 'subtotal':fields.float(string='Subtotal', digits_compute=dp.get_precision('Account')),
                 }   
+
+    def onchange_product_id(self, cr, uid, ids, product_id):
+        #TODO: Ticket #114
+        value = {}
+        domain = {}
+        warning = {}
+        return {'value' : value, 'domain' : domain, 'warning' : warning}
 
 faktur_pajak_line()
 

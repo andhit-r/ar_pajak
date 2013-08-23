@@ -28,20 +28,18 @@
             			<button name="button_confirm" type="workflow" colspan="2" string="Confirm" icon="gtk-go-forward" states="draft" groups="ar_pajak.group_pajak_confirmFakturPajak"/>
             			<button name="button_approve" type="workflow" colspan="2" string="Approve" icon="gtk-apply" states="confirm" groups="ar_pajak.group_pajak_approveFakturPajak"/>
             			<button name="button_done" type="workflow" colspan="2" string="Done" icon="gtk-yes" states="approve" groups="ar_pajak.group_pajak_processFakturPajak"/>
-            			<button name="button_cancel" type="workflow" colspan="2" string="Cancel" icon="gtk-cancel" states="draft,confirm,approve" groups="ar_pajak.group_pajak_cancelFakturPajak"/>
-            			<button name="button_action_cancel" type="object" colspan="2" string="Cancel" icon="gtk-cancel" states="done" groups="ar_pajak.group_pajak_cancelFakturPajak"/>
+            			<button name="%(ar_base.waction_base_wizardCancelTransaction)d" type="action" colspan="2" string="Cancel" icon="gtk-cancel" states="draft,confirm,approve,done" groups="ar_pajak.group_pajak_cancelFakturPajak"/>
             			<button name="button_action_set_to_draft" type="object" colspan="2" string="Set To Draft" icon="gtk-convert" states="cancel" groups="ar_pajak.group_pajak_restartFakturPajak"/>
 						<field name="state" widget="statusbar" statusbar_visible="draft,confirm,approve"/>
 					</header>
 					<sheet string="Nota Pembatalan">
-							<label for="name"/>						
 						<h1>
-							<field name="name"/>
+                            <label string="Nota Pembatalan"/>
 						</h1>
-						<label for="nota_pembatalan_date"/>
-							<field name="nota_pembatalan_date"/>
 						<group name="group_1" colspan="4" col="2">
 							<group name="group_1_2" colspan="1" col="2">
+                                <field name="name"/>
+                                <field name="nota_pembatalan_date"/>
 								<field name="company_id" widget="selection" on_change="onchange_company_id(company_id)"/>
 								<field name="company_npwp"/>
                                 <field name="faktur_pajak_id"/>
