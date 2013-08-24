@@ -44,21 +44,21 @@
             <field name="flow_stop">True</field>
         </record>                
         
-        <record id="transition_pajak_voucherDraft2Confirm" model="workflow.transition">
+        <record id="transition_pajak_fakturPajakDraft2Confirm" model="workflow.transition">
             <field name="act_from" ref="act_pajak_draftFakturPajak"/>
             <field name="act_to" ref="act_pajak_confirmFakturPajak"/>
             <field name="signal">button_confirm</field>
             <field name="condition">True</field>
         </record>      
         
-        <record id="transition_pajak_voucherConfirm2Approve" model="workflow.transition">
+        <record id="transition_pajak_fakturPajakConfirm2Approve" model="workflow.transition">
             <field name="act_from" ref="act_pajak_confirmFakturPajak"/>
             <field name="act_to" ref="act_pajak_approveFakturPajak"/>
 			<field name="signal">button_approve</field>
             <field name="condition">True</field>            
         </record>           
         
-        <record id="transition_pajak_voucherApprove2Done" model="workflow.transition">
+        <record id="transition_pajak_fakturPajakApprove2Done" model="workflow.transition">
             <field name="act_from" ref="act_pajak_approveFakturPajak"/>
             <field name="act_to" ref="act_pajak_doneFakturPajak"/>
             <field name="signal">button_process</field>
@@ -66,21 +66,21 @@
         </record>  
 
         
-        <record id="transition_pajak_voucherDraft2Cancel" model="workflow.transition">
+        <record id="transition_pajak_fakturPajakDraft2Cancel" model="workflow.transition">
             <field name="act_from" ref="act_pajak_draftFakturPajak"/>
             <field name="act_to" ref="act_pajak_cancelFakturPajak"/>
             <field name="signal">button_cancel</field>
             <field name="condition">True</field>
         </record>      
         
-        <record id="transition_pajak_voucherConfirm2Cancel" model="workflow.transition">
+        <record id="transition_pajak_fakturPajakConfirm2Cancel" model="workflow.transition">
             <field name="act_from" ref="act_pajak_confirmFakturPajak"/>
             <field name="act_to" ref="act_pajak_cancelFakturPajak"/>
             <field name="signal">button_cancel</field>
             <field name="condition">True</field>
         </record>                                       
         
-        <record id="transition_pajak_voucherApprove2Cancel" model="workflow.transition">
+        <record id="transition_pajak_fakturPajakApprove2Cancel" model="workflow.transition">
             <field name="act_from" ref="act_pajak_approveFakturPajak"/>
             <field name="act_to" ref="act_pajak_cancelFakturPajak"/>
             <field name="signal">button_cancel</field>

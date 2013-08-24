@@ -57,7 +57,8 @@ class wizard_confirm_faktur_pajak(osv.osv_memory):
             obj_faktur_pajak.create_sequence(cr, uid, record_id)
             wkf_service.trg_validate(uid, 'pajak.faktur_pajak', record_id, 'button_confirm', cr)
         else:
-            obj_faktur_pajak.select_sequence(cr, uid, wizard.sequence_id.id)
+            obj_faktur_pajak.select_sequence(cr, uid, record_id, wizard.sequence_id.id)
+            wkf_service.trg_validate(uid, 'pajak.faktur_pajak', record_id, 'button_confirm', cr)
         return {}        
                 
 wizard_confirm_faktur_pajak()
