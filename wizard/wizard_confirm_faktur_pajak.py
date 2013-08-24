@@ -41,9 +41,23 @@ class wizard_confirm_faktur_pajak(osv.osv_memory):
                 
     def run_wizard(self, cr, uid, ids, context={}):
         #TODO: Ticket #112
-# Jika select_sequence == True, maka jalankan method create_sequence
-# Jika select_sequecen == False, maka jalankan method select_sequence dengan param faktur_pajak_sequence = sequence_id.name
+# Jika select_sequence == False, maka jalankan method create_sequence
+# Jika select_sequecen == True, maka jalankan method select_sequence dengan param faktur_pajak_sequence = sequence_id.name
 # Kemudian trg_validate hingga draft -> confirm
+
+        wkf_service = netsvc.LocalService("workflow")
+
+        obj_wizard = self.pool.get('pajak.wizard_confirm_faktur_pajak')
+        obj_faktur_pajak = self.pool.get('pajak.faktur_pajak')
+
+        record_id = context and context.get('active_id', False) or False
+        wizard = obj_wizard.browse(cr, uid, ids)[0]
+        
+        if wizard.select_sequence != True:
+            obj_faktur_pajak.create_sequence(cr, uid, record_id)
+            wkf_service.trg_validate(uid, 'pajak.faktur_pajak', record_id, 'button_confirm', cr)
+        else:
+            obj_faktur_pajak.select_sequence(cr, uid, wizard.sequence_id.id)
         return {}        
                 
 wizard_confirm_faktur_pajak()

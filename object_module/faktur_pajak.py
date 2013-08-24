@@ -134,9 +134,9 @@ class faktur_pajak(osv.osv):
         
     def workflow_action_cancel(self, cr, uid, ids, context={}):
         for id in ids:
+            raise osv.except_osv(_('A'),_('Masuk'))
             if not self.log_audit_trail(cr, uid, id, 'cancelled'):
                 return False
-
         return True     
         
     def onchange_company_id(self, cr, uid, ids, company_id):
@@ -191,12 +191,23 @@ class faktur_pajak(osv.osv):
 
         return True
         
-    def select_sequence(self, cr, uid, id, faktur_pajak_sequence):
+    def select_sequence(self, cr, uid, id, faktur_pajak_sequence_id):
         """
         Parameter :
         faktur_pajak_sequence : char
         """
         #TODO: Ticket #10
+        obj_faktur_pajak_sequence = self.pool.get('pajak.faktur_pajak_sequence')
+
+        faktur_pajak = self.browse(cr, uid, [id])[0]
+        
+        kriteria = [('id','=', faktur_pajak_sequence_id)]
+        faktur_pajak_sequence_ids = obj_faktur_pajak_sequence.search(cr, uid, kriteria)
+
+        if faktur_pajak_sequence_ids:
+            faktur_pajak_sequence = obj_faktur_pajak_sequence.browse(cr, uid, faktur_pajak_sequence_ids)[0]
+            self.write(cr, uid, [faktur_pajak.id], {'name' : faktur_pajak_sequence.name})
+            obj_faktur_pajak_sequence.write(cr, uid, [faktur_pajak_sequence_id], {'faktur_pajak_id' : faktur_pajak.id})
         return True
 
     def write_cancel_description(self, cr, uid, id, reason):
@@ -222,6 +233,7 @@ class faktur_pajak(osv.osv):
 
         
     def button_action_cancel(self, cr, uid, ids, context={}):
+
         wkf_service = netsvc.LocalService('workflow')
         for id in ids:
             if not self.delete_workflow_instance(r, uid, id):
@@ -272,7 +284,7 @@ class faktur_pajak(osv.osv):
                     '%s_time' % (state) : datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                     'state' : state_dict.get(state, False),
                     }
-                                    
+            raise osv.except_osv(_('Peringatan!'),_('%s')%val)          
             self.write(cr, uid, [id], val)
         return True
 
