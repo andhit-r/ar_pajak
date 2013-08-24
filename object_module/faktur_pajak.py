@@ -20,6 +20,7 @@ from openerp.osv import fields, osv, orm
 import openerp.addons.decimal_precision as dp
 from openerp import netsvc
 from datetime import datetime
+from tools.translate import _
 
 class faktur_pajak(osv.osv):
     _name = 'pajak.faktur_pajak'
@@ -134,8 +135,9 @@ class faktur_pajak(osv.osv):
         
     def workflow_action_cancel(self, cr, uid, ids, context={}):
         for id in ids:
-            raise osv.except_osv(_('A'),_('Masuk'))
             if not self.log_audit_trail(cr, uid, id, 'cancelled'):
+                return False
+            if not self.write_cancel_sequence(cr, uid, id):
                 return False
         return True     
         
@@ -214,7 +216,24 @@ class faktur_pajak(osv.osv):
         self.write(cr, uid, [id], {'cancelled_reason' : reason})
         return True
 
-        
+    def write_cancel_sequence(self, cr, uid, id):
+        obj_faktur_pajak_sequence = self.pool.get('pajak.faktur_pajak_sequence')
+
+        faktur_pajak = self.browse(cr, uid, [id])[0]
+
+        kriteria = [('faktur_pajak_id', '=', faktur_pajak.id)]
+        faktur_pajak_sequence_ids = obj_faktur_pajak_sequence.search(cr, uid, kriteria)
+
+        if faktur_pajak_sequence_ids:
+            faktur_pajak_sequence = obj_faktur_pajak_sequence.browse(cr, uid, faktur_pajak_sequence_ids)[0]
+
+            obj_faktur_pajak_sequence.write(cr, uid, [faktur_pajak_sequence.id], {'faktur_pajak_id' : False})
+        else:
+            return False
+
+        self.write(cr, uid, [faktur_pajak.id], {'name' : '/'})
+        return True
+
     def button_action_set_to_draft(self, cr, uid, ids, context={}):
         for id in ids:
             if not self.delete_workflow_instance(cr, uid, id):
@@ -240,6 +259,9 @@ class faktur_pajak(osv.osv):
                 return False
 
             if not self.create_workflow_instance(cr, uid, id):
+                return False
+
+            if not self.write_cancel_sequence(cr, uid, id):
                 return False
 
             wkf_service.trg_validate(uid, 'pajak.faktur_pajak', id, 'button_cancel', cr)
@@ -271,21 +293,20 @@ class faktur_pajak(osv.osv):
             raise osv.except_osv(_('Peringatan!'),_('Error pada method log_audit'))
             return False
             
-            state_dict =    {
-                            'created' : 'draft',
-                            'confirmed' : 'confirm',
-                            'approved' : 'approve',
-                            'processed' : 'done',
-                            'cancelled' : 'cancel'
-                            }
-                    
-            val =   {
-                    '%s_user_id' % (state) : uid ,
-                    '%s_time' % (state) : datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                    'state' : state_dict.get(state, False),
-                    }
-            raise osv.except_osv(_('Peringatan!'),_('%s')%val)          
-            self.write(cr, uid, [id], val)
+        state_dict =    {
+                        'created' : 'draft',
+                        'confirmed' : 'confirm',
+                        'approved' : 'approve',
+                        'processed' : 'done',
+                        'cancelled' : 'cancel'
+                        }
+                
+        val =   {
+                '%s_user_id' % (state) : uid ,
+                '%s_time' % (state) : datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                'state' : state_dict.get(state, False),
+                }          
+        self.write(cr, uid, [id], val)
         return True
 
     def delete_workflow_instance(self, cr, uid, id):
