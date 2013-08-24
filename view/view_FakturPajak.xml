@@ -39,6 +39,11 @@
                         </h1>
 						<group name="group_1" colspan="4" col="2">
 							<group name="group_1_2" colspan="1" col="2">
+                                <field name="nomor_seri"/>
+                                <field name="jenis_transaksi_faktur_pajak_id" widget="selection"/>
+                                <field name="status_faktur_pajak_id" widget="selection"/>
+                                <field name="kode_cabang"/>
+                                <field name="kode_tahun"/>
                                 <field name="name"/>
                                 <field name="faktur_pajak_date"/>
 								<field name="company_id" widget="selection" on_change="onchange_company_id(company_id)"/>
