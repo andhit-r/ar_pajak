@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="waction_pajak_statusFakturPajak" model="ir.actions.act_window">
+			<field name="name">Status Faktur Pajak</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">pajak.status_faktur_pajak</field>
+			<field name="view_type">form</field>
+			<field name="search_view_id" ref="search_pajak_statusFakturPajak"/>
+			<field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a Status Faktur Pajak
+              </p>
+            </field>
+		</record>
+		
+		<record id="wactionView_pajak_treeStatusFakturPajak" model="ir.actions.act_window.view">
+			<field eval="10" name="sequence"/>
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="tree_pajak_statusFakturPajak"/>
+			<field name="act_window_id" ref="waction_pajak_statusFakturPajak"/>
+		</record>
+
+		<record id="wactionView_pajak_formStatusFakturPajak" model="ir.actions.act_window.view">
+			<field eval="20" name="sequence"/>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="form_pajak_statusFakturPajak"/>
+			<field name="act_window_id" ref="waction_pajak_statusFakturPajak"/>
+		</record>
+	</data>
+</openerp>

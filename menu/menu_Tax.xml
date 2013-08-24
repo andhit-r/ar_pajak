@@ -187,6 +187,20 @@
 					action="waction_pajak_jenisSetorPajak"
 		/>	
 
+        <menuitem
+            id="menu_pajak_jenisTransaksiFakturPajak"
+            name="Jenis Transaksi faktur Pajak"
+            sequence="4"
+            parent="menu_pajak_configurationHeader"
+            action="waction_pajak_jenisTransaksiFakturPajak"/>
+
+        <menuitem
+            id="menu_pajak_statusFakturPajak"
+            name="Status Faktur Pajak"
+            sequence="5"
+            parent="menu_pajak_configurationHeader"
+            action="waction_pajak_statusFakturPajak"/>
+
 		
     </data>
 </openerp>

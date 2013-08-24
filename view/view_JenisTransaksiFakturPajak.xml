@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="tree_pajak_jenisTransaksiFakturPajak" model="ir.ui.view">
+            <field name="name">Tree Jenis Transaksi Faktur Pajak</field>
+            <field name="model">pajak.jenis_transaksi_faktur_pajak</field>
+            <field name="arch" type="xml">
+                <tree string="Jenis Transaksi Faktur Pajak">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+            
+        <record id="form_pajak_jenisTransaksiFakturPajak" model="ir.ui.view">
+            <field name="name">Form Jenis Transaksi Faktur Pajak</field>
+            <field name="model">pajak.jenis_transaksi_faktur_pajak</field>
+            <field name="arch" type="xml">
+                <form string="Jenis Transaksi Faktur Pajak" version="7.0">
+					<sheet>
+						<group name="group_1" colspan="4" col="2">
+							<group name="group_1_1" colspan="1" col="2">
+								<field name="name"/>
+								<field name="code"/>
+							</group>
+							<group name="group_1_2" colspan="1" col="2">
+								<field name="active"/>
+							</group>						
+						</group>
+						<label for="description"/>
+						<field name="description" colspan="4" nolabel="1"/>
+					</sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+
+        <record id="search_pajak_jenisTransaksiFakturPajak" model="ir.ui.view">
+            <field name="name">Search Jenis Transaksi Faktur Pajak</field>
+            <field name="model">pajak.jenis_transaksi_faktur_pajak</field>
+            <field name="arch" type="xml">
+                <search string="Jenis Transaksi Faktur Pajak">
+                    <field name="name"/>
+                    <field name="code"/>
+               </search>
+            </field>
+        </record>
+    </data>
+</openerp>
+

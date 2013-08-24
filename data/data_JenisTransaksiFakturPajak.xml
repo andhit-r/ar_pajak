@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="data_jenisTransaksiFakturPajak_01" model="pajak.jenis_transaksi_faktur_pajak">
+			<field name="code">01</field>
+			<field name="name">01</field>
+			<field name="description">Digunakan untuk penyerahan kepada selain Pemungut PPN. 
+code ini digunakan atas penyerahan BKP/JKP kepada pihak lain yang bukan Pemungut PPN, termasuk penyerahan kepada Perwakilan Negara Asing atau Perwakilan Organisasi Internasional yang tidak mendapat persetujuan untuk diberikan fasilitas perpajakan oleh Menteri Keuangan, dan penyerahan BKP/JKP antar Pemungut PPN selain Bendaharawan, yang PPN-nya dipungut oleh pihak yang menyerahkan BKP/JKP</field>
+		</record>
+		
+		<record id="data_jenisTransaksiFakturPajak_02" model="pajak.jenis_transaksi_faktur_pajak">
+			<field name="code">02</field>
+			<field name="name">02</field>
+			<field name="description">Digunakan untuk penyerahan kepada Pemungut PPN Bendaharawan Pemerintah.</field>
+		</record>		
+		
+		<record id="data_jenisTransaksiFakturPajak_03" model="pajak.jenis_transaksi_faktur_pajak">
+			<field name="code">03</field>
+			<field name="name">03</field>
+			<field name="description">Digunakan untuk penyerahan kepada Pemungut PPN Lainnya (selain Bendaharawan Pemerintah).
+code ini digunakan atas penyerahan BKP/JKP kepada Pemungut PPN selain Bendaharawan Pemerintah, dalam hal ini KPS Migas selaku Pemungut PPN.</field>
+		</record>			
+		
+		<record id="data_jenisTransaksiFakturPajak_04" model="pajak.jenis_transaksi_faktur_pajak">
+			<field name="code">04</field>
+			<field name="name">04</field>
+			<field name="description">Digunakan untuk penyerahan yang menggunakan DPP Nilai Lain kepada selain Pemungut PPN.
+code ini digunakan atas penyerahan BKP dan/atau JKP yang menggunakan DPP dengan Nilai Lain sebagaimana dimaksud dalam Keputusan Menteri Keuangan Nomor 567/KMK.04/2000 tentang Nilai Lain Sebagai Dasar Pengenaan Pajak sebagaimana telah diubah dengan Keputusan Menteri Keuangan Nomor 251/KMK.03/2002.</field>
+		</record>				
+		
+		<record id="data_jenisTransaksiFakturPajak_05" model="pajak.jenis_transaksi_faktur_pajak">
+			<field name="code">05</field>
+			<field name="name">05</field>
+			<field name="description">Digunakan untuk penyerahan yang Pajak Masukannya diDeemed kepada selain Pemungut PPN.
+code ini digunakan atas penyerahan BKP dan/atau JKP yang PPN-nya dihitung dengan menggunakan Deemed Pajak Masukan.</field>
+		</record>		
+		
+		<record id="data_jenisTransaksiFakturPajak_06" model="pajak.jenis_transaksi_faktur_pajak">
+			<field name="code">06</field>
+			<field name="name">06</field>
+			<field name="description">Digunakan untuk penyerahan Lainnya kepada selain Pemungut PPN.
+code ini digunakan atas penyerahan BKP dan/atau JKP selain jenis penyerahan pada code 01 sampai dengan code 05</field>
+		</record>				
+		
+		<record id="data_jenisTransaksiFakturPajak_07" model="pajak.jenis_transaksi_faktur_pajak">
+			<field name="code">07</field>
+			<field name="name">07</field>
+			<field name="description">Digunakan untuk penyerahan yang PPN atau PPN dan PPn BM-nya Tidak Dipungut kepada selain Pemungut PPN.
+code ini digunakan atas Penyerahan yang PPN atau PPN dan PPn BM-nya Tidak Dipungut berdasarkan peraturan khusus yang berlaku</field>
+		</record>		
+		
+		<record id="data_jenisTransaksiFakturPajak_08" model="pajak.jenis_transaksi_faktur_pajak">
+			<field name="code">08</field>
+			<field name="name">08</field>
+			<field name="description">Digunakan untuk penyerahan yang Dibebaskan dari pengenaan PPN atau PPN dan PPn BM kepada selain Pemungut PPN.
+code ini digunakan atas penyerahan yang dibebaskan dari pengenaan PPN atau PPN dan PPn BM, berdasarkan peraturan khusus yang berlaku</field>
+		</record>	
+		
+		<record id="data_jenisTransaksiFakturPajak_09" model="pajak.jenis_transaksi_faktur_pajak">
+			<field name="code">09</field>
+			<field name="name">09</field>
+			<field name="description">Digunakan untuk penyerahan yang Dibebaskan dari pengenaan PPN atau PPN dan PPn BM kepada selain Pemungut PPN.
+code ini digunakan atas penyerahan yang dibebaskan dari pengenaan PPN atau PPN dan PPn BM, berdasarkan peraturan khusus yang berlaku</field>
+		</record>						
+
+
+	</data>
+</openerp>

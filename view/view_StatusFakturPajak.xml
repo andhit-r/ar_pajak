@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="tree_pajak_statusFakturPajak" model="ir.ui.view">
+            <field name="name">Tree Status Faktur Pajak</field>
+            <field name="model">pajak.status_faktur_pajak</field>
+            <field name="arch" type="xml">
+                <tree string="Status Faktur Pajak">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+            
+        <record id="form_pajak_statusFakturPajak" model="ir.ui.view">
+            <field name="name">Form Status Faktur Pajak</field>
+            <field name="model">pajak.status_faktur_pajak</field>
+            <field name="arch" type="xml">
+                <form string="Status Faktur Pajak" version="7.0">
+					<sheet>
+						<group name="group_1" colspan="4" col="2">
+							<group name="group_1_1" colspan="1" col="2">
+								<field name="name"/>
+								<field name="code"/>
+							</group>
+							<group name="group_1_2" colspan="1" col="2">
+								<field name="active"/>
+							</group>						
+						</group>
+						<label for="description"/>
+						<field name="description" colspan="4" nolabel="1"/>
+					</sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+
+        <record id="search_pajak_statusFakturPajak" model="ir.ui.view">
+            <field name="name">Search Status Faktur Pajak</field>
+            <field name="model">pajak.status_faktur_pajak</field>
+            <field name="arch" type="xml">
+                <search string="Status Faktur Pajak">
+                    <field name="name"/>
+                    <field name="code"/>
+               </search>
+            </field>
+        </record>
+    </data>
+</openerp>
+

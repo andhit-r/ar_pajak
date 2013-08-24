@@ -23,6 +23,8 @@ import tahun_pajak
 import masa_pajak
 import akun_pajak
 import jenis_setor_pajak
+import jenis_transaksi_faktur_pajak
+import status_faktur_pajak
 import tax_rate
 import faktur_pajak
 import nota_retur
