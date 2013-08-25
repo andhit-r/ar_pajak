@@ -48,6 +48,13 @@ class faktur_pajak(osv.osv):
     def default_created_user_id(self, cr, uid, context={}):
         return uid
 
+    def function_nomor_seri(self, cr, uid, ids, name, args, context=None):
+        #TODO: Ticket
+        res = {}
+        for id in ids:
+            res[id] = '-'
+        return res
+
     def function_amount_all(self, cr, uid, ids, name, args, context=None):
         #TODO: Tiket 11
         res = {}
@@ -74,7 +81,12 @@ class faktur_pajak(osv.osv):
             
     
     _columns =  {
-                'name' : fields.char(string='# Faktur Pajak', size=30, required=True, readonly=True),
+                'name' : fields.char(string='# Faktur Pajak', size=8, required=True, readonly=True),
+                'jenis_transaksi_faktur_pajak_id' : fields.many2one(string='Jenis Transaksi', obj='pajak.jenis_transaksi_faktur_pajak', required=True),
+                'status_faktur_pajak_id' : fields.many2one(string='Status', obj='pajak.status_faktur_pajak', required=True),
+                'kode_cabang' : fields.char(string='Kode Cabang', size=3, required=True),
+                'kode_tahun' : fields.char(string='Kode Tahun', size=2, required=True),
+                'nomor_seri' : fields.function(string='Nomor Seri', fnct=function_nomor_seri, type='char', size=30, method=True, store=True),
                 'company_id' : fields.many2one(obj='res.company', string='Company', required=True),
                 'company_npwp' : fields.char(string='Company NPWP', size=30, required=True),
                 'partner_id' : fields.many2one(obj='res.partner', string='Partner', required=True),

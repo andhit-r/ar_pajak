@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="data_statusFakturPajak_0" model="pajak.status_faktur_pajak">
+			<field name="code">0</field>
+			<field name="name">Normal</field>
+			<field name="description"></field>
+		</record>
+		
+		<record id="data_statusFakturPajak_1" model="pajak.status_faktur_pajak">
+			<field name="code">1</field>
+			<field name="name">Pergantian</field>
+			<field name="description"></field>
+		</record>		
+			
+
+
+	</data>
+</openerp>
