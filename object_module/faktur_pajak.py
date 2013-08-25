@@ -49,7 +49,7 @@ class faktur_pajak(osv.osv):
         return uid
 
     def function_nomor_seri(self, cr, uid, ids, name, args, context=None):
-        #TODO: Ticket
+        #TODO: Ticket #117
         res = {}
         for id in ids:
             res[id] = '-'
