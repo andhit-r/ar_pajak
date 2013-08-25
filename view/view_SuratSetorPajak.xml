@@ -53,11 +53,11 @@
 		            			<field name="nop_address"/>
 		            		</group>
 		            		<group name="group_1_3" col="2" colspan="1">
-		            			<field name="akun_pajak_id"/>
-		            			<field name="jenis_setor_pajak_id"/>
+		            			<field name="akun_pajak_id" widget="selection"/>
+		            			<field name="jenis_setor_pajak_id" widget="selection"/>
 		            		</group>
 		            		<group name="group_1_8" col="2" colspan="1">
-		            			<field name="masa_pajak_id"/>
+		            			<field name="masa_pajak_id" widget="selection"/>
 		            			<field name="tahun_pajak_id"/>
 		            		</group>                		
 		            		<group name="group_1_4" col="2" colspan="1">
