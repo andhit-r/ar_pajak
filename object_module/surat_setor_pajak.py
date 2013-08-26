@@ -87,6 +87,7 @@ class surat_setor_pajak(osv.osv):
                             'date_ssp' : fields.date(string='Tanggal Setor', required=True),
                             'signature_ssp_id' : fields.many2one(string='SSP Signature', obj='res.users', required=True),
                             'state' : fields.selection(string='State', selection=[('draft','Draft'),('confirm','Waiting For Approval'),('approve','Ready To Process'),('done','Done'),('cancel','Cancel')], readonly=True),
+                            'note' : fields.text(string='Note'),
                             #Audit Trail
                             'created_user_id' : fields.many2one(string='Created By', obj='res.users', readonly=True),
                             'created_time' : fields.datetime(string='Created Time', readonly=True),

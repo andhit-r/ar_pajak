@@ -45,38 +45,63 @@
 		            		<group name="group_1_1" col="2" colspan="1">
 		            			<field name="name"/>
 		            			<field name="company_id"/>
+		            		</group>
+                            <group name="group_1_2" colspan="1" col="2">
 		            			<field name="npwp"/>
 		            			<field name="partner_id"/>
 		            		</group>
-		            		<group name="group_1_2" col="2" colspan="1">
-		            			<field name="nop"/>
-		            			<field name="nop_address"/>
-		            		</group>
-		            		<group name="group_1_3" col="2" colspan="1">
-		            			<field name="akun_pajak_id" widget="selection"/>
-		            			<field name="jenis_setor_pajak_id" widget="selection"/>
-		            		</group>
-		            		<group name="group_1_8" col="2" colspan="1">
-		            			<field name="masa_pajak_id" widget="selection"/>
-		            			<field name="tahun_pajak_id"/>
-		            		</group>                		
-		            		<group name="group_1_4" col="2" colspan="1">
-								<label for="description"/>
-		            			<field name="description" colspan="2" nolabel="1"/>
-		            		</group>
-		            		<group name="group_1_5" col="2" colspan="1">
-		            			<field name="nomor_ketetapan"/>
-		            		</group>
-		            		<group name="group_1_6" col="2" colspan="1">
-		            			<field name="amount_ssp"/>
-		            			<field name="amount_to_text"/>
-		            		</group>
-		            		<group name="group_1_7" col="2" colspan="1">
-		            			<field name="city_ssp"/>
-		            			<field name="date_ssp"/>
-		            			<field name="signature_ssp_id"/>
-		            		</group>
-		            	</group>
+	            	</group>
+                        <notebook colspan="4">
+                            <page string="Detail SSP">
+                                <group name="group_3" colspan="4" col="2">
+                                    <group name="group_3_1" colspan="1" col="2">
+                                        <field name="nop"/>
+                                        <field name="nop_address"/>
+                                    </group>
+                                    <group name="group_3_2" colspan="1" col="2">
+                                        <field name="akun_pajak_id"/>
+                                        <field name="jenis_setor_pajak_id" domain="[('akun_pajak_id','=',akun_pajak_id)]"/>
+                                    </group>
+                                    <group name="group_3_3" colspan="1" col="2">
+                                        <field name="masa_pajak_id"/>
+                                        <field name="tahun_pajak_id"/>
+                                    </group>
+                                    <group name="group_3_4" colspan="1" col="2">
+                                        <label for="description"/>
+                                        <field name="description" nolabel="1"/>
+                                    </group>
+                                    <group name="group_3_5" colspan="1" col="2">
+                                        <field name="nomor_ketetapan"/>
+                                    </group>
+                                    <group name="group_3_6" colspan="1" col="2">
+                                        <field name="amount_ssp"/>
+                                        <field name="amount_to_text"/>
+                                    </group>
+                                    <group name="group_3_7" colspan="1" col="2">
+                                        <field name="city_ssp"/>
+                                        <field name="date_ssp"/>
+                                        <field name="signature_ssp_id"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Note">
+                                <field name="note" colspan="4" nolabel="1"/>
+                            </page>
+                            <page string="Audit Trail">
+                                <group name="group_2" colspan="4" col="3">
+                                    <field name="created_time" string="Created"/>
+                                    <field name="created_user_id" nolabel="1"/>
+                                    <field name="confirmed_time" string="Confirmed"/>
+                                    <field name="confirmed_user_id" nolabel="1"/>
+                                    <field name="approved_time" string="Approved"/>
+                                    <field name="approved_user_id" nolabel="1"/>
+                                    <field name="processed_time" string="Processed"/>
+                                    <field name="processed_user_id" nolabel="1"/>
+                                    <field name="cancelled_time" string="Cancelled"/>
+                                    <field name="cancelled_user_id" nolabel="1"/>
+                                </group>
+                            </page>
+                        </notebook>
 					</sheet>
 		            <div class="oe_chatter">
 		                <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
