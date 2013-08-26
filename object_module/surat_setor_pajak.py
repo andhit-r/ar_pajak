@@ -240,6 +240,21 @@ class surat_setor_pajak(osv.osv):
 
     def clear_log_audit(self, cr, uid, id):
         #TODO: Ticket #124
+        val =	{
+                'created_user_id' : False,
+                'created_time' : False,		
+                'confirmed_user_id' : False,
+                'confirmed_time' : False,
+                'approved_user_id' : False,
+                'approved_time' : False,
+                'processed_user_id' : False,
+                'processed_time' : False,
+                'cancelled_user_id' : False,
+                'cancelled_time' : False,
+                }
+			
+        self.write(cr, uid, [id], val)
+
         return True
 
     def write_cancel_description(self, cr, uid, id, reason):
