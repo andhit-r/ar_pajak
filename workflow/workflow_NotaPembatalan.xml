@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="wkf_pajak_notaPembatalan" model="workflow">
+            <field name="name">Nota Pembatalan</field>
+            <field name="osv">pajak.nota_pembatalan</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <record id="act_pajak_draftNotaPembatalan" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_pajak_notaPembatalan"/>
+            <field name="name">draft</field>
+			<field name="flow_start">True</field>
+            <field name="kind">dummy</field>
+        </record>   		    
+
+        <record id="act_pajak_confirmNotaPembatalan" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_pajak_notaPembatalan"/>
+            <field name="name">confirm</field>
+            <field name="action">workflow_action_confirm()</field>
+            <field name="kind">function</field>
+        </record>
+
+        <record id="act_pajak_approveNotaPembatalan" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_pajak_notaPembatalan"/>
+            <field name="name">waiting</field>
+            <field name="action">workflow_action_approve()</field>
+            <field name="kind">function</field>
+        </record>
+        
+        <record id="act_pajak_doneNotaPembatalan" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_pajak_notaPembatalan"/>
+            <field name="name">done</field>
+            <field name="action">workflow_action_done()</field>
+            <field name="kind">function</field>
+            <field name="flow_stop">True</field>
+        </record>       
+        
+        <record id="act_pajak_cancelNotaPembatalan" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_pajak_notaPembatalan"/>
+            <field name="name">cancel</field>
+            <field name="action">workflow_action_cancel()</field>
+            <field name="kind">function</field>
+            <field name="flow_stop">True</field>
+        </record>                
+        
+        <record id="transition_pajak_notaPembatalanDraft2Confirm" model="workflow.transition">
+            <field name="act_from" ref="act_pajak_draftNotaPembatalan"/>
+            <field name="act_to" ref="act_pajak_confirmNotaPembatalan"/>
+            <field name="signal">button_confirm</field>
+            <field name="condition">True</field>
+        </record>      
+        
+        <record id="transition_pajak_notaPembatalanConfirm2Approve" model="workflow.transition">
+            <field name="act_from" ref="act_pajak_confirmNotaPembatalan"/>
+            <field name="act_to" ref="act_pajak_approveNotaPembatalan"/>
+			<field name="signal">button_approve</field>
+            <field name="condition">True</field>            
+        </record>           
+        
+        <record id="transition_pajak_notaPembatalanApprove2Done" model="workflow.transition">
+            <field name="act_from" ref="act_pajak_approveNotaPembatalan"/>
+            <field name="act_to" ref="act_pajak_doneNotaPembatalan"/>
+            <field name="signal">button_process</field>
+            <field name="condition">True</field>            
+        </record>  
+
+        
+        <record id="transition_pajak_notaPembatalanDraft2Cancel" model="workflow.transition">
+            <field name="act_from" ref="act_pajak_draftNotaPembatalan"/>
+            <field name="act_to" ref="act_pajak_cancelNotaPembatalan"/>
+            <field name="signal">button_cancel</field>
+            <field name="condition">True</field>
+        </record>      
+        
+        <record id="transition_pajak_notaPembatalanConfirm2Cancel" model="workflow.transition">
+            <field name="act_from" ref="act_pajak_confirmNotaPembatalan"/>
+            <field name="act_to" ref="act_pajak_cancelNotaPembatalan"/>
+            <field name="signal">button_cancel</field>
+            <field name="condition">True</field>
+        </record>                                       
+        
+        <record id="transition_pajak_notaPembatalanApprove2Cancel" model="workflow.transition">
+            <field name="act_from" ref="act_pajak_approveNotaPembatalan"/>
+            <field name="act_to" ref="act_pajak_cancelNotaPembatalan"/>
+            <field name="signal">button_cancel</field>
+            <field name="condition">True</field>
+        </record>    
+        
+        
+
+
+    </data>
+</openerp>
+
