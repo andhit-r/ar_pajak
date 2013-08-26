@@ -61,6 +61,7 @@ Accounting connection will be handle on additional module.
                     'workflow/workflow_Formulir1111B2.xml',
                     'workflow/workflow_Formulir1111B3.xml',
                     'workflow/workflow_NotaPembatalan.xml',
+                    'workflow/workflow_NotaRetur.xml',
                     'wizard/view_WizardConfirmFakturPajak.xml',
                     'view/view_TahunPajak.xml',
                     'view/view_AkunPajak.xml',

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="wkf_pajak_notaRetur" model="workflow">
+            <field name="name">Nota Retur</field>
+            <field name="osv">pajak.nota_retur</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <record id="act_pajak_draftNotaRetur" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_pajak_notaRetur"/>
+            <field name="name">draft</field>
+			<field name="flow_start">True</field>
+            <field name="kind">dummy</field>
+        </record>   		    
+
+        <record id="act_pajak_confirmNotaRetur" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_pajak_notaRetur"/>
+            <field name="name">confirm</field>
+            <field name="action">workflow_action_confirm()</field>
+            <field name="kind">function</field>
+        </record>
+
+        <record id="act_pajak_approveNotaRetur" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_pajak_notaRetur"/>
+            <field name="name">waiting</field>
+            <field name="action">workflow_action_approve()</field>
+            <field name="kind">function</field>
+        </record>
+        
+        <record id="act_pajak_doneNotaRetur" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_pajak_notaRetur"/>
+            <field name="name">done</field>
+            <field name="action">workflow_action_done()</field>
+            <field name="kind">function</field>
+            <field name="flow_stop">True</field>
+        </record>       
+        
+        <record id="act_pajak_cancelNotaRetur" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_pajak_notaRetur"/>
+            <field name="name">cancel</field>
+            <field name="action">workflow_action_cancel()</field>
+            <field name="kind">function</field>
+            <field name="flow_stop">True</field>
+        </record>                
+        
+        <record id="transition_pajak_notaReturDraft2Confirm" model="workflow.transition">
+            <field name="act_from" ref="act_pajak_draftNotaRetur"/>
+            <field name="act_to" ref="act_pajak_confirmNotaRetur"/>
+            <field name="signal">button_confirm</field>
+            <field name="condition">True</field>
+        </record>      
+        
+        <record id="transition_pajak_notaReturConfirm2Approve" model="workflow.transition">
+            <field name="act_from" ref="act_pajak_confirmNotaRetur"/>
+            <field name="act_to" ref="act_pajak_approveNotaRetur"/>
+			<field name="signal">button_approve</field>
+            <field name="condition">True</field>            
+        </record>           
+        
+        <record id="transition_pajak_notaReturApprove2Done" model="workflow.transition">
+            <field name="act_from" ref="act_pajak_approveNotaRetur"/>
+            <field name="act_to" ref="act_pajak_doneNotaRetur"/>
+            <field name="signal">button_process</field>
+            <field name="condition">True</field>            
+        </record>  
+
+        
+        <record id="transition_pajak_notaReturDraft2Cancel" model="workflow.transition">
+            <field name="act_from" ref="act_pajak_draftNotaRetur"/>
+            <field name="act_to" ref="act_pajak_cancelNotaRetur"/>
+            <field name="signal">button_cancel</field>
+            <field name="condition">True</field>
+        </record>      
+        
+        <record id="transition_pajak_notaReturConfirm2Cancel" model="workflow.transition">
+            <field name="act_from" ref="act_pajak_confirmNotaRetur"/>
+            <field name="act_to" ref="act_pajak_cancelNotaRetur"/>
+            <field name="signal">button_cancel</field>
+            <field name="condition">True</field>
+        </record>                                       
+        
+        <record id="transition_pajak_notaReturApprove2Cancel" model="workflow.transition">
+            <field name="act_from" ref="act_pajak_approveNotaRetur"/>
+            <field name="act_to" ref="act_pajak_cancelNotaRetur"/>
+            <field name="signal">button_cancel</field>
+            <field name="condition">True</field>
+        </record>    
+        
+        
+
+
+    </data>
+</openerp>
+
