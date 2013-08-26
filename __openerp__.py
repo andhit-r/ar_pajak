@@ -49,6 +49,7 @@ Accounting connection will be handle on additional module.
                     'security/data_GroupsFormulir1111B3.xml',
                     'data/data_JenisTransaksiFakturPajak.xml',
                     'data/data_StatusFakturPajak.xml',
+                    'data/pajak.akun_pajak.csv',
                     'workflow/workflow_FakturPajak.xml',
                     'workflow/workflow_SuratSetorPajak.xml',
                     'workflow/workflow_Formulir1111.xml',
