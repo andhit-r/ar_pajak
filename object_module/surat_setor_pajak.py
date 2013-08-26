@@ -259,9 +259,8 @@ class surat_setor_pajak(osv.osv):
 
     def write_cancel_description(self, cr, uid, id, reason):
         #TODO: Ticket #125
+        self.write(cr, uid, [id], {'cancelled_reason' : reason})
         return True
-
-
     
     def onchange_company_id(self, cr, uid, ids, company_id):
         #TODO 28
