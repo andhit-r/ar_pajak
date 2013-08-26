@@ -8,6 +8,7 @@
                 <tree string="Jenis Setor Pajak">
                     <field name="name"/>
                     <field name="code"/>
+                    <field name="akun_pajak_id"/>
                 </tree>
             </field>
         </record>
@@ -22,6 +23,7 @@
 							<group name="group_1_1" colspan="1" col="2">
 								<field name="name"/>
 								<field name="code"/>
+                                <field name="akun_pajak_id" widget="selection"/>
 							</group>
 							<group name="group_1_2" colspan="1" col="2">
 								<field name="active"/>

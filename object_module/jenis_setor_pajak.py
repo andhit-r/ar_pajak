@@ -34,6 +34,7 @@ class jenis_setor_pajak(osv.osv):
     _columns = {
 							'name' : fields.char(string='Jenis Setor Pajak', size=100, required=True),					
 							'code' : fields.char(string='Kode', size=30, required=True),
+                            'akun_pajak_id' : fields.many2one(string='Akun Pajak', obj='pajak.akun_pajak', required=True),
 							'active' : fields.boolean(string='Active'),
 							'description' : fields.text(string='Description'),
     						}

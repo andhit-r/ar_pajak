@@ -1,0 +1,200 @@
+id,code,name,description,akun_pajak_id/id
+data_akunPajak_001,100,Masa PPh Pasal 21 ,untuk pembayaran pajak yang mzasih harus disetor yang tercantum dalam SPT Masa PPh Pasal 21.,data_kodeAkunPajak_411121
+data_akunPajak_002,199,Pembayaran Pendahuluan skp PPh Pasal 21 ,untuk pembayaran pajak sebelum diterbitkan surat ketetapan pajak PPh Pasal 21.,data_kodeAkunPajak_411121
+data_akunPajak_003,200,Tahunan PPh Pasal 21 ,untuk pembayaran pajak yang masih harus disetor yang tercantum dalam SPT Tahunan PPh Pasal 21.,data_kodeAkunPajak_411121
+data_akunPajak_004,300,STP PPh Pasal 21 ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Tagihan Pajak (STP) PPh Pasal 21.,data_kodeAkunPajak_411121
+data_akunPajak_005,310,SKPKB PPh Pasal 21 ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh Pasal 21.,data_kodeAkunPajak_411121
+data_akunPajak_006,311,"SKPKB PPh Final Pasal 21 Pembayaran Sekaligus Atas Jaminan Hari Tua, Uang Tebusan Pensiun, dan Uang Pesangon ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh Final Pasal 21 pembayaran sekaligus atas Jaminan Hari Tua, Uang Tebusan Pensiun, dan Uang Pesangon.",data_kodeAkunPajak_411121
+data_akunPajak_007,320,SKPKBT PPh Pasal 21 ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPh Pasal 21.,data_kodeAkunPajak_411121
+data_akunPajak_008,321,"SKPKBT PPh Final Pasal 21 Pembayaran Sekaligus Atas Jaminan Hari Tua, Uang Tebusan Pensiun, dan Uang Pesangon ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPh Final Pasal 21 pembayaran sekaligus atas Jaminan Hari Tua, Uang Tebusan Pensiun dan Uang Pesangon.",data_kodeAkunPajak_411121
+data_akunPajak_009,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411121
+data_akunPajak_010,401,"PPh Final Pasal 21 Pembayaran Sekaligus Atas Jaminan Hari Tua, Uang Tebusan Pensiun, dan Uang Pesangon ","untuk pembayaran PPh Final Pasal 21 pembayaran sekaligus atas Jaminan Hari Tua, Uang Tebusan Pensiun, dan Uang Pesangon.",data_kodeAkunPajak_411121
+data_akunPajak_011,402,"PPh Final Pasal 21 atas honorarium atau imbalan lain yang diterima Pejabat Negara, PNS, anggota TNI/POLRI dan para pensiunnya ","untuk pembayaran PPh Final Pasal 21 atas honorarium atau imbalan lain yang diterima Pejabat Negara, PNS, anggota TNI/POLRI dan para pensiunnya.",data_kodeAkunPajak_411121
+data_akunPajak_012,100,Masa PPh Pasal 22 ,untuk pembayaran pajak yang harus disetor yang tercantum dalam SPT Masa PPh Pasal 22.,data_kodeAkunPajak_411122
+data_akunPajak_013,199,Pembayaran Pendahuluan skp PPh Pasal 22 ,untuk pembayaran pajak sebelum diterbitkan surat ketetapan pajak PPh Pasal 22.,data_kodeAkunPajak_411122
+data_akunPajak_014,200,STP PPh Pasal 22 ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP PPh Pasal 22.,data_kodeAkunPajak_411122
+data_akunPajak_015,310,SKPKB PPh Pasal 22 ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh Pasal 22.,data_kodeAkunPajak_411122
+data_akunPajak_016,311,SKPKB PPh Final Pasal 22 ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh Final Pasal 22.,data_kodeAkunPajak_411122
+data_akunPajak_017,320,SKPKBT PPh Pasal 22 ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPh Pasal 22.,data_kodeAkunPajak_411122
+data_akunPajak_018,321,SKPKBT PPh Final Pasal 22 ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPh Final Pasal 22.,data_kodeAkunPajak_411122
+data_akunPajak_019,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411122
+data_akunPajak_020,401,PPh Final Pasal 22 atas Penebusan Migas ,untuk pembayaran PPh Final Pasal 22 atas Penebusan Migas.,data_kodeAkunPajak_411122
+data_akunPajak_021,402,PPh Final Pasal 22 atas Penyerahan Rokok Produksi Dalam Negeri ,untuk pembayaran PPh Final Pasal 22 atas penyerahan rokok produksi dalam negeri.,data_kodeAkunPajak_411122
+data_akunPajak_022,900,Pemungut PPh Pasal 22 ,untuk pembayaran PPh Pasal 22 yang dipungut oleh Pemungut.,data_kodeAkunPajak_411122
+data_akunPajak_023,100,Masa PPh Pasal 22 Impor ,untuk pembayaran pajak yang harus disetor yang tercantum dalam SPT Masa PPh Pasal 22 atas transaksi impor.,data_kodeAkunPajak_411123
+data_akunPajak_024,199,Pembayaran Pendahuluan skp PPh Pasal 22 Impor ,untuk pembayaran pajak sebelum diterbitkan surat ketetapan pajak PPh Pasal 22 Impor.,data_kodeAkunPajak_411123
+data_akunPajak_025,300,STP PPh Pasal 22 Impor ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP PPh Pasal 22 atas transaksi impor.,data_kodeAkunPajak_411123
+data_akunPajak_026,310,SKPKB PPh Pasal 22 Impor ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh Pasal 22 atas transaksi impor.,data_kodeAkunPajak_411123
+data_akunPajak_027,320,SKPKBT PPh Pasal 22 Impor ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPh Pasal 22 atas transaksi impor.,data_kodeAkunPajak_411123
+data_akunPajak_028,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411123
+data_akunPajak_029,100,Masa PPh Pasal 23 ,"untuk pembayaran PPh Pasal 23 yang harus disetor (selain PPh Pasal 23 atas dividen, bunga, royalti, dan jasa) yang tercantum dalam SPT Masa PPh Pasal 23.",data_kodeAkunPajak_411124
+data_akunPajak_030,101,PPh Pasal 23 atas Dividen ,untuk pembayaran PPh Pasal 23 yang harus disetor atas dividen yang dibayarkan kepada Wajib Pajak dalam negeri yang tercantum dalam SPT Masa PPh Pasal 23.,data_kodeAkunPajak_411124
+data_akunPajak_031,102,PPh Pasal 23 atas Bunga ,"untuk pembayaran PPh Pasal 23 yang harus disetor atas bunga (termasuk premium, diskonto dan imbalan karena jaminan pengembalian utang) yang dibayarkan kepada Wajib Pajak dalam negeri yang tercantum dalam SPT Masa PPh Pasal 23.",data_kodeAkunPajak_411124
+data_akunPajak_032,103,PPh Pasal 23 atas Royalti ,untuk pembayaran PPh Pasal 23 yang harus disetor atas royalti yang dibayarkan kepada Wajib Pajak dalam negeri yang tercantum dalam SPT Masa PPh Pasal 23.,data_kodeAkunPajak_411124
+data_akunPajak_033,104,PPh Pasal 23 atas Jasa ,untuk pembayaran PPh Pasal 23 yang harus disetor atas jasa yang dibayarkan kepada Wajib Pajak dalam negeri yang tercantum dalam SPT Masa PPh Pasal 23.,data_kodeAkunPajak_411124
+data_akunPajak_034,199,Pembayaran Pendahuluan skp PPh Pasal 23 ,untuk pembayaran pajak sebelum diterbitkan surat ketetapan pajak PPh Pasal 23.,data_kodeAkunPajak_411124
+data_akunPajak_035,300,STP PPh Pasal 23 ,"untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP PPh Pasal 23 (selain STP PPh Pasal 23 atas dividen, bunga, royalti, dan jasa).",data_kodeAkunPajak_411124
+data_akunPajak_036,301,"STP PPh Pasal 23 atas Dividen, Bunga, Royalti, dan Jasa ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP PPh Pasal 23 atas dividen, bunga, royalti, dan jasa.",data_kodeAkunPajak_411124
+data_akunPajak_037,310,SKPKB PPh Pasal 23 ,"untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh Pasal 23 (selain SKPKB PPh pasal 23 atas dividen, bunga, royalti dan jasa).",data_kodeAkunPajak_411124
+data_akunPajak_038,311,"SKPKB PPh Pasal 23 atas Dividen, Bunga, Royalti, dan Jasa ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh Pasal 23 atas dividen, bunga, royalti, dan jasa.",data_kodeAkunPajak_411124
+data_akunPajak_039,312,SKPKB PPh Final Pasal 23 ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh Final Pasal 23.,data_kodeAkunPajak_411124
+data_akunPajak_040,320,SKPKBT PPh Pasal 23 ,"untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPh Pasal 23 (selain SKPKBT PPh Pasal 23 atas dividen, bunga, royalti, dan jasa).",data_kodeAkunPajak_411124
+data_akunPajak_041,321,"SKPKBT PPh Pasal 23 atas Dividen, Bunga, Royalti, dan Jasa ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPh Pasal 23 atas dividen, bunga, royalti, dan jasa.",data_kodeAkunPajak_411124
+data_akunPajak_042,322,SKPKBT PPh Final Pasal 23 ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPh Final Pasal 23.,data_kodeAkunPajak_411124
+data_akunPajak_043,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411124
+data_akunPajak_044,401,PPh Final Pasal 23 atas Bunga Simpanan Anggota Koperasi ,untuk pembayaran PPh Final Pasal 23 atas bunga simpanan anggota koperasi.,data_kodeAkunPajak_411125
+data_akunPajak_045,100,Masa PPh Pasal 25 Orang Pribadi ,untuk pembayaran Masa PPh Pasal 25 Orang Pribadi yang terutang.,data_kodeAkunPajak_411125
+data_akunPajak_046,101,Masa PPh Pasal 25 Orang Pribadi Pengusaha Tertentu ,untuk pembayaran Masa PPh Pasal 25 Orang Pribadi Pengusaha Tertentu yang terutang.,data_kodeAkunPajak_411125
+data_akunPajak_047,199,Pembayaran Pendahuluan skp PPh Pasal 25 Orang Pribadi ,untuk pembayaran pajak sebelum diterbitkan surat ketetapan pajak PPh Pasal 25 Orang Pribadi.,data_kodeAkunPajak_411125
+data_akunPajak_048,200,Tahunan PPh Orang Pribadi ,untuk pembayaran pajak yang masih harus dibayar yang tercantum dalam SPT Tahunan PPh Orang Pribadi.,data_kodeAkunPajak_411125
+data_akunPajak_049,300,STP PPh Orang Pribadi ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP PPh Orang Pribadi.,data_kodeAkunPajak_411125
+data_akunPajak_050,310,SKPKB PPh Orang Pribadi ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh Orang Pribadi.,data_kodeAkunPajak_411125
+data_akunPajak_051,320,SKPKBT PPh Orang Pribadi ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPh Orang Pribadi.,data_kodeAkunPajak_411125
+data_akunPajak_052,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411125
+data_akunPajak_053,100,Masa PPh Pasal 25 Badan ,untuk pembayaran Masa PPh Pasal 25 Badan yang terutang.,data_kodeAkunPajak_411126
+data_akunPajak_054,101,PPh Atas Pengalihan Hak Atas Tanah dan/ atau Bangunan yang tidak bersifat final Badan ,untuk pembayaran PPh Badan Atas Pengalihan Hak Atas Tanah dan/atau Bangunan yang tidak bersifat final atas transaksi pengalihan hak atas tanah dan/ atau bangunan yang atas tanah dan/atau bangunan dan merupakan bagian pembayaran pendahuluan (PPh Pasal 25) dilakukan oleh Wajib Pajak Badan yang kegiatan utamanya bukan melakukan pengalihan hak,data_kodeAkunPajak_411126
+data_akunPajak_055,199,Pembayaran Pendahuluan skp PPh Pasal 25 Badan ,untuk pembayaran pajak sebelum diterbitkan surat ketetapan pajak PPh Pasal 25 Badan.,data_kodeAkunPajak_411126
+data_akunPajak_056,200,Tahunan PPh Badan ,untuk pembayaran pajak yang masih harus dibayar yang tercantum dalam SPT Tahunan PPh Badan.,data_kodeAkunPajak_411126
+data_akunPajak_057,300,STP PPh Badan ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP PPh Badan.,data_kodeAkunPajak_411126
+data_akunPajak_058,310,SKPKB PPh Badan ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh Badan.,data_kodeAkunPajak_411126
+data_akunPajak_059,320,SKPKBT PPh Badan ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPh Badan.,data_kodeAkunPajak_411126
+data_akunPajak_060,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411126
+data_akunPajak_061,100,Masa PPh Pasal 26,"untuk pembayaran PPh Pasal 26 yang harus disetor (selain PPh Pasal 26 atas dividen, bunga, royalti, jasa dan laba setelah pajak BUT) yang tercantum dalam SPT Masa PPh Pasal 26.",data_kodeAkunPajak_411127
+data_akunPajak_062,101,PPh Pasal 26 atas Dividen ,untuk pembayaran PPh Pasal 26 yang harus disetor atas dividen yang dibayarkan kepada Wajib Pajak luar negeri yang tercantum dalam SPT Masa PPh Pasal 26.,data_kodeAkunPajak_411127
+data_akunPajak_063,102,PPh Pasal 26 atas Bunga ,"untuk pembayaran PPh Pasal 26 yang harus disetor atas bunga (termasuk premium, diskonto, premi swap dan imbalan sehubungan dengan jaminan pengembalian utang) yang dibayarkan kepada Wajib Pajak luar negeri yang tercantum dalam SPT Masa PPh Pasal 26.",data_kodeAkunPajak_411127
+data_akunPajak_064,103,PPh Pasal 26 atas Royalti ,untuk pembayaran PPh Pasal 26 yang harus disetor atas royalti yang dibayarkan kepada Wajib Pajak luar negeri yang tercantum dalam SPT Masa PPh Pasal 26.,data_kodeAkunPajak_411127
+data_akunPajak_065,104,PPh Pasal 26 atas Jasa ,untuk pembayaran PPh Pasal 26 yang harus disetor atas jasa yang dibayarkan kepada Wajib Pajak luar negeri yang tercantum dalam SPT Masa PPh Pasal 26.,data_kodeAkunPajak_411127
+data_akunPajak_066,105,PPh Pasal 26 atas Laba setelah Pajak BUT ,untuk pembayaran PPh Pasal 26 yang harus dibayar atas laba setelah pajak BUT yang tercantum dalam SPT Tahunan PPh BUT.,data_kodeAkunPajak_411127
+data_akunPajak_067,199,Pembayaran Pendahuluan skp PPh Pasal 26 ,untuk pembayaran pajak sebelum diterbitkan surat ketetapan pajak PPh Pasal 26.,data_kodeAkunPajak_411127
+data_akunPajak_068,300,STP PPh Pasal 26 ,"untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP PPh Pasal 26 (selain STP PPh Pasal 26 atas dividen, bunga, royalti, jasa dan laba setelah pajak BUT).",data_kodeAkunPajak_411127
+data_akunPajak_069,301,"STP PPh Pasal 26 atas Dividen, Bunga, Royalti, Jasa, dan Laba Setelah Pajak BUT ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP PPh Pasal 26 atas dividen, bunga, royalti, jasa, dan laba setelah pajak BUT.",data_kodeAkunPajak_411127
+data_akunPajak_070,310,SKPKB PPh Pasal 26 ,"untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh Pasal 26 (selain SKPKB PPh Pasal 26 atas dividen, bunga, royalti, jasa dan laba setelah pajak BUT).",data_kodeAkunPajak_411127
+data_akunPajak_071,311,"SKPKB PPh Pasal 26 atas Dividen, Bunga, Royalti, Jasa, dan Laba Setelah Pajak BUT ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh Pasal 26 atas dividen, bunga, royalti, jasa, dan laba setelah pajak BUT.",data_kodeAkunPajak_411127
+data_akunPajak_072,320,SKPKBT PPh Pasal 26 ,"untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPh Pasal 26 (selain SKPKBT PPh Pasal 26 atas dividen, bunga, royalti, jasa dan laba setelah pajak BUT).",data_kodeAkunPajak_411127
+data_akunPajak_073,321,"SKPKBT PPh Pasal 26 atas Dividen, Bunga, Royalti, Jasa, dan Laba Setelah Pajak BUT ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPh Pasal 26 atas dividen, bunga, royalti, jasa, dan laba setelah pajak BUT.",data_kodeAkunPajak_411127
+data_akunPajak_074,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411127
+data_akunPajak_075,100,Fiskal Luar Negeri ,untuk pembayaran Fiskal Luar Negeri.,data_kodeAkunPajak_411128
+data_akunPajak_076,199,Pembayaran Pendahuluan skp PPh Final ,untuk pembayaran pajak sebelum diterbitkan surat ketetapan pajak PPh Final.,data_kodeAkunPajak_411128
+data_akunPajak_077,300,STP PPh Final ,untuk pembayaran jumlah yang masih harus dibayar/ disetor yang tercantum dalam STP PPh Final.,data_kodeAkunPajak_411128
+data_akunPajak_078,310,SKPKB PPh Final Pasal 4 ayat (2) ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh Final Pasal 4 ayat (2).,data_kodeAkunPajak_411128
+data_akunPajak_079,311,SKPKB PPh Final Pasal 15 ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh Final Pasal 15.,data_kodeAkunPajak_411128
+data_akunPajak_080,312,SKPKB PPh Final Pasal 19 ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh Final Pasal 19.,data_kodeAkunPajak_411128
+data_akunPajak_081,320,SKPKBT PPh Final Pasal 4 ayat (2) ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPh Final Pasal 4 ayat (2).,data_kodeAkunPajak_411128
+data_akunPajak_082,322,SKPKBT PPh Final Pasal 19 ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPh Final Pasal 19.,data_kodeAkunPajak_411128
+data_akunPajak_083,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411128
+data_akunPajak_084,401,PPh Final Pasal 4 ayat (2) atas Diskonto/ ,untuk pembayaran PPh Final Pasal 4 ayat (2) atas diskonto/bunga obligasi.,data_kodeAkunPajak_411128
+data_akunPajak_085,402,PPh Final Pasal 4 ayat (2) atas Pengalihan Hak atas Tanah dan/atau Bangunan ,untuk pembayaran PPh Final Pasal 4 ayat (2) atas Pengalihan Hak atas Tanah dan/atau Bangunan.,data_kodeAkunPajak_411128
+data_akunPajak_086,403,PPh Final Pasal 4 ayat (2) atas Persewaan Tanah dan/ atau Bangunan ,untuk pembayaran PPh Final Pasal 4 ayat (2) atas Persewaan Tanah dan/atau Bangunan.,data_kodeAkunPajak_411128
+data_akunPajak_087,404,"PPh Final Pasal 4 ayat (2) atas Bunga Deposito / Tabungan, Jasa Giro dan Diskonto SBI ","untuk pembayaran PPh Final Pasal 4 ayat (2) atas bunga deposito/tabungan, jasa giro dan diskonto SBI.",data_kodeAkunPajak_411128
+data_akunPajak_088,405,PPh Final Pasal 4 ayat (2) atas Hadiah Undian ,untuk pembayaran PPh Final Pasal 4 ayat (2) atas hadiah undian.,data_kodeAkunPajak_411128
+data_akunPajak_089,406,PPh Final Pasal 4 ayat (2) atas Transaksi Saham dan Obligasi di Bursa Efek ,untuk pembayaran PPh Final Pasal 4 ayat (2) atas transaksi saham dan obligasi di Bursa Efek.,data_kodeAkunPajak_411128
+data_akunPajak_090,407,PPh Final Pasal 4 ayat (2) atas Penjualan Saham Pendiri ,untuk pembayaran PPh Final Pasal 4 ayat (2) atas penjualan Saham Pendiri.,data_kodeAkunPajak_411128
+data_akunPajak_091,408,PPh Final Pasal 4 ayat (2) atas Penjualan Saham Milik Perusahaan Modal Ventura ,untuk pembayaran PPh Final Pasal 4 ayat (2) atas penjualan saham milik Perusahaan Modal Ventura.,data_kodeAkunPajak_411128
+data_akunPajak_092,409,PPh Final Pasal 4 ayat (2) atas Jasa Konstruksi ,untuk pembayaran PPh Final Pasal 4 ayat (2) atas jasa konstruksi.,data_kodeAkunPajak_411128
+data_akunPajak_093,410,PPh Final Pasal 15 atas Jasa Pelayaran Dalam Negeri ,untuk pembayaran PPh Final Pasal 15 atas jasa pelayaran dalam negeri.,data_kodeAkunPajak_411128
+data_akunPajak_094,411,PPh Final Pasal 15 atas Jasa Pelayaran dan/atau Penerbangan Luar Negeri ,untuk pembayaran PPh Final Pasal 15 atas jasa pelayaran dan/atau penerbangan luar negeri.,data_kodeAkunPajak_411128
+data_akunPajak_095,412,PPh Final Pasal 15 atas Jasa Penerbangan Dalam Negeri ,untuk pembayaran PPh Final Pasal 15 atas jasa penerbangan dalam negeri.,data_kodeAkunPajak_411128
+data_akunPajak_096,413,PPh Final Pasal 15 atas Penghasilan Perwakilan Dagang Luar Negeri ,untuk pembayaran PPh Final Pasal 15 atas penghasilan perwakilan dagang luar negeri.,data_kodeAkunPajak_411128
+data_akunPajak_097,414,PPh Final Pasal 15 atas Pola Bagi Hasil ,untuk pembayaran PPh Final Pasal 15 atas pola bagi hasil.,data_kodeAkunPajak_411128
+data_akunPajak_098,415,PPh Final Pasal 15 atas Kerjasama Bentuk BOT ,untuk pembayaran PPh Final Pasal 15 atas kerjasama bentuk BOT.,data_kodeAkunPajak_411128
+data_akunPajak_099,416,PPh Final Pasal 19 atas Revaluasi Aktiva Tetap ,untuk pembayaran PPh Final Pasal 19 atas revaluasi aktiva tetap.,data_kodeAkunPajak_411128
+data_akunPajak_100,100,PPh Non Migas Lainnya ,untuk pembayaran masa PPh Non Migas lainnya.,data_kodeAkunPajak_411129
+data_akunPajak_101,300,STP PPh Non Migas Lainnya ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP PPh Non Migas lainnya.,data_kodeAkunPajak_411129
+data_akunPajak_102,310,SKPKB PPh Non Migas Lainnya ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh Non Migas lainnya.,data_kodeAkunPajak_411129
+data_akunPajak_103,320,SKPKBT PPh Non Migas Lainnya ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPh Non Migas lainnya.,data_kodeAkunPajak_411129
+data_akunPajak_104,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411129
+data_akunPajak_105,100,PPh Minyak Bumi ,untuk pembayaran masa PPh Minyak Bumi.,data_kodeAkunPajak_411111
+data_akunPajak_106,300,STP PPh Minyak Bumi ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP PPh Minyak Bumi.,data_kodeAkunPajak_411111
+data_akunPajak_107,310,SKPKB PPh Minyak Bumi ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh Minyak Bumi.,data_kodeAkunPajak_411111
+data_akunPajak_108,320,SKPKBT PPh Minyak Bumi ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPh Minyak Bumi.,data_kodeAkunPajak_411111
+data_akunPajak_109,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411111
+data_akunPajak_110,100,PPh Gas Alam ,untuk pembayaran masa PPh Gas Alam.,data_kodeAkunPajak_411112
+data_akunPajak_111,300,STP PPh Gas Alam ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP PPh Gas Alam.,data_kodeAkunPajak_411112
+data_akunPajak_112,310,SKPKB PPh Gas Alam ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh Gas Alam.,data_kodeAkunPajak_411112
+data_akunPajak_113,320,SKPKBT PPh Gas Alam ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPh Gas Alam.,data_kodeAkunPajak_411112
+data_akunPajak_114,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411112
+data_akunPajak_115,100,PPh Lainnya Dari Minyak Bumi ,untuk pembayaran masa PPh lainnya dari Minyak Bumi.,data_kodeAkunPajak_411113
+data_akunPajak_116,300,STP PPh Lainnya Dari Minyak Bumi ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP PPh lainnya dari Minyak Bumi.,data_kodeAkunPajak_411113
+data_akunPajak_117,310,SKPKB PPh Lainnya Dari Minyak Bumi ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh lainnya dari Minyak Bumi.,data_kodeAkunPajak_411113
+data_akunPajak_118,320,SKPKBT PPh Lainnya Dari Minyak Bumi ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPh lainnya dari Minyak Bumi.,data_kodeAkunPajak_411113
+data_akunPajak_119,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411113
+data_akunPajak_120,100,PPh Migas Lainnya ,untuk pembayaran masa PPh Migas Lainnya.,data_kodeAkunPajak_411119
+data_akunPajak_121,300,STP PPh Migas Lainnya ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP PPh Migas Lainnya.,data_kodeAkunPajak_411119
+data_akunPajak_122,310,SKPKB PPh Migas Lainnya ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPh Migas Lainnya.,data_kodeAkunPajak_411119
+data_akunPajak_123,320,SKPKBT PPh Migas Lainnya ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPh Migas Lainnya.,data_kodeAkunPajak_411119
+data_akunPajak_124,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411119
+data_akunPajak_125,100,Setoran Masa PPN Dalam Negeri ,untuk pembayaran pajak yang masih harus dibayar yang tercantum dalam SPT Masa PPN Dalam Negeri.,data_kodeAkunPajak_411211
+data_akunPajak_126,101,Setoran PPN BKP tidak berwujud dari luar Daerah Pabean ,untuk pembayaran PPN terutang atas pemanfaatan BKP tidak berwujud dari luar Daerah Pabean.,data_kodeAkunPajak_411211
+data_akunPajak_127,102,Setoran PPN JKP dari luar Daerah Pabean ,untuk pembayaran PPN terutang atas Pemanfaatan JKP dari luar Daerah Pabean.,data_kodeAkunPajak_411211
+data_akunPajak_128,103,Setoran Kegiatan Membangun Sendiri ,untuk pembayaran PPN terutang atas Kegiatan Membangun Sendiri.,data_kodeAkunPajak_411211
+data_akunPajak_129,104,Setoran Penyerahan Aktiva yang menurut tujuan semula tidak untuk diperjualbelikan ,untuk pembayaran PPN terutang atas penyerahan aktiva yang menurut tujuan semula tidak untuk diperjualbelikan.,data_kodeAkunPajak_411211
+data_akunPajak_130,000,Setoran Atas Pengalihan Aktiva Dalam Rangka Restrukturisasi Perusahaan ,untuk pembayaran PPN yang terutang atas pengalihan aktiva dalam rangka restrukturisasi perusahaan.,data_kodeAkunPajak_411211
+data_akunPajak_131,199,Pembayaran Pendahuluan skp PPN Dalam Negeri ,untuk pembayaran pajak sebelum diterbitkan surat ketetapan pajak PPN Dalam Negeri.,data_kodeAkunPajak_411211
+data_akunPajak_132,300,STP PPN Dalam Negeri ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP PPN Dalam Negeri.,data_kodeAkunPajak_411211
+data_akunPajak_133,310,SKPKB PPN Dalam Negeri ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPN Dalam Negeri.,data_kodeAkunPajak_411211
+data_akunPajak_134,311,SKPKB PPN Pemanfaatan BKP tidak berwujud dari luar Daerah Pabean ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPN atas pemanfaatan BKP tidak berwujud dari luar Daerah Pabean.,data_kodeAkunPajak_411211
+data_akunPajak_135,312,SKPKB PPN Pemanfaatan JKP dari luar Daerah Pabean ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPN atas pemanfaatan JKP dari luar Daerah Pabean.,data_kodeAkunPajak_411211
+data_akunPajak_136,313,SKPKB PPN Kegiatan Membangun Sendiri ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPN atas Kegiatan Membangun Sendiri.,data_kodeAkunPajak_411211
+data_akunPajak_137,314,SKPKB Pemungut PPN Dalam Negeri ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPN yang menjadi kewajiban pemungut.,data_kodeAkunPajak_411211
+data_akunPajak_138,320,SKPKBT PPN Dalam Negeri ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPN Dalam Negeri.,data_kodeAkunPajak_411211
+data_akunPajak_139,321,SKPKBT PPN Pemanfaatan BKP tidak berwujud dari luar Daerah Pabean ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPN atas pemanfaatan BKP tidak berwujud dari luar Daerah Pabean.,data_kodeAkunPajak_411211
+data_akunPajak_140,322,SKPKBT PPN Pemanfaatan JKP dari luar Daerah Pabean ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPN atas pemanfaatan JKP dari luar Daerah Pabean.,data_kodeAkunPajak_411211
+data_akunPajak_141,323,SKPKBT PPN atas Kegiatan Membangun Sendiri ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPN atas Kegiatan Membangun Sendiri.,data_kodeAkunPajak_411211
+data_akunPajak_142,324,SKPKBT Pemungut PPN Dalam Negeri ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPN Dalam Negeri yang menjadi kewajiban pemungut.,data_kodeAkunPajak_411211
+data_akunPajak_143,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411211
+data_akunPajak_144,900,Pemungut PPN Dalam Negeri ,untuk penyetoran PPN dalam negeri yang dipungut oleh Pemungut.,data_kodeAkunPajak_411212
+data_akunPajak_145,100,Setoran Masa PPN Impor ,untuk pembayaran PPN terutang pada saat impor BKP,data_kodeAkunPajak_411212
+data_akunPajak_146,199,Pembayaran Pendahuluan skp PPN Impor ,untuk pembayaran pajak sebelum diterbitkan surat ketetapan pajak PPN Impor.,data_kodeAkunPajak_411212
+data_akunPajak_147,300,STP PPN Impor ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP PPN Impor.,data_kodeAkunPajak_411212
+data_akunPajak_148,310,SKPKB PPN Impor ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPN Impor.,data_kodeAkunPajak_411212
+data_akunPajak_149,320,SKPKBT PPN Impor ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPN Impor.,data_kodeAkunPajak_411212
+data_akunPajak_150,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411212
+data_akunPajak_151,900,Pemungut PPN Impor ,untuk penyetoran PPN impor yang dipungut oleh pemungut.,data_kodeAkunPajak_411212
+data_akunPajak_152,100,Setoran Masa PPnBM Dalam Negeri ,untuk pembayaran pajak yang masih harus dibayar yang tercantum dalam SPT Masa PPnBM Dalam Negeri.,data_kodeAkunPajak_411221
+data_akunPajak_153,199,Pembayaran Pendahuluan skp PPnBM Dalam Negeri ,untuk pembayaran pajak sebelum diterbitkan surat ketetapan pajak PPnBM Dalam Negeri.,data_kodeAkunPajak_411221
+data_akunPajak_154,300,STP PPnBM Dalam Negeri ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP PPnBM Dalam Negeri.,data_kodeAkunPajak_411221
+data_akunPajak_155,310,SKPKB Masa PPnBM Dalam Negeri ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPnBM Dalam Negeri.,data_kodeAkunPajak_411221
+data_akunPajak_156,311,SKPKB Pemungut PPnBM Dalam Negeri ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPnBM Dalam Negeri yang menjadi kewajiban pemungut.,data_kodeAkunPajak_411221
+data_akunPajak_157,320,SKPKBT Masa PPnBM Dalam Negeri ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPnBM Dalam Negeri.,data_kodeAkunPajak_411221
+data_akunPajak_158,321,SKPKBT Pemungut PPnBM Dalam Negeri ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPnBM Dalam Negeri yang menjadi kewajiban pemungut.,data_kodeAkunPajak_411221
+data_akunPajak_159,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411221
+data_akunPajak_160,900,Pemungut PPnBM Dalam Negeri ,untuk penyetoran PPnBM Dalam Negeri yang dipungut oleh pemungut.,data_kodeAkunPajak_411221
+data_akunPajak_161,100,Setoran Masa PPnBM Impor ,untuk pembayaran PPnBM terutang pada saat impor BKP,data_kodeAkunPajak_411222
+data_akunPajak_162,199,Pembayaran Pendahuluan skp PPnBM Impor ,untuk pembayaran pajak sebelum diterbitkan surat ketetapan pajak PPnBM Impor.,data_kodeAkunPajak_411222
+data_akunPajak_163,300,STP PPnBM Impor ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP PPnBM Impor.,data_kodeAkunPajak_411222
+data_akunPajak_164,310,SKPKB PPnBM Impor ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPnBM Impor.,data_kodeAkunPajak_411222
+data_akunPajak_165,320,SKPKBT PPnBM Impor ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPnBM Impor.,data_kodeAkunPajak_411222
+data_akunPajak_166,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411222
+data_akunPajak_167,900,Pemungut PPnBM Impor ,untuk penyetoran PPnBM Impor yang dipungut oleh pemungut.,data_kodeAkunPajak_411222
+data_akunPajak_168,100,Setoran Masa PPN Lainnya ,untuk pembayaran PPN Lainnya yang terutang.,data_kodeAkunPajak_411219
+data_akunPajak_169,300,STP PPN Lainnya ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP PPN Lainnya.,data_kodeAkunPajak_411219
+data_akunPajak_170,310,SKPKB PPN Lainnya ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPN Lainnya.,data_kodeAkunPajak_411219
+data_akunPajak_171,320,SKPKBT PPN Lainnya ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPN Lainnya.,data_kodeAkunPajak_411219
+data_akunPajak_172,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411219
+data_akunPajak_173,100,Setoran Masa PPnBM Lainnya ,untuk pembayaran PPnBM Lainnya yang terutang.,data_kodeAkunPajak_411229
+data_akunPajak_174,300,STP PPnBM Lainnya ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP PPnBM Lainnya.,data_kodeAkunPajak_411229
+data_akunPajak_175,310,SKPKB PPnBM Lainnya ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB PPnBM Lainnya.,data_kodeAkunPajak_411229
+data_akunPajak_176,320,SKPKBT PPnBM Lainnya ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT PPnBM Lainnya.,data_kodeAkunPajak_411229
+data_akunPajak_177,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411229
+data_akunPajak_178,100,Bea Meterai ,untuk pembayaran penggunaan Bea Meterai.,data_kodeAkunPajak_411611
+data_akunPajak_179,199,Pembayaran Pendahuluan skp Bea Meterai ,untuk pembayaran pajak sebelum diterbitkan surat ketetapan pajak Bea Meterai.,data_kodeAkunPajak_411611
+data_akunPajak_180,300,STP Bea Meterai ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP Bea Meterai.,data_kodeAkunPajak_411611
+data_akunPajak_181,310,SKPKB Bea Meterai ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB Bea Meterai.,data_kodeAkunPajak_411611
+data_akunPajak_182,320,SKPKBT Bea Meterai ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT Bea Meterai.,data_kodeAkunPajak_411611
+data_akunPajak_183,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411611
+data_akunPajak_184,100,Penjualan Benda Meterai ,untuk pembayaran penjualan Benda Meterai.,data_kodeAkunPajak_411612
+data_akunPajak_185,199,Pembayaran Pendahuluan skp Benda Meterai ,untuk pembayaran pajak sebelum diterbitkan surat ketetapan pajak Benda Meterai.,data_kodeAkunPajak_411612
+data_akunPajak_186,300,STP Benda Meterai ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP Benda Meterai.,data_kodeAkunPajak_411612
+data_akunPajak_187,310,SKPKB Benda Meterai ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB Benda Meterai.,data_kodeAkunPajak_411612
+data_akunPajak_188,320,SKPKBT Benda Meterai ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT Benda Meterai.,data_kodeAkunPajak_411612
+data_akunPajak_189,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411612
+data_akunPajak_190,100,Setoran Masa Pajak Tidak Langsung Lainnya ,untuk pembayaran Pajak Tidak Langsung Lainnya yang terutang.,data_kodeAkunPajak_411619
+data_akunPajak_191,300,STP Pajak Tidak Langsung Lainnya ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam STP Pajak Tidak Langsung Lainnya.,data_kodeAkunPajak_411619
+data_akunPajak_192,310,SKPKB Pajak Tidak Langsung Lainnya ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKB Pajak Tidak Langsung Lainnya.,data_kodeAkunPajak_411619
+data_akunPajak_193,320,SKPKBT Pajak Tidak Langsung Lainnya ,untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam SKPKBT Pajak Tidak Langsung Lainnya.,data_kodeAkunPajak_411619
+data_akunPajak_194,390,"Pembayaran atas Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding ","untuk pembayaran jumlah yang masih harus dibayar yang tercantum dalam Surat Keputusan Pembetulan, Surat Keputusan Keberatan, atau Putusan Banding.",data_kodeAkunPajak_411619
+data_akunPajak_195,900,Pemungut Pajak Tidak Langsung Lainnya ,untuk penyetoran Pajak Tidak Langsung Lainnya yang dipungut oleh pemungut.,data_kodeAkunPajak_411619
+data_akunPajak_196,300 ,STP atas Bunga Penagihan PPh ,untuk pembayaran STP Bunga Penagihan PPh.,data_kodeAkunPajak_411621
+data_akunPajak_197,300 ,STP atas Bunga Penagihan PPN ,untuk pembayaran STP Bunga Penagihan PPN.,data_kodeAkunPajak_411622
+data_akunPajak_198,300 ,STP atas Bunga Penagihan PPnBM ,untuk pembayaran STP Bunga Penagihan PPnBM.,data_kodeAkunPajak_411623
+data_akunPajak_199,300 ,STP atas Bunga Penagihan PTLL ,untuk pembayaran STP Bunga Penagihan PTLL.,data_kodeAkunPajak_411624
