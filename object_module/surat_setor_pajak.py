@@ -214,6 +214,19 @@ class surat_setor_pajak(osv.osv):
 
     def create_sequence(self, cr, uid, id):
         #TODO: Ticket #122
+        obj_sequence = self.pool.get('ir.sequence')
+        obj_res_company = self.pool.get('res.company')
+
+        surat_setor_pajak = self.browse(cr, uid, [id])[0]
+
+        if surat_setor_pajak.name == '/':
+            if surat_setor_pajak.company_id.sequence_surat_setor_pajak.id:
+                sequence = obj_sequence.next_by_id(cr, uid, surat_setor_pajak.company_id.sequence_surat_setor_pajak.id)
+                self.write(cr, uid, [id], {'name' : sequence})
+            else:
+                raise osv.except_osv(_('Perigatan'),_('Sequence Surat Setor Pajak Belum Di-Set'))
+                return False
+
         return True
 
     def log_audit_trail(self, cr, uid, id, state):
