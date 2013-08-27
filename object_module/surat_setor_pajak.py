@@ -214,21 +214,66 @@ class surat_setor_pajak(osv.osv):
 
     def create_sequence(self, cr, uid, id):
         #TODO: Ticket #122
+        obj_sequence = self.pool.get('ir.sequence')
+        obj_res_company = self.pool.get('res.company')
+
+        surat_setor_pajak = self.browse(cr, uid, [id])[0]
+
+        if surat_setor_pajak.name == '/':
+            if surat_setor_pajak.company_id.sequence_surat_setor_pajak.id:
+                sequence = obj_sequence.next_by_id(cr, uid, surat_setor_pajak.company_id.sequence_surat_setor_pajak.id)
+                self.write(cr, uid, [id], {'name' : sequence})
+            else:
+                raise osv.except_osv(_('Perigatan'),_('Sequence Surat Setor Pajak Belum Di-Set'))
+                return False
+
         return True
 
     def log_audit_trail(self, cr, uid, id, state):
         #TODO: Ticket #123
+        if state not in ['created','confirmed','approved','processed','cancelled']:
+            raise osv.except_osv(_('Peringatan!'),_('Error pada method log_audit'))
+            return False
+            
+        state_dict =    {
+                        'created' : 'draft',
+                        'confirmed' : 'confirm',
+                        'approved' : 'approve',
+                        'processed' : 'done',
+                        'cancelled' : 'cancel'
+                        }
+                
+        val =   {
+                '%s_user_id' % (state) : uid ,
+                '%s_time' % (state) : datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                'state' : state_dict.get(state, False),
+                }          
+        self.write(cr, uid, [id], val)
         return True
 
     def clear_log_audit(self, cr, uid, id):
         #TODO: Ticket #124
+        val =	{
+                'created_user_id' : False,
+                'created_time' : False,		
+                'confirmed_user_id' : False,
+                'confirmed_time' : False,
+                'approved_user_id' : False,
+                'approved_time' : False,
+                'processed_user_id' : False,
+                'processed_time' : False,
+                'cancelled_user_id' : False,
+                'cancelled_time' : False,
+                }
+			
+        self.write(cr, uid, [id], val)
+
         return True
 
     def write_cancel_description(self, cr, uid, id, reason):
         #TODO: Ticket #125
+        self.write(cr, uid, [id], {'cancelled_reason' : reason})
         return True
-
-
     
     def onchange_company_id(self, cr, uid, ids, company_id):
         #TODO 28
