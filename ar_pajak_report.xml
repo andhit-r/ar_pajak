@@ -19,10 +19,56 @@
         <field eval="'client_print_multi'" name="key2"/>
         <field eval="['pajak.surat_setor_pajak']" name="models"/>
         <field name="name">Surat Setor Pajak Lbr. 1</field>
-        <field eval="'ir.actions.report.xml,'+str(rref(eport_pajak_ssp1))" name="value"/>
+        <field eval="'ir.actions.report.xml,'+str(ref(report_pajak_ssp1))" name="value"/>
         <field eval="True" name="isobject"/>
         <field eval="True" name="replace"/>
     </ir_set>
+    
+
+    <record id="report_pajak_suratSetorPajak2" model="ir.actions.report.xml">
+        <field name="name">Surat Setor Pajak Lbr. 2</field>
+        <field name="type">ir.actions.report.xml</field>
+        <field name="model">pajak.surat_setor_pajak</field>
+        <field name="report_name">ssp_lbr_2</field>
+        <field name="report_type">aeroo</field>
+        <field name="in_format">oo-ods</field>
+        <field name="report_rml">ar_pajak/report/ssp_1.ods</field>
+        <field name="parser_state">default</field>
+        <field name="tml_source">file</field>
+    </record>   
+
+    
+    <record id="report_pajak_fakturPajak1" model="ir.actions.report.xml">
+        <field name="name">Faktur Pajak Lbr. 1</field>
+        <field name="type">ir.actions.report.xml</field>
+        <field name="model">pajak.faktur_pajak</field>
+        <field name="report_name">faktur_pajak_lbr_1</field>
+        <field name="report_type">aeroo</field>
+        <field name="in_format">oo-ods</field>
+        <field name="report_rml">ar_pajak/report/faktur_pajak_1.ods</field>
+        <field name="parser_state">default</field>
+        <field name="tml_source">file</field>
+    </record>    
+    
+    <record id="actBinding_pajak_fakturPajakReport1" model="ir.values">
+        <field name="name">Faktur Pajak Lbr. 1</field>
+        <field name="key2">client_print_multi</field>
+        <field name="key">action</field>
+        <field name="model">pajak.faktur_pajak</field>
+        <field name="value" eval="'ir.actions.report.xml,'+str(report_pajak_fakturPajak1)"/>
+        <field name="isobject" eval="True"/>
+        <field name="replace" eval="True"/>
+    </record>
+    
+    <record id="actBinding_pajak_fakturPajakReport2" model="ir.values">
+        <field name="name">Faktur Pajak Lbr. 2</field>
+        <field name="key2">client_print_multi</field>
+        <field name="key">action</field>
+        <field name="model">pajak.faktur_pajak</field>
+        <field name="value" eval="'ir.actions.report.xml,'+str(report_pajak_fakturPajak1)"/>
+        <field name="isobject" eval="True"/>
+        <field name="replace" eval="True"/>
+    </record>    
  
 
 </data>
