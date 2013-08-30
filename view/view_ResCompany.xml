@@ -12,6 +12,8 @@
                             <group name="group_1" colspan="4" col="2">
                                 <group name="group_1_1" colspan="1" col="2">
                                     <field name="sequence_faktur_pajak"/>
+                                    <field name="sequence_nota_pembatalan"/>
+                                    <field name="sequence_nota_retur"/>
                                     <field name="sequence_formulir_1111_a1"/>
                                     <field name="sequence_formulir_1111_a2"/>
                                     <field name="sequence_formulir_1111_ab"/>
@@ -22,8 +24,9 @@
                                 </group>
                                 <group name="group_1_2" colspan="1" col="2">
                                     <field name="faktur_pajak_signature_id"/>
-                                    <field name="sequence_nota_pembatalan"/>
-                                    <field name="sequence_nota_retur"/>
+									<field name="nota_retur_signature_id"/>
+									<field name="nota_pembatalan_signature_id"/>
+									<field name="surat_setor_pajak_signature_id"/>
                                 </group>
                             </group>
                         </page>
