@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <openerp>
 <data>    
+	<!-- Lbr. 1 -->
     <record id="report_pajak_fakturPajak1" model="ir.actions.report.xml">
         <field name="name">Faktur Pajak Lbr. 1</field>
         <field name="type">ir.actions.report.xml</field>
@@ -19,6 +20,29 @@
         <field name="key">action</field>
         <field name="model">pajak.faktur_pajak</field>
         <field name="value" eval="'ir.actions.report.xml,'+str(report_pajak_fakturPajak1)"/>
+        <field name="isobject" eval="True"/>
+        <field name="replace" eval="True"/>
+    </record>
+
+	<!-- Lbr. 2 -->
+    <record id="report_pajak_fakturPajak2" model="ir.actions.report.xml">
+        <field name="name">Faktur Pajak Lbr. 2</field>
+        <field name="type">ir.actions.report.xml</field>
+        <field name="model">pajak.faktur_pajak</field>
+        <field name="report_name">faktur_pajak_lbr_2</field>
+        <field name="report_type">aeroo</field>
+        <field name="in_format">oo-ods</field>
+        <field name="report_rml">ar_pajak/report/faktur_pajak_2.ods</field>
+        <field name="parser_state">default</field>
+        <field name="tml_source">file</field>
+    </record>   
+    
+    <record id="actBinding_pajak_fakturPajak2" model="ir.values">
+        <field name="name">Faktur Pajak Lbr. 2</field>
+        <field name="key2">client_print_multi</field>
+        <field name="key">action</field>
+        <field name="model">pajak.faktur_pajak</field>
+        <field name="value" eval="'ir.actions.report.xml,'+str(report_pajak_fakturPajak2)"/>
         <field name="isobject" eval="True"/>
         <field name="replace" eval="True"/>
     </record>
