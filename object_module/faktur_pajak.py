@@ -63,6 +63,7 @@ class faktur_pajak(osv.osv):
             untaxed = 0.0
             base = 0.0
             amount_tax = 0.0
+            total_ppnbm = 0.0
 
             if faktur.faktur_pajak_line_ids:
                 for line in faktur.faktur_pajak_line_ids:
@@ -71,10 +72,15 @@ class faktur_pajak(osv.osv):
                 untaxed = (base - faktur.discount - faktur.advance_payment) 
                 amount_tax = (0.1 * untaxed)
 
+            if faktur.faktur_pajak_line_ppnbm_ids:
+                for line in faktur.faktur_pajak_line_ppnbm_ids:
+                    total_ppnbm += line.ppnbm_amount
+
             res[faktur.id] =    {
                                 'untaxed' : untaxed,
                                 'base' : base,
                                 'amount_tax' : amount_tax,
+                                'total_ppnbm' : total_ppnbm,
                                 }
         return res
     
@@ -89,17 +95,24 @@ class faktur_pajak(osv.osv):
                 'nomor_seri' : fields.function(string='Nomor Seri', fnct=function_nomor_seri, type='char', size=30, method=True, store=True),
                 'company_id' : fields.many2one(obj='res.company', string='Company', required=True),
                 'company_npwp' : fields.char(string='Company NPWP', size=30, required=True),
+                'company_address' : fields.char(string='Company Address', size=255, required=True),
+                'tanggal_pengukuhan_pkp' : fields.date(string='Tanggal Pengukuhan PKP', required=True),
+                'nppkp' : fields.char(string='NPPKP', size=50),
                 'partner_id' : fields.many2one(obj='res.partner', string='Partner', required=True),
                 'partner_npwp' : fields.char(string='Partner NPWP', size=30, required=True),
+                'partner_address' : fields.char(string='Partner Address', size=100, required=True),
                 'signature_id' : fields.many2one(obj='res.users', string='Signature', readonly=False, required=True),
+                'signature_job' : fields.char(string='Job', size=100, required=True),
                 'discount' : fields.float(string='Discount', digits_compute=dp.get_precision('Account'), required=True),
                 'advance_payment' : fields.float(string='Amount Advance Payment', digits_compute=dp.get_precision('Account'), required=True),
                 'untaxed' : fields.function(fnct=function_amount_all, type='float', string='Untaxed', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
                 'base' : fields.function(fnct=function_amount_all, type='float', string='Base', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
+                'total_ppnbm' : fields.function(fnct=function_amount_all, type='float', string='Total PPnBM', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
                 'amount_tax' : fields.function(fnct=function_amount_all, string='Amount Tax', digits_compute=dp.get_precision('Account'), method=True, store=True, multi='all'),
                 'faktur_pajak_line_ids' : fields.one2many(obj='pajak.faktur_pajak_line', fields_id='faktur_pajak_id', string='Faktur Pajak Line'),
                 'faktur_pajak_line_ppnbm_ids' : fields.one2many(obj='pajak.faktur_pajak_ppnbm_line', fields_id='faktur_pajak_id', string='Faktur Pajak PPN Bm Line'),
                 'faktur_pajak_date' : fields.date(string='Date', required=True),
+                'city' : fields.char(string='City', size=100, required=True),
                 'note' : fields.text(string='Note'),
                 'state' : fields.selection([('draft','Draft'),('confirm','Waiting For Approval'),('approve','Ready To Process'),('done','Done'),('cancel','Cancel')], 'Status', readonly=True),
                 'created_time' : fields.datetime(string='Created Time', readonly=True),

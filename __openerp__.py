@@ -51,6 +51,7 @@ Accounting connection will be handle on additional module.
                     'data/data_StatusFakturPajak.xml',
                     'data/pajak.akun_pajak.csv',
                     'data/pajak.jenis_setor_pajak.csv',
+                    'report/faktur_pajak.xml',
                     'workflow/workflow_FakturPajak.xml',
                     'workflow/workflow_SuratSetorPajak.xml',
                     'workflow/workflow_Formulir1111.xml',
