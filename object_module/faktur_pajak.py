@@ -51,8 +51,8 @@ class faktur_pajak(osv.osv):
     def function_nomor_seri(self, cr, uid, ids, name, args, context=None):
         #TODO: Ticket #117
         res = {}
-        for id in ids:
-            res[id] = '-'
+        for faktur in self.browse(cr, uid, ids):
+            res[faktur.id] = faktur.jenis_transaksi_faktur_pajak_id.code + faktur.status_faktur_pajak_id.code + '.' + faktur.kode_cabang + '-' + faktur.kode_tahun + '.' + faktur.name
         return res
 
     def function_amount_all(self, cr, uid, ids, name, args, context=None):
@@ -169,15 +169,19 @@ class faktur_pajak(osv.osv):
     def onchange_company_id(self, cr, uid, ids, company_id):
         #TODO: Ticket #7
         obj_res_company = self.pool.get('res.company')
+        obj_partner = self.pool.get('res.partner')
 
         value = {}
         domain = {}
         warning = {}
        
         if company_id:
-            npwp = obj_res_company.browse(cr, uid, company_id).partner_id.npwp
-            signature_id = obj_res_company.browse(cr, uid, company_id).faktur_pajak_signature_id.id
-            value.update({'company_npwp' : npwp, 'signature_id' : signature_id})
+            company = obj_res_company.browse(cr, uid, [company_id])[0]
+            value.update({'company_npwp' : company.partner_id.npwp,
+                            'signature_id' : company.faktur_pajak_signature_id and company.faktur_pajak_signature_id.id or False,
+                            'tanggal_pengukuhan_pkp' : company.partner_id.tanggal_pengukuhan_pkp,
+                            'company_address' : obj_partner.address_get(cr, uid, [company.partner_id.id])['default']
+                            })
 
         return {'value' : value, 'domain' : domain, 'warning' : warning}
 
