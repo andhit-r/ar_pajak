@@ -35,7 +35,7 @@ Accounting connection will be handle on additional module.
     """,
     'website': 'http://andhitiarama.wordpress.com',
     'images' : [],
-    'depends' : ['product', 'ar_base', 'ar_base_amount_to_text','ar_base_perusahaan', 'report_aeroo'],
+    'depends' : ['product', 'ar_base', 'ar_base_amount_to_text','ar_base_perusahaan', 'report_aeroo_ooo'],
     'data' : [  
                     'security/ir.model.access.csv',
                     'security/data_Application.xml',
@@ -51,7 +51,7 @@ Accounting connection will be handle on additional module.
                     'data/data_StatusFakturPajak.xml',
                     'data/pajak.akun_pajak.csv',
                     'data/pajak.jenis_setor_pajak.csv',
-                    'ar_pajak_report.xml',
+                    'report/faktur_pajak.xml',
                     'workflow/workflow_FakturPajak.xml',
                     'workflow/workflow_SuratSetorPajak.xml',
                     'workflow/workflow_Formulir1111.xml',

@@ -48,11 +48,17 @@
                                 <field name="faktur_pajak_date"/>
 								<field name="company_id" widget="selection" on_change="onchange_company_id(company_id)"/>
 								<field name="company_npwp"/>
+                                <field name="company_address"/>
+                                <field name="tanggal_pengukuhan_pkp"/>
+                                <field name="nppkp"/>
 								<field name="signature_id"/>
+                                <field name="signature_job"/>
+                                <field name="city"/>
 							</group>						
 							<group name="group_1_3" colspan="1" col="2">
 								<field name="partner_id" on_change="onchange_partner_id(partner_id)"/>
 								<field name="partner_npwp"/>
+                                <field name="partner_address"/>
 							</group>						
 						</group>
 						<notebook colspan="4">
